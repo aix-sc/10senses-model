@@ -637,14 +637,23 @@
   .chat-msg.md pre code{background:none;padding:0;font-size:12px;line-height:1.55;}
   .chat-msg.md blockquote{margin:7px 0;padding:2px 0 2px 11px;border-left:2px solid var(--line);color:var(--ink-soft);}
   .chat-msg.md hr{border:0;border-top:1px solid var(--line);margin:9px 0;}
-  .chat-suggest.loading{opacity:.5;pointer-events:none;}
+  .chat-suggest{display:flex;align-items:flex-start;gap:8px;padding:2px 18px 8px;}
+  .chat-sug-chips{flex:1;display:flex;flex-wrap:wrap;gap:7px;min-height:28px;}
+  .chat-chip{border:1px solid var(--line);background:transparent;border-radius:30px;padding:6px 12px;font-family:var(--serif);font-size:12px;color:var(--ink-soft);cursor:pointer;transition:background .2s,border-color .2s,color .2s;}
+  .chat-chip:hover{background:rgba(34,27,20,.05);border-color:var(--ink-faint);color:var(--ink);}
+  .chat-chip-skel{height:28px;border-radius:30px;background:linear-gradient(90deg,rgba(34,27,20,.05) 25%,rgba(34,27,20,.12) 37%,rgba(34,27,20,.05) 63%);background-size:400% 100%;animation:chatShimmer 1.25s ease infinite;}
+  @keyframes chatShimmer{0%{background-position:100% 0}100%{background-position:0 0}}
+  .chat-sug-reload{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s;}
+  .chat-sug-reload:hover{background:rgba(34,27,20,.05);color:var(--ink);border-color:var(--ink-faint);}
+  .chat-sug-reload svg{width:14px;height:14px;display:block;}
+  .chat-sug-reload:disabled{opacity:.55;}
+  .chat-sug-reload.spinning{pointer-events:none;}
+  .chat-sug-reload.spinning svg{animation:chatSpin .8s linear infinite;transform-origin:50% 50%;}
+  @keyframes chatSpin{to{transform:rotate(360deg);}}
   .chat-typing{align-self:flex-start;display:inline-flex;gap:4px;padding:13px 15px;background:var(--paper-3);border-radius:15px;border-bottom-left-radius:5px;}
   .chat-typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-faint);animation:chatdot 1s infinite ease-in-out;}
   .chat-typing i:nth-child(2){animation-delay:.15s;}.chat-typing i:nth-child(3){animation-delay:.3s;}
   @keyframes chatdot{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
-  .chat-suggest{display:flex;flex-wrap:wrap;gap:7px;padding:2px 18px 8px;}
-  .chat-chip{border:1px solid var(--line);background:transparent;border-radius:30px;padding:6px 12px;font-family:var(--serif);font-size:12px;color:var(--ink-soft);cursor:pointer;transition:background .2s,border-color .2s,color .2s;}
-  .chat-chip:hover{background:rgba(34,27,20,.05);border-color:var(--ink-faint);color:var(--ink);}
   .chat-input-row{display:flex;align-items:flex-end;gap:8px;padding:12px 14px 8px;border-top:1px solid var(--line);}
   .chat-input{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-family:var(--serif);font-size:14px;color:var(--ink);background:#fff;resize:none;outline:none;line-height:1.45;max-height:120px;}
   .chat-input:focus{border-color:#C9A35A;}
@@ -1918,7 +1927,12 @@
     <button id="chatClose" class="chat-x" type="button" aria-label="Close">&times;</button>
   </div>
   <div class="chat-log" id="chatLog"></div>
-  <div class="chat-suggest" id="chatSuggest"></div>
+  <div class="chat-suggest" id="chatSuggest">
+    <div class="chat-sug-chips" id="chatSugChips"></div>
+    <button class="chat-sug-reload" id="chatSugReload" type="button" aria-label="Regenerate suggestions" title="Regenerate suggestions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg>
+    </button>
+  </div>
   <div class="chat-input-row">
     <textarea id="chatText" class="chat-input" rows="1" autocomplete="off"></textarea>
     <button id="chatSend" class="chat-send" type="button" aria-label="Send">&uarr;</button>
@@ -1974,17 +1988,19 @@ Answer questions about this research clearly and concisely (usually under ~140 w
     notcfg: {en:"The assistant isn't connected yet. Add your Firebase web config to CONFIG in index.html and enable Firebase AI Logic.",
              ja:"アシスタントは未接続です。index.html の CONFIG に Firebase の Web 設定を入力し、Firebase AI Logic を有効化してください。"},
     fail:   {en:"Sorry — I couldn't reach the model. Please check the Firebase AI Logic setup and try again.",
-             ja:"モデルに接続できませんでした。Firebase AI Logic の設定を確認して、もう一度お試しください。"}
+             ja:"モデルに接続できませんでした。Firebase AI Logic の設定を確認して、もう一度お試しください。"},
+    reload: {en:"Regenerate questions", ja:"質問候補を再生成"}
   };
   const lang = ()=> (document.documentElement.lang==='ja' ? 'ja' : 'en');
 
   const fab=document.getElementById('chatFab'), panel=document.getElementById('chatPanel'),
         closeB=document.getElementById('chatClose'), log=document.getElementById('chatLog'),
-        sug=document.getElementById('chatSuggest'), input=document.getElementById('chatText'),
+        sug=document.getElementById('chatSuggest'), sugChips=document.getElementById('chatSugChips'),
+        sugReload=document.getElementById('chatSugReload'), input=document.getElementById('chatText'),
         sendB=document.getElementById('chatSend'), head=document.getElementById('chatHeadLabel'),
         foot=document.getElementById('chatFoot'), fabLabel=fab.querySelector('.chat-fab-label');
 
-  let chatSession=null, ai=null, chatModel=null, suggestModel=null, initStarted=false, busy=false, greeted=false;
+  let chatSession=null, ai=null, chatModel=null, suggestModel=null, initStarted=false, busy=false, greeted=false, lastU='', lastBot='';
 
   /* ---- minimal, safe Markdown -> HTML (escapes first, then decorates) ---- */
   function mdToHtml(text){
@@ -2018,13 +2034,22 @@ Answer questions about this research clearly and concisely (usually under ~140 w
   }
 
   function chipClick(q){ if(busy) return; input.value=q; send(); }
+  function setSuggestLoading(on){
+    sugReload.classList.toggle('spinning', on);
+    sugReload.disabled = on;
+    if(on){
+      sugChips.innerHTML='';
+      const widths=[88,116,72,132,96,108];
+      for(let i=0;i<6;i++){ const s=document.createElement('span'); s.className='chat-chip-skel'; s.style.width=widths[i]+'px'; sugChips.appendChild(s); }
+    }
+  }
   function renderChips(arr){
-    sug.classList.remove('loading'); sug.innerHTML='';
+    setSuggestLoading(false); sugChips.innerHTML='';
     (arr||[]).slice(0,6).forEach(q=>{
       q=String(q).trim(); if(!q) return;
       const b=document.createElement('button'); b.className='chat-chip'; b.type='button'; b.textContent=q;
       b.addEventListener('click',()=>chipClick(q));
-      sug.appendChild(b);
+      sugChips.appendChild(b);
     });
   }
 
@@ -2032,6 +2057,7 @@ Answer questions about this research clearly and concisely (usually under ~140 w
     const L=lang();
     head.textContent=TX.head[L]; fabLabel.textContent=TX.fab[L];
     input.placeholder=TX.ph[L]; foot.textContent=TX.foot[L];
+    sugReload.title=TX.reload[L]; sugReload.setAttribute('aria-label',TX.reload[L]);
     renderChips(TX.chips[L]);
   }
   function add(role,text,md){
@@ -2059,20 +2085,35 @@ Answer questions about this research clearly and concisely (usually under ~140 w
     chatSession = chatModel.startChat({ history: [] });
   }
 
-  /* Generate ~6 fresh follow-up suggestions from the latest Q&A (stateless; does not touch chat history). */
-  async function refreshSuggestions(userMsg, botMsg){
-    if(!configured() || !suggestModel) return;
-    const L=lang(), langName = (L==='ja' ? 'Japanese' : 'English');
-    const prompt = 'Latest exchange —\nReader asked: "'+userMsg+'"\nAssistant answered: "'+botMsg+'"\n\nPropose exactly 6 short, distinct follow-up questions the reader is likely to ask next, written in '+langName+'. Return ONLY a JSON array of 6 strings.';
+  /* Generate ~6 fresh suggestions (stateless; does not touch chat history). */
+  function followupPrompt(u,a){
+    const langName = (lang()==='ja' ? 'Japanese' : 'English');
+    return 'Latest exchange —\nReader asked: "'+u+'"\nAssistant answered: "'+a+'"\n\nPropose exactly 6 short, distinct follow-up questions the reader is likely to ask next, written in '+langName+'. Return ONLY a JSON array of 6 strings.';
+  }
+  function starterPrompt(){
+    const langName = (lang()==='ja' ? 'Japanese' : 'English');
+    return 'A reader just opened an assistant about this paper and has not asked anything yet. Propose 6 short, varied opening questions about the 10 Senses Model, the Training Confidence Index, the 17.1% finding, or how it applies beyond running — written in '+langName+'. Return ONLY a JSON array of 6 strings.';
+  }
+  async function requestSuggestions(prompt, fallback){
+    if(!configured()){ renderChips(fallback); return; }
     try{
-      sug.classList.add('loading');
+      setSuggestLoading(true);
+      await ensureModel();
       const r = await suggestModel.generateContent(prompt);
       let t = r.response.text().trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'').trim();
       const m = t.match(/\[[\s\S]*\]/); if(m) t=m[0];
       const arr = JSON.parse(t);
-      if(Array.isArray(arr) && arr.length){ renderChips(arr); }
-      else { sug.classList.remove('loading'); }
-    }catch(e){ sug.classList.remove('loading'); console.warn('[chat suggest]',e); }
+      renderChips(Array.isArray(arr) && arr.length ? arr : fallback);
+    }catch(e){ console.warn('[chat suggest]',e); renderChips(fallback); }
+  }
+  function refreshSuggestions(userMsg, botMsg){
+    lastU=userMsg; lastBot=botMsg;
+    return requestSuggestions(followupPrompt(userMsg, botMsg), TX.chips[lang()]);
+  }
+  function regenerate(){
+    if(busy || sugReload.disabled) return;
+    const prompt = lastBot ? followupPrompt(lastU, lastBot) : starterPrompt();
+    requestSuggestions(prompt, TX.chips[lang()]);
   }
   async function send(){
     const text=input.value.trim(); if(!text||busy) return;
@@ -2102,6 +2143,7 @@ Answer questions about this research clearly and concisely (usually under ~140 w
   }
   fab.addEventListener('click',open);
   closeB.addEventListener('click',close);
+  sugReload.addEventListener('click',regenerate);
   sendB.addEventListener('click',send);
   input.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); send(); } });
   input.addEventListener('input',()=>{ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,120)+'px'; });
