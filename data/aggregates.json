@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "title": "10 Senses Model (10SM) & Training Confidence Index (TCI) — aggregate dataset",
+    "description": "Non-identifying aggregate statistics derived from the EKIDEN.AI operational dataset, used to validate the 10SM/TCI framework. Contains NO individual-level records, identifiers, free text, or location data. Safe for public release (anonymous information under GDPR Recital 26).",
+    "source": "EKIDEN.AI human-AI running coaching platform",
+    "snapshot_date": "2026-02-13",
+    "generated": "2026-06-07",
+    "paper": "Truth Is Not Enough (EJC 2026)"
+  },
+  "cohort": {
+    "runners": 299,
+    "activities": 20343,
+    "coaching_dialogues": 6027,
+    "total_distance_km": 160876,
+    "total_moving_hours": 15684
+  },
+  "fitness_level_vdot": {
+    "n_with_vdot": 69,
+    "min": 37.0,
+    "mean": 57.0,
+    "max": 76.0,
+    "elite_ge_70": 6,
+    "note": "VDOT (Daniels) — higher is faster. Recreational ~30-45, competitive ~50-65, elite 70+."
+  },
+  "activity_types": {
+    "Run": 14704,
+    "Other": 3383,
+    "Ride": 1169,
+    "Walk": 833,
+    "Swim": 223,
+    "Hike": 31,
+    "Other types": 0
+  },
+  "language_mix": {
+    "ja": 168,
+    "en": 74,
+    "id": 20,
+    "th": 4,
+    "other": 33
+  },
+  "rpe_distribution": {
+    "1": 285,
+    "2": 196,
+    "3": 226,
+    "4": 53,
+    "5": 40,
+    "6": 34,
+    "7": 27,
+    "8": 17,
+    "9": 6,
+    "10": 8
+  },
+  "rpe_total": 892,
+  "mood_distribution": {
+    "1": 2,
+    "2": 36,
+    "3": 93,
+    "4": 44,
+    "5": 656,
+    "8": 27,
+    "10": 15
+  },
+  "mood_total": 873,
+  "subjective_objective_discrepancy": {
+    "n_sessions_with_both": 890,
+    "match": 738,
+    "felt_harder_overload": 87,
+    "felt_easier_adaptation": 65,
+    "total_discrepancy": 152,
+    "discrepancy_rate_pct": 17.1,
+    "source": "Paper Table 9 (RPE vs VDOT intensity)"
+  }
+}

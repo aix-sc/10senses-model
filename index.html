@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Truth Is Not Enough — The 10 Senses Model & Training Confidence Index</title>
+<meta name="description" content="An epistemological framework for multi-dimensional evaluation of AI outputs. The 10 Senses Model (10SM) extends scientific accuracy with individual fit, relational trust, practical harmony, and intuitive dissonance — operationalized as the Training Confidence Index (TCI). Yusuke Takahashi · EJC 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous" />
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha512-LQNxIMR5rXv7o+b1l8+N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDfkDpmrjUjdYGyNhA==" crossorigin="anonymous"></script>
+<style>
+  :root{
+    --paper:#F4EEE2;
+    --paper-2:#EDE5D4;
+    --paper-3:#E6DCC7;
+    --ink:#221B14;
+    --ink-soft:#5C5246;
+    --ink-faint:#8A7E6E;
+    --line:rgba(34,27,20,.14);
+    --line-soft:rgba(34,27,20,.08);
+
+    --truth:#1F496B;
+    --good:#B07D27;
+    --beauty:#A85037;
+    --relation:#4C7252;
+    --moderator:#9B2C25;
+
+    --serif:"Spectral",Georgia,serif;
+    --display:"Fraunces",Georgia,serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:18px;
+    line-height:1.65;
+    letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* paper grain */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;z-index:9999;
+    opacity:.04;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--truth);color:var(--paper);}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  .mono{font-family:var(--mono);font-weight:400;}
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;
+    background:rgba(244,238,226,0);
+    border-bottom:1px solid transparent;
+    transition:background .4s ease,border-color .4s ease,padding .4s ease;
+  }
+  nav.scrolled{
+    background:rgba(244,238,226,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:12px 32px;
+  }
+  .brand{
+    font-family:var(--display);font-weight:500;font-size:18px;
+    font-variation-settings:"opsz" 24,"SOFT" 0;
+    letter-spacing:.01em;
+  }
+  .brand em{font-style:italic;font-weight:400;}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);
+    padding-bottom:2px;border-bottom:1px solid transparent;
+    transition:color .2s,border-color .2s;
+  }
+  .nav-links a:hover{color:var(--ink);border-color:var(--ink);}
+  @media(max-width:860px){.nav-links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:120px 0 80px;
+    overflow:hidden;
+  }
+  .greek-bg{
+    position:absolute;right:-4%;top:50%;transform:translateY(-50%);
+    font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:clamp(80px,16vw,260px);line-height:.9;
+    color:var(--ink);opacity:.05;white-space:nowrap;
+    pointer-events:none;text-align:right;letter-spacing:-.02em;
+  }
+  .hero-inner{position:relative;z-index:2;max-width:920px;}
+  .hero .kicker{display:block;margin-bottom:26px;}
+  .triad-line{
+    font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:clamp(20px,3.2vw,30px);margin-bottom:18px;
+    display:flex;gap:.7em;flex-wrap:wrap;align-items:baseline;
+  }
+  .triad-line .t{color:var(--truth);}
+  .triad-line .g{color:var(--good);}
+  .triad-line .b{color:var(--beauty);}
+  .triad-line .sep{color:var(--ink-faint);font-style:normal;}
+  h1.title{
+    font-family:var(--display);
+    font-weight:340;
+    font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0;
+    font-size:clamp(52px,11vw,148px);
+    line-height:.95;letter-spacing:-.03em;
+    margin:0 0 8px;
+  }
+  h1.title em{font-style:italic;font-weight:300;}
+  .hero-sub{
+    font-size:clamp(19px,2.3vw,25px);
+    line-height:1.5;max-width:680px;
+    color:var(--ink-soft);margin:26px 0 0;font-weight:300;
+  }
+  .hero-meta{
+    margin-top:40px;display:flex;gap:34px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;
+    color:var(--ink-soft);
+  }
+  .hero-meta span b{color:var(--ink);font-weight:500;}
+  .scroll-cue{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .scroll-cue .bar{width:1px;height:38px;background:var(--ink-faint);animation:cue 2.4s ease-in-out infinite;transform-origin:top;}
+  @keyframes cue{0%,100%{transform:scaleY(.3);opacity:.4;}50%{transform:scaleY(1);opacity:1;}}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:108px 0;position:relative;}
+  .sec-label{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-faint);
+    display:flex;align-items:center;gap:14px;margin-bottom:30px;
+  }
+  .sec-label::before{content:"";width:34px;height:1px;background:var(--ink-faint);}
+  h2{
+    font-family:var(--display);font-weight:360;
+    font-variation-settings:"opsz" 64,"SOFT" 0;
+    font-size:clamp(34px,5.4vw,62px);line-height:1.04;
+    letter-spacing:-.022em;margin:0 0 28px;max-width:18ch;
+  }
+  h2 em{font-style:italic;font-weight:320;}
+  .lead{font-size:clamp(19px,2.1vw,22px);line-height:1.6;max-width:64ch;color:var(--ink-soft);font-weight:300;}
+  p{max-width:66ch;}
+  .divider{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto;}
+
+  /* ---------- THESIS ---------- */
+  .thesis{background:linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 100%);}
+  .pull-grid{display:grid;grid-template-columns:1fr;gap:60px;margin-top:50px;}
+  .statbox{
+    border-top:2px solid var(--moderator);
+    padding-top:26px;
+  }
+  .statbox .num{
+    font-family:var(--display);font-weight:300;
+    font-variation-settings:"opsz" 144;
+    font-size:clamp(72px,13vw,150px);line-height:.85;
+    color:var(--moderator);letter-spacing:-.04em;
+  }
+  .statbox .num small{font-size:.42em;vertical-align:top;}
+  .statbox .cap{margin-top:18px;font-size:18px;color:var(--ink-soft);max-width:48ch;font-weight:300;}
+  .statbox .cap b{color:var(--ink);font-weight:500;}
+  @media(min-width:880px){
+    .pull-grid{grid-template-columns:1.1fr .9fr;align-items:center;}
+  }
+
+  /* ---------- FRAMEWORK TRIAD ---------- */
+  .triad-wrap{display:grid;gap:56px;align-items:center;margin-top:46px;}
+  @media(min-width:900px){.triad-wrap{grid-template-columns:1fr 1fr;}}
+  .triad-svg{width:100%;max-width:440px;margin:0 auto;display:block;}
+  .triad-svg circle{mix-blend-mode:multiply;}
+  .cat-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
+  .cat-row{
+    display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:baseline;
+    padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .cat-row .dot{width:11px;height:11px;border-radius:50%;align-self:center;}
+  .cat-row .nm{font-family:var(--display);font-weight:450;font-size:21px;font-style:italic;}
+  .cat-row .q{font-size:16px;color:var(--ink-soft);font-weight:300;}
+  .cat-row .gk{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-faint);}
+
+  /* ---------- 10 SENSES ---------- */
+  .senses-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .legend i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .sense-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;
+  }
+  .sense{
+    background:var(--paper);padding:26px 24px 28px;position:relative;
+    transition:background .25s,transform .25s;
+    border-top:3px solid var(--cat,var(--ink));
+  }
+  .sense:hover{background:var(--paper-2);}
+  .sense .code{
+    font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;
+    color:var(--cat);
+  }
+  .sense .sname{font-family:var(--display);font-weight:460;font-size:23px;margin:10px 0 8px;line-height:1.1;letter-spacing:-.01em;}
+  .sense .desc{font-size:15.5px;color:var(--ink-soft);font-weight:300;line-height:1.5;}
+  .sense.mod{background:var(--paper-3);}
+  .sense.mod:hover{background:#E0D4BC;}
+  .sense .tag{
+    position:absolute;top:24px;right:22px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- HIERARCHY ---------- */
+  .hier{background:var(--ink);color:var(--paper);}
+  .hier .sec-label,.hier .sec-label::before{color:rgba(244,238,226,.55);}
+  .hier .sec-label::before{background:rgba(244,238,226,.45);}
+  .hier h2{color:var(--paper);}
+  .hier .lead{color:rgba(244,238,226,.72);}
+  .layers{margin-top:54px;display:flex;flex-direction:column;gap:14px;}
+  .layer{
+    border:1px solid rgba(244,238,226,.2);
+    border-radius:2px;padding:24px 26px;
+    display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;
+    position:relative;background:rgba(244,238,226,.03);
+  }
+  .layer .ltag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,238,226,.55);writing-mode:vertical-rl;transform:rotate(180deg);align-self:stretch;display:flex;align-items:center;}
+  .layer .lname{font-family:var(--display);font-style:italic;font-weight:400;font-size:26px;margin-bottom:6px;}
+  .layer .lsenses{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .layer .lsenses span{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    padding:4px 9px;border:1px solid rgba(244,238,226,.28);border-radius:20px;color:rgba(244,238,226,.85);
+  }
+  .layer .ldesc{color:rgba(244,238,226,.62);font-size:15.5px;font-weight:300;max-width:54ch;margin:0;}
+  .layer.mod-layer{border-color:rgba(155,44,37,.6);background:rgba(155,44,37,.1);}
+  .layer.mod-layer .ltag{color:#E58B83;}
+
+  /* ---------- TCI ---------- */
+  .tci-grid{display:grid;gap:50px;margin-top:46px;}
+  @media(min-width:920px){.tci-grid{grid-template-columns:1fr 1fr;align-items:start;}}
+  .formula{
+    background:var(--paper-2);border:1px solid var(--line);
+    border-radius:3px;padding:30px 28px;
+    font-family:var(--mono);font-size:15px;line-height:2.1;color:var(--ink);
+  }
+  .formula .fline{display:block;}
+  .formula .cmt{color:var(--ink-faint);font-size:12.5px;}
+  .formula .op{color:var(--moderator);}
+  .formula b{color:var(--truth);font-weight:500;}
+  .dual{margin-bottom:30px;}
+  .dual .pair{display:flex;gap:14px;align-items:flex-start;margin-top:14px;}
+  .dual .pair .lab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);min-width:78px;padding-top:3px;}
+  .dual .pair p{margin:0;font-size:16px;color:var(--ink-soft);font-weight:300;}
+  .zones{display:flex;flex-direction:column;gap:0;margin-top:34px;border-top:1px solid var(--line);}
+  .zone{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);}
+  .zone .zdot{width:14px;height:14px;border-radius:3px;}
+  .zone .zname{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;}
+  .zone .zdesc{font-size:15.5px;color:var(--ink-soft);font-weight:300;}
+  .zone .zval{font-family:var(--mono);font-size:13px;color:var(--ink-faint);}
+
+  /* ---------- M1 ALERT ---------- */
+  .alert{background:var(--paper-2);}
+  .compare{display:grid;gap:18px;margin-top:46px;}
+  @media(min-width:780px){.compare{grid-template-columns:1fr 1fr;}}
+  .card-cmp{border:1px solid var(--line);border-radius:3px;padding:28px 26px;background:var(--paper);}
+  .card-cmp.flag{border-color:rgba(155,44,37,.45);}
+  .card-cmp .ctitle{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px;}
+  .card-cmp.flag .ctitle{color:var(--moderator);}
+  .card-cmp .scene{font-size:16px;color:var(--ink-soft);font-weight:300;margin:0 0 18px;padding-bottom:18px;border-bottom:1px dashed var(--line);}
+  .card-cmp .resp{font-family:var(--display);font-style:italic;font-weight:380;font-size:19px;line-height:1.4;}
+  .card-cmp .verdict{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-soft);}
+  .card-cmp.flag .verdict{color:var(--moderator);}
+
+  /* ---------- DOMAINS ---------- */
+  .domains-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:46px;}
+  .domain{background:var(--paper);padding:32px 26px;}
+  .domain .dnum{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.1em;}
+  .domain .dname{font-family:var(--display);font-weight:430;font-size:25px;margin:14px 0 10px;letter-spacing:-.01em;}
+  .domain .dtext{font-size:15.5px;color:var(--ink-soft);font-weight:300;line-height:1.5;}
+
+  /* ---------- PAPER / FOOTER ---------- */
+  .paper-sec{background:var(--ink);color:var(--paper);}
+  .paper-sec .sec-label,.paper-sec .sec-label::before{color:rgba(244,238,226,.55);}
+  .paper-sec .sec-label::before{background:rgba(244,238,226,.45);}
+  .citation{
+    margin-top:40px;border:1px solid rgba(244,238,226,.22);border-radius:3px;
+    padding:30px 30px;background:rgba(244,238,226,.04);
+  }
+  .citation .ctitle{font-family:var(--display);font-style:italic;font-weight:380;font-size:clamp(24px,4vw,38px);line-height:1.18;letter-spacing:-.015em;color:var(--paper);max-width:24ch;}
+  .citation .authors{margin-top:22px;font-size:18px;color:rgba(244,238,226,.82);font-weight:300;}
+  .citation .venue{margin-top:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;color:rgba(244,238,226,.6);}
+  .links-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    padding:13px 22px;border:1px solid rgba(244,238,226,.4);border-radius:30px;
+    color:var(--paper);transition:background .2s,color .2s;
+  }
+  .btn:hover{background:var(--paper);color:var(--ink);}
+  .btn.solid{background:var(--paper);color:var(--ink);}
+  .btn.solid:hover{background:transparent;color:var(--paper);}
+  footer{padding:40px 0 60px;}
+  .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:rgba(244,238,226,.5);}
+  .foot-row a:hover{color:var(--paper);}
+
+  /* ---------- DEMO ---------- */
+  .demo{background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper) 100%);}
+  .stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
+  .stat-cell{background:var(--paper);padding:22px 20px;}
+  .stat-cell .sv{font-family:var(--display);font-weight:330;font-variation-settings:"opsz" 80;font-size:clamp(28px,4.5vw,44px);line-height:1;letter-spacing:-.03em;}
+  .stat-cell .sl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;}
+  .demo-grid{display:grid;gap:22px;margin-top:22px;}
+  @media(min-width:940px){.demo-grid{grid-template-columns:1.12fr .88fr;align-items:start;}}
+  .panel{border:1px solid var(--line);border-radius:4px;background:var(--paper);padding:26px 26px 30px;}
+  .panel h3{font-family:var(--display);font-weight:430;font-size:22px;margin:6px 0 0;letter-spacing:-.01em;}
+  .panel .ph{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+  .obj-readout{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;}
+  .chip{font-family:var(--mono);font-size:12px;padding:6px 11px;border:1px solid var(--line);border-radius:30px;color:var(--ink-soft);background:var(--paper-2);}
+  .chip b{color:var(--ink);font-weight:500;}
+  .slider-wrap{margin:24px 0 6px;}
+  .slider-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.05em;}
+  .rpe-val{font-family:var(--display);font-style:italic;font-weight:420;font-size:32px;color:var(--ink);}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--ink);border-radius:2px;outline:none;margin:14px 0 6px;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);cursor:pointer;transition:transform .15s;}
+  input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.12);}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);cursor:pointer;}
+  .scale-ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);}
+  .gauges{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+  .gauge{border:1px solid var(--line);border-radius:4px;padding:16px;}
+  .gauge .gl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .gauge .gv{font-family:var(--display);font-weight:330;font-size:38px;line-height:1;margin-top:6px;letter-spacing:-.02em;transition:color .3s;}
+  .zone-pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:30px;margin-top:10px;color:var(--paper);transition:background .3s;}
+  .m1-state{font-family:var(--mono);font-size:11px;letter-spacing:.05em;margin-top:10px;color:var(--ink-soft);transition:color .3s;}
+  .contradiction{font-family:var(--mono);font-size:12px;letter-spacing:.03em;margin-top:22px;padding-top:16px;border-top:1px dashed var(--line);color:var(--ink-soft);}
+  .coach-box{margin-top:14px;border-left:3px solid var(--ink);padding:4px 0 4px 16px;}
+  .coach-box .who{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;}
+  .coach-box .msg{font-family:var(--display);font-style:italic;font-weight:380;font-size:18px;line-height:1.45;transition:color .3s;}
+  .donut-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .donut-legend{margin-top:16px;width:100%;border-top:1px solid var(--line);}
+  .donut-legend .dlr{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink-soft);text-align:left;}
+  .donut-legend .dlr i{width:10px;height:10px;border-radius:2px;}
+  .donut-legend .dlr .v{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:110px;margin-top:18px;}
+  .bars .bar{flex:1;background:var(--truth);border-radius:2px 2px 0 0;min-height:2px;transition:opacity .2s;}
+  .bars .bar:hover{opacity:.65;}
+  .bars-x{display:flex;gap:5px;margin-top:6px;}
+  .bars-x span{flex:1;text-align:center;font-family:var(--mono);font-size:9px;color:var(--ink-faint);}
+  .evid{width:100%;border-collapse:collapse;margin-top:18px;font-size:13.5px;}
+  .evid th{font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);text-align:left;padding:8px 10px;border-bottom:1px solid var(--ink);}
+  .evid td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-soft);}
+  .evid td b{color:var(--ink);font-weight:500;}
+  .evid .warn{color:var(--moderator);font-weight:500;}
+  .evid .good{color:var(--relation);font-weight:500;}
+
+  /* ---------- INFOGRAPHIC ---------- */
+  .info{background:var(--ink);color:var(--paper);}
+  .info .sec-label,.info .sec-label::before{color:rgba(244,238,226,.55);}
+  .info .sec-label::before{background:rgba(244,238,226,.45);}
+  .info h2{color:var(--paper);}
+  .info .lead{color:rgba(244,238,226,.72);}
+  .info-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:rgba(244,238,226,.18);border:1px solid rgba(244,238,226,.18);margin-top:44px;}
+  .info-stats .ic{background:var(--ink);padding:24px 22px;}
+  .info-stats .iv{font-family:var(--display);font-weight:320;font-variation-settings:"opsz" 90;font-size:clamp(28px,4.6vw,46px);line-height:1;letter-spacing:-.03em;color:var(--paper);}
+  .info-stats .il{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,238,226,.5);margin-top:10px;}
+  .info-grid{display:grid;gap:46px;margin-top:50px;}
+  @media(min-width:900px){.info-grid{grid-template-columns:1fr 1fr;}}
+  .viz-block .vh{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,238,226,.55);margin-bottom:20px;}
+  .viz-block .vh b{color:var(--paper);font-weight:500;}
+  .spectrum{position:relative;height:14px;border-radius:8px;background:linear-gradient(90deg,#4C7252 0%,#B07D27 58%,#9B2C25 100%);margin:34px 0 0;}
+  .spectrum .mean{position:absolute;top:-7px;bottom:-7px;width:2px;background:var(--paper);}
+  .spectrum .mean::after{content:attr(data-l);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--paper);white-space:nowrap;}
+  .spectrum-x{display:flex;justify-content:space-between;margin-top:14px;font-family:var(--mono);font-size:10px;color:rgba(244,238,226,.55);letter-spacing:.06em;}
+  .spectrum-band{display:flex;margin-top:16px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:rgba(244,238,226,.5);}
+  .spectrum-band span{flex:1;text-align:center;border-top:1px solid rgba(244,238,226,.22);padding-top:6px;}
+  .elite-call{margin-top:22px;font-size:14px;color:rgba(244,238,226,.72);font-weight:300;line-height:1.55;}
+  .elite-call b{color:var(--paper);font-weight:500;}
+  .hbars{display:flex;flex-direction:column;gap:15px;}
+  .hbar .hl{display:flex;justify-content:space-between;font-size:13.5px;color:rgba(244,238,226,.85);margin-bottom:7px;}
+  .hbar .hl .hp{font-family:var(--mono);font-size:12px;color:rgba(244,238,226,.55);}
+  .hbar .track{height:8px;background:rgba(244,238,226,.12);border-radius:5px;overflow:hidden;}
+  .hbar .fill{height:100%;border-radius:5px;width:0;transition:width 1s cubic-bezier(.2,.7,.2,1);}
+  .info .bars{height:140px;}
+  .info .bars .bar{background:rgba(244,238,226,.85);}
+  .info .bars-x span{color:rgba(244,238,226,.5);}
+  /* EKIDEN.AI intro / rationale */
+  .eai{margin-top:50px;display:grid;gap:42px;}
+  @media(min-width:900px){.eai{grid-template-columns:.85fr 1.15fr;}}
+  .eai-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,238,226,.55);margin-bottom:16px;}
+  .eai-intro p{color:rgba(244,238,226,.8);font-size:16.5px;font-weight:300;line-height:1.7;max-width:48ch;margin:0;}
+  .eai-intro p b,.eai-pt p b{color:var(--paper);font-weight:500;}
+  .eai-points{display:flex;flex-direction:column;gap:20px;}
+  .eai-pt{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;}
+  .eai-pt .epn{font-family:var(--mono);font-size:12px;color:rgba(244,238,226,.4);padding-top:5px;}
+  .eai-pt p{margin:0;color:rgba(244,238,226,.72);font-size:15.5px;font-weight:300;line-height:1.62;max-width:54ch;}
+
+  /* ---------- reveal anim ---------- */
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
+  .rv.in{opacity:1;transform:none;}
+  .rv-d1{transition-delay:.08s;}
+  .rv-d2{transition-delay:.16s;}
+  .rv-d3{transition-delay:.24s;}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}.scroll-cue .bar{animation:none;}}
+  /* ---------- LANG TOGGLE ---------- */
+  .nav-right{display:flex;align-items:center;gap:24px;}
+  .lang-toggle{display:inline-flex;border:1px solid var(--line);border-radius:30px;overflow:hidden;font-family:var(--mono);font-size:11px;letter-spacing:.05em;flex-shrink:0;}
+  .lang-toggle button{appearance:none;background:transparent;border:0;cursor:pointer;color:var(--ink-soft);padding:6px 11px;font:inherit;letter-spacing:inherit;transition:background .2s,color .2s;}
+  .lang-toggle button.on{background:var(--ink);color:var(--paper);}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper) 100%);}
+  .faq-list{margin-top:44px;border-top:1px solid var(--line);}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item summary{list-style:none;cursor:pointer;padding:24px 50px 24px 0;position:relative;display:flex;align-items:flex-start;gap:16px;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item .qn{font-family:var(--mono);font-size:13px;color:var(--ink-faint);padding-top:6px;min-width:26px;}
+  .faq-q{font-family:var(--display);font-weight:430;font-size:clamp(19px,2.5vw,25px);line-height:1.28;letter-spacing:-.01em;color:var(--ink);}
+  .faq-item summary::after{content:"+";position:absolute;right:4px;top:20px;font-family:var(--display);font-size:30px;font-weight:300;color:var(--ink-faint);transition:transform .3s;}
+  .faq-item[open] summary::after{content:"\2013";}
+  .faq-a{padding:0 50px 28px 42px;font-size:17px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:74ch;}
+  .faq-a b{color:var(--ink);font-weight:500;}
+  .faq-rw-lead{margin:30px 0 4px;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink-soft);font-weight:300;max-width:62ch;}
+  .faq-cat{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:30px;padding-top:22px;border-top:1px solid var(--line);}
+  .faq-cat + .faq-item{border-top:0;}
+  /* ===== slide sections + section nav ===== */
+  @media (min-width:861px){
+    html{scroll-snap-type:y proximity;}
+    header.hero, section{scroll-snap-align:start;}
+    section{min-height:100vh;}
+  }
+  @media (prefers-reduced-motion:reduce){ html{scroll-snap-type:none;scroll-behavior:auto;} }
+  .dotnav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;gap:12px;mix-blend-mode:difference;}
+  .dotnav a{width:9px;height:9px;border-radius:50%;border:1.5px solid #fff;background:transparent;transition:transform .25s,background .25s;}
+  .dotnav a.on{background:#fff;transform:scale(1.3);}
+  .nextcue{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:95;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(244,238,226,.72);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .3s,transform .2s;}
+  .nextcue svg{width:18px;height:18px;stroke:var(--ink);stroke-width:1.7;fill:none;}
+  .nextcue:hover{transform:translateX(-50%) translateY(2px);}
+  .nextcue.hide{opacity:0;pointer-events:none;}
+  @media (max-width:980px){.dotnav,.nextcue{display:none;}}
+
+  /* ===== Table 1 carousel (section 02) ===== */
+  .t1-hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  .t1-nav{display:flex;gap:8px;flex-shrink:0;}
+  .t1-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;color:var(--ink-soft);font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
+  .t1-nav button:hover{background:var(--ink);color:var(--paper);}
+  .t1-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none;}
+  .t1-track::-webkit-scrollbar{display:none;}
+  .t1-card{flex:0 0 80%;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--cat,var(--ink));border-radius:3px;padding:22px 22px 24px;min-height:230px;display:flex;flex-direction:column;}
+  @media(min-width:1100px){.t1-card{flex-basis:62%;}}
+  .t1-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;gap:10px;}
+  .t1-cat-nm{font-family:var(--display);font-style:italic;font-weight:460;font-size:19px;color:var(--cat);}
+  .t1-gk{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
+  .t1-code{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--cat);letter-spacing:.08em;flex-shrink:0;}
+  .t1-phil{font-family:var(--display);font-weight:340;font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px;}
+  .t1-ai{font-size:15px;color:var(--ink-soft);font-weight:300;margin:0 0 auto;padding-bottom:18px;}
+  .t1-ai .aitag{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:.06em;margin-right:6px;}
+  .t1-sense{border-top:1px solid var(--line);padding-top:13px;}
+  .t1-sense b{font-size:15px;font-weight:500;display:block;}
+  .t1-sense span{font-size:13px;color:var(--ink-faint);font-weight:300;}
+  .t1-sense .scode{color:var(--cat);font-family:var(--mono);font-size:11px;font-weight:500;margin-right:7px;}
+
+  /* ===== math (section 05) ===== */
+  .eqs{display:flex;flex-direction:column;gap:24px;}
+  .eqrow .eqlabel{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:9px;display:block;letter-spacing:.04em;}
+  .eq{overflow-x:auto;overflow-y:hidden;}
+  .eq .katex{font-size:1.3em;}
+  .eq-note{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--ink-faint);margin-top:8px;max-width:46ch;}
+  .eq-weights{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:8px;}
+
+  /* ===== donut interactive (section 08) ===== */
+  .donut-seg{cursor:pointer;transition:opacity .2s,stroke-width .2s;}
+  svg.dim .donut-seg{opacity:.2;}
+  svg.dim .donut-seg.hot{opacity:1;stroke-width:30;}
+  .dlr{cursor:pointer;transition:background .2s,opacity .2s;border-radius:5px;padding:3px 6px;margin:0 -6px;}
+  .dlr.hot{background:var(--paper-2);}
+  .dlr.dimmed{opacity:.4;}
+
+  /* ===== elite cases interactive (section 08) ===== */
+  .cases{display:flex;flex-direction:column;margin-top:6px;border-top:1px solid var(--line);}
+  .case{display:grid;grid-template-columns:130px 1fr 150px;gap:20px;align-items:center;padding:17px 12px;border-bottom:1px solid var(--line);transition:background .2s;}
+  .case:hover{background:var(--paper-2);}
+  .case-id{display:flex;flex-direction:column;gap:5px;}
+  .case-type{font-family:var(--mono);font-size:11px;letter-spacing:.04em;font-weight:500;}
+  .case.over .case-type{color:var(--moderator);}
+  .case.good .case-type{color:var(--relation);}
+  .case-act{font-size:13.5px;color:var(--ink);font-weight:400;}
+  .case-vdot{font-family:var(--mono);font-size:10px;color:var(--ink-faint);}
+  .axis{position:relative;height:36px;}
+  .axis-line{position:absolute;left:0;right:0;top:14px;height:2px;background:var(--line);}
+  .axis-link{position:absolute;top:14px;height:2px;transform:translateY(-50%);opacity:.5;}
+  .tick{position:absolute;top:14px;transform:translate(-50%,-50%);}
+  .tick .dotk{width:13px;height:13px;border-radius:50%;box-sizing:border-box;}
+  .tick.obj .dotk{background:var(--paper);border:2px solid var(--ink-faint);}
+  .tick .tlab{position:absolute;top:13px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9px;color:var(--ink-faint);white-space:nowrap;}
+  .case:hover .tick.felt .dotk{transform:scale(1.15);}
+  .case-read{font-size:13px;text-align:right;line-height:1.4;}
+  .case.over .case-read{color:var(--moderator);}
+  .case.good .case-read{color:var(--relation);}
+  .axis-legend{display:flex;gap:18px;font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin:14px 0 2px 12px;text-transform:uppercase;letter-spacing:.06em;}
+  .axis-legend i{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:5px;box-sizing:border-box;}
+  @media(max-width:660px){.case{grid-template-columns:1fr;gap:10px;}.case-read{text-align:left;}}
+
+  /* ===== "now visible" framing ===== */
+  .nowtag{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--relation);margin-bottom:12px;}
+  .nowtag::before{content:"";width:18px;height:1px;background:currentColor;}
+  .info .nowtag{color:#8FBF9E;}
+  .whatnow-lead{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2vw,19px);color:var(--ink-soft);max-width:62ch;margin:4px 0 0;}
+
+  /* ===== publication history (dark, in Paper section) ===== */
+  .pubhist{margin-top:42px;padding-top:30px;border-top:1px solid rgba(244,238,226,.16);}
+  .pub-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,238,226,.5);margin-bottom:16px;}
+  .pub-item{display:flex;gap:20px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(244,238,226,.1);}
+  .pub-when{flex:0 0 92px;font-family:var(--mono);font-size:11.5px;color:rgba(244,238,226,.55);}
+  .toappear{display:inline-block;color:#0E0B08;background:#C9A35A;padding:2px 8px;border-radius:3px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;}
+  .pub-body{font-size:14.5px;font-weight:300;color:rgba(244,238,226,.84);line-height:1.55;font-family:var(--serif);}
+  .pub-body b{font-weight:500;color:var(--paper);}
+  .pub-body a,.reflink{color:#C9A35A;text-decoration:none;border-bottom:1px solid rgba(201,163,90,.4);white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.02em;}
+  .pub-body a:hover,.reflink:hover{border-bottom-color:#C9A35A;}
+
+  /* ===== references list (dark) ===== */
+  .refs .reflist{list-style:none;counter-reset:ref;padding:0;margin:10px 0 0;max-width:none;}
+  .refs .reflist li{counter-increment:ref;position:relative;padding:13px 0 13px 48px;border-bottom:1px solid rgba(244,238,226,.1);font-size:13.5px;font-weight:300;color:rgba(244,238,226,.72);line-height:1.55;font-family:var(--serif);}
+  .refs .reflist li::before{content:"[" counter(ref) "]";position:absolute;left:0;top:14px;font-family:var(--mono);font-size:11.5px;color:rgba(244,238,226,.4);}
+  .refs .reflist li i{font-style:italic;color:rgba(244,238,226,.82);}
+  .refs .reflist a{color:#C9A35A;text-decoration:none;border-bottom:1px solid rgba(201,163,90,.4);white-space:nowrap;font-family:var(--mono);font-size:11px;margin-left:4px;}
+  .refs .reflist a:hover{border-bottom-color:#C9A35A;}
+
+  /* ===== background-layer parallax ===== */
+  .pbg{position:relative;overflow:hidden;}
+  .pbg > .wrap{position:relative;z-index:1;}
+  .bg-num{position:absolute;right:-1%;bottom:-14%;z-index:0;pointer-events:none;user-select:none;
+    font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(220px,42vw,600px);
+    line-height:.8;color:var(--ink);opacity:.04;letter-spacing:-.04em;will-change:transform;}
+  .hier .bg-num,.info .bg-num,.paper-sec .bg-num{color:var(--paper);opacity:.055;}
+  .greek-bg{will-change:transform;}
+  @media (prefers-reduced-motion:reduce){ .bg-num,.greek-bg{transform:none !important;} }
+  @media (max-width:860px){ .bg-num{opacity:.03;font-size:clamp(160px,46vw,300px);} }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="brand">Truth Is Not <em>Enough</em></div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#thesis">Thesis</a>
+      <a href="#framework">Framework</a>
+      <a href="#senses">10 Senses</a>
+      <a href="#tci">TCI</a>
+      <a href="#dataset">Data</a>
+      <a href="#demo">Demo</a>
+      <a href="#faq">FAQ</a>
+      <a href="#paper">Paper</a>
+      <a href="#references">Refs</a>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button id="langEn" type="button">EN</button>
+      <button id="langJa" type="button">日本語</button>
+    </div>
+  </div>
+</nav>
+
+<div class="dotnav" id="dotnav" aria-label="Section navigation"></div>
+<button class="nextcue" id="nextcue" type="button" aria-label="Scroll to next section">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 10 12 16 18 10"></polyline></svg>
+</button>
+
+<header class="hero">
+  <div class="greek-bg" data-parallax="0.10" data-pbase="translateY(-50%)">ἀλήθεια<br>ἀγαθόν<br>κάλλος</div>
+  <div class="wrap hero-inner">
+    <span class="kicker rv in">EJC 2026 · Information Modelling &amp; Knowledge Bases</span>
+    <div class="triad-line rv in rv-d1">
+      <span class="t">Truth</span><span class="sep">·</span>
+      <span class="g">Good</span><span class="sep">·</span>
+      <span class="b">Beauty</span>
+    </div>
+    <h1 class="title rv in rv-d1">Truth Is Not<br><em>Enough</em></h1>
+    <p class="hero-sub rv in rv-d2">An epistemological framework for the multi-dimensional evaluation of AI outputs — extending scientific accuracy with individual fit, relational trust, practical harmony, and intuitive dissonance.</p>
+    <div class="hero-meta rv in rv-d3">
+      <span><b>Yusuke Takahashi</b></span>
+      <span>Asia AI Institute</span>
+      <span>AIx{ }</span>
+      <span>Tokyo, Japan</span>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>scroll</span><span class="bar"></span></div>
+</header>
+
+<div class="divider"></div>
+
+<!-- THESIS -->
+<section id="thesis" class="thesis">
+  <div class="wrap">
+    <div class="sec-label rv">01 — The Thesis</div>
+    <h2 class="rv">When an AI claims correctness, <em>correct for whom?</em></h2>
+    <p class="lead rv rv-d1">For decades, AI and information-retrieval evaluation has treated correctness as fidelity to ground truth — Precision, Recall, BERTScore, ROUGE. These measures excel where a single right answer can be defined. But they are constitutively unable to ask the questions that matter once AI begins to guide human decisions: right <em>for whom</em>, in <em>what context</em>, at <em>what moment</em>.</p>
+
+    <div class="pull-grid">
+      <div class="rv rv-d1">
+        <p>Scientific accuracy is a necessary condition for a reliable AI output. It is not a sufficient one. A diagnosis that ignores a patient's life circumstances, an investment that ignores a client's risk tolerance, a training plan that ignores how an athlete actually feels — each can be <em>measurably correct</em> and <em>practically wrong</em> at the same time.</p>
+        <p>This work formalizes that gap. It treats contextual appropriateness not as a soft afterthought but as a first-class, computable property of output quality.</p>
+      </div>
+      <div class="statbox rv rv-d2">
+        <div class="num">17.1<small>%</small></div>
+        <div class="cap">In a large-scale validation across human–AI coaching sessions, <b>subjective and objective intensity diverged in roughly one session in six</b> — a structural blind spot that accuracy-only systems cannot, by construction, surface.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FRAMEWORK -->
+<section id="framework">
+  <div class="wrap">
+    <div class="sec-label rv">02 — Epistemological Foundation</div>
+    <h2 class="rv">An ancient triad, <em>extended for AI</em></h2>
+    <p class="lead rv rv-d1">The framework rests on the three modes of recognition that have survived two and a half millennia of philosophical scrutiny since Plato, systematized in Kant's <em>Critique of Judgment</em>: Truth (<span class="mono">aletheia</span>), Good (<span class="mono">agathon</span>), and Beauty (<span class="mono">kalon</span>). To these, the model adds two dimensions essential once AI meets a human: Relation and a Moderator.</p>
+
+    <div class="triad-wrap">
+      <svg class="triad-svg rv rv-d1" viewBox="0 0 300 280" aria-hidden="true">
+        <circle cx="150" cy="95" r="78" fill="#1F496B" opacity="0.82"/>
+        <circle cx="106" cy="172" r="78" fill="#B07D27" opacity="0.82"/>
+        <circle cx="194" cy="172" r="78" fill="#A85037" opacity="0.82"/>
+        <text x="150" y="70" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">TRUTH</text>
+        <text x="92" y="195" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">GOOD</text>
+        <text x="208" y="195" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">BEAUTY</text>
+      </svg>
+
+      <div class="t1-wrap rv rv-d2">
+        <div class="t1-hint"><span id="t1hint">Table 1 · philosophical question → AI question → sense</span>
+          <span class="t1-nav"><button type="button" id="t1prev" aria-label="Previous">‹</button><button type="button" id="t1next" aria-label="Next">›</button></span>
+        </div>
+        <div class="t1-track" id="t1track"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 10 SENSES -->
+<section id="senses">
+  <div class="wrap">
+    <div class="senses-head">
+      <div>
+        <div class="sec-label rv">03 — The Model</div>
+        <h2 class="rv">The 10 Senses Model</h2>
+      </div>
+      <div class="legend rv rv-d1">
+        <span><i style="background:var(--truth)"></i>Truth</span>
+        <span><i style="background:var(--good)"></i>Good</span>
+        <span><i style="background:var(--beauty)"></i>Beauty</span>
+        <span><i style="background:var(--relation)"></i>Relation</span>
+        <span><i style="background:var(--moderator)"></i>Moderator</span>
+      </div>
+    </div>
+    <p class="lead rv rv-d1">Ten cognitive senses for judging the reliability of an AI output — mutually exclusive, collectively exhaustive within the space of value judgment. Nine contribute to the score; one watches over all of them.</p>
+
+    <div class="sense-grid rv rv-d1">
+      <div class="sense" style="--cat:var(--truth)"><span class="code">T1</span><div class="sname">Scientific</div><div class="desc">Consistency with proven scientific knowledge — physiological limits, safe load ranges.</div></div>
+      <div class="sense" style="--cat:var(--truth)"><span class="code">T2</span><div class="sname">Statistical</div><div class="desc">Comparison against population trends and peers at a similar level.</div></div>
+      <div class="sense" style="--cat:var(--truth)"><span class="code">T3</span><div class="sname">Authority</div><div class="desc">Alignment with expert judgment — a coach's instruction, a physician's diagnosis.</div></div>
+      <div class="sense" style="--cat:var(--truth)"><span class="code">T4</span><div class="sname">Experience</div><div class="desc">Learning from one's own history — what has worked, what preceded injury.</div></div>
+
+      <div class="sense" style="--cat:var(--good)"><span class="code">G1</span><div class="sname">Goal</div><div class="desc">Alignment with the individual's actual objectives and target outcomes.</div></div>
+      <div class="sense" style="--cat:var(--good)"><span class="code">G2</span><div class="sname">Preference</div><div class="desc">Personal preference and subjective satisfaction — enjoyment, motivation, comfort.</div></div>
+
+      <div class="sense" style="--cat:var(--beauty)"><span class="code">B1</span><div class="sname">Aesthetic Harmony</div><div class="desc">Simplicity, consistency, elegance — Occam's razor applied to the output itself.</div></div>
+
+      <div class="sense" style="--cat:var(--relation)"><span class="code">R1</span><div class="sname">Coach Trust</div><div class="desc">The degree to which a person trusts, and will act on, the system's judgment.</div></div>
+      <div class="sense" style="--cat:var(--relation)"><span class="code">R2</span><div class="sname">Relational Warmth</div><div class="desc">Felt psychological connection — the sense of being treated as a unique individual.</div></div>
+
+      <div class="sense mod" style="--cat:var(--moderator)"><span class="code">M1</span><span class="tag">Moderator</span><div class="sname">Intuitive Alert</div><div class="desc">Detection of dissonance — the sense that "something feels off" even when every metric looks normal.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HIERARCHY -->
+<section id="hierarchy" class="hier">
+  <div class="wrap">
+    <div class="sec-label rv">04 — Structure</div>
+    <h2 class="rv">From foundation to <em>felt quality</em></h2>
+    <p class="lead rv rv-d1">The senses are not a flat list. They build in layers — from the bedrock of scientific evidence, through feasibility and individual fit, up to the quality of the human interface — with a single moderator presiding over the whole.</p>
+
+    <div class="layers">
+      <div class="layer rv rv-d1">
+        <div class="ltag">Foundation</div>
+        <div>
+          <div class="lname">Foundation Layer</div>
+          <p class="ldesc">The reliable base — scientific evidence and personal history.</p>
+          <div class="lsenses"><span>T1 Scientific</span><span>T4 Experience</span></div>
+        </div>
+      </div>
+      <div class="layer rv rv-d1">
+        <div class="ltag">Execution</div>
+        <div>
+          <div class="lname">Execution Layer</div>
+          <p class="ldesc">Feasibility and individual fit — population knowledge, expert guidance, the person's own goals and preferences.</p>
+          <div class="lsenses"><span>T2 Statistical</span><span>T3 Authority</span><span>G1 Goal</span><span>G2 Preference</span></div>
+        </div>
+      </div>
+      <div class="layer rv rv-d1">
+        <div class="ltag">Quality</div>
+        <div>
+          <div class="lname">Quality Layer</div>
+          <p class="ldesc">The quality of the interface with the user — harmony, trust, and interpersonal connection.</p>
+          <div class="lsenses"><span>B1 Aesthetic Harmony</span><span>R1 Coach Trust</span><span>R2 Relational Warmth</span></div>
+        </div>
+      </div>
+      <div class="layer mod-layer rv rv-d1">
+        <div class="ltag">Moderator</div>
+        <div>
+          <div class="lname">M1 — across all layers</div>
+          <p class="ldesc">A safety valve. When intuitive dissonance is detected, it suppresses the composite score — even if every layer below it scores high.</p>
+          <div class="lsenses"><span>M1 Intuitive Alert</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TCI -->
+<section id="tci">
+  <div class="wrap">
+    <div class="sec-label rv">05 — Operationalization</div>
+    <h2 class="rv">The Training <em>Confidence</em> Index</h2>
+    <p class="lead rv rv-d1">The 10 Senses become computable through the TCI — a hierarchical index that fuses what the system measures with what the person reports, then lets intuition override the arithmetic when it must.</p>
+
+    <div class="tci-grid">
+      <div class="rv rv-d1">
+        <div class="dual">
+          <p style="font-family:var(--display);font-style:italic;font-size:23px;margin:0 0 6px;">A dual structure</p>
+          <p style="max-width:50ch;color:var(--ink-soft);font-weight:300;margin:0 0 4px;">Every sense is measured twice — and reconciled.</p>
+          <div class="pair"><span class="lab">Objective</span><p>System-side signals: device data, model outputs, computed consistency.</p></div>
+          <div class="pair"><span class="lab">Subjective</span><p>User-side signals: perceived effort, satisfaction, the report of lived experience.</p></div>
+        </div>
+
+        <div class="zones">
+          <div class="zone"><span class="zdot" style="background:var(--relation)"></span><span class="zdesc"><span class="zname" style="color:var(--relation)">Green</span> — high confidence, scientifically sound and contextually fitting</span><span class="zval">≥ 75</span></div>
+          <div class="zone"><span class="zdot" style="background:var(--good)"></span><span class="zdesc"><span class="zname" style="color:var(--good)">Yellow</span> — moderate, warrants a closer look</span><span class="zval">50–74</span></div>
+          <div class="zone"><span class="zdot" style="background:var(--moderator)"></span><span class="zdesc"><span class="zname" style="color:var(--moderator)">Red</span> — requires attention</span><span class="zval">≤ 49</span></div>
+        </div>
+      </div>
+
+      <div class="formula rv rv-d2">
+        <div class="eqs">
+          <div class="eqrow">
+            <span class="eqlabel" data-eqlabel="1">Eq. 1 · per sense — fuse objective &amp; subjective</span>
+            <div class="eq" data-tex="S_i = \alpha_i\, O_i + (1-\alpha_i)\, U_i"></div>
+          </div>
+          <div class="eqrow">
+            <span class="eqlabel" data-eqlabel="2">Eq. 2 · aggregate senses into layers</span>
+            <div class="eq" data-tex="L_k = \sum_{i \in k} w_i\, S_i"></div>
+          </div>
+          <div class="eqrow">
+            <span class="eqlabel" data-eqlabel="3">Eq. 3 · compose, then let M1 moderate</span>
+            <div class="eq" data-tex="\mathrm{TCI} = f(M_1)\cdot \sum_{k} \beta_k\, L_k \quad\rightarrow\ [0,100]"></div>
+            <div class="eq-weights">β_Foundation = 0.30 · β_Execution = 0.35 · β_Quality = 0.25 · β_Relation = 0.10</div>
+            <p class="eq-note">M1 enters as a multiplier, never an addend — it can only hold the score back, never inflate it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- M1 ALERT -->
+<section id="alert" class="alert">
+  <div class="wrap">
+    <div class="sec-label rv">06 — The Moderator</div>
+    <h2 class="rv">Making <em>"something feels off"</em> computable</h2>
+    <p class="lead rv rv-d1">M1 is the framework's most distinctive move: it treats human intuitive dissonance as <em>signal, not noise</em>. When the numbers look fine but perception disagrees, M1 holds the confidence score back and opens a conversation — rather than confidently confirming an answer that may be wrong.</p>
+
+    <div class="compare">
+      <div class="card-cmp rv rv-d1">
+        <div class="ctitle">Accuracy-only system</div>
+        <p class="scene">An easy-intensity session is logged — but the person reports it felt extremely hard.</p>
+        <p class="resp">"Your metrics look great. Freshness is high — you're well prepared. Keep it up."</p>
+        <div class="verdict">→ confirms · contradiction unseen</div>
+      </div>
+      <div class="card-cmp flag rv rv-d2">
+        <div class="ctitle">10SM · M1 triggered</div>
+        <p class="scene">The same session — objective load and perceived effort sharply disagree.</p>
+        <p class="resp">"A very hard effort on an easy session is unusual. What made it feel that way — fatigue, terrain, something else? Let's clarify before deciding."</p>
+        <div class="verdict">→ score suppressed · dialogue opened</div>
+      </div>
+    </div>
+    <p class="rv rv-d2" style="margin-top:34px;color:var(--ink-soft);font-weight:300;">This is the difference between an evaluation that asks only <em>what an output measures</em> and one that also asks <em>what it might be missing</em>. The example is illustrative; the mechanism is the contribution.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INFOGRAPHIC -->
+<section id="dataset" class="info">
+  <div class="wrap">
+    <div class="sec-label rv">07 — The Dataset</div>
+    <h2 class="rv">A portrait of <em>the data</em></h2>
+    <p class="lead rv rv-d1">Five months of real coaching on EKIDEN.AI, from first-time joggers to Olympic-level runners. Everything below is aggregate and non-identifying — and openly published.</p>
+
+    <div class="eai rv rv-d1">
+      <div class="eai-intro">
+        <div class="eai-tag">What EKIDEN.AI is</div>
+        <p>The data comes from <b>EKIDEN.AI</b> — an agentic AI running coach delivered largely through email. It computes the same indicators elite coaches rely on, weighs every session against the runner's own goals, and — crucially — folds in <b>subjective effort and free-text feedback</b> alongside the device data. Its founding ambition is the first professional running team coached entirely by AI.</p>
+      </div>
+      <div class="eai-why">
+        <div class="eai-tag">Why this data was used</div>
+        <div class="eai-points">
+          <div class="eai-pt"><div class="epn">01</div><p>It fuses <b>objective signals</b> — Garmin device and physiological data, weather context — with the runner's own <b>subjective report</b>. That is precisely where measurable accuracy and felt experience can diverge, which is the gap this framework measures.</p></div>
+          <div class="eai-pt"><div class="epn">02</div><p>Its runners span <b>first-timers to national-record holders and Olympians</b>, so the cost of a "correct but wrong" recommendation ranges from trivial to career-defining — the full stakes spectrum in one dataset.</p></div>
+          <div class="eai-pt"><div class="epn">03</div><p>EKIDEN.AI is built on a <b>human–AI hybrid</b> principle: don't trust AI alone, don't read only the numbers, understand the runner's story. That makes it a natural testbed for a framework arguing that truth is necessary but not sufficient.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-stats rv rv-d1">
+      <div class="ic"><div class="iv">299</div><div class="il">Runners</div></div>
+      <div class="ic"><div class="iv">20,343</div><div class="il">Activities</div></div>
+      <div class="ic"><div class="iv">6,027</div><div class="il">Coaching dialogues</div></div>
+      <div class="ic"><div class="iv">160,876</div><div class="il">Kilometres logged</div></div>
+      <div class="ic"><div class="iv">15,684</div><div class="il">Hours in motion</div></div>
+    </div>
+
+    <div class="info-grid">
+      <div class="viz-block rv rv-d1">
+        <div class="vh">Fitness spectrum · <b>VDOT 37–76</b></div>
+        <div class="spectrum"><div class="mean" data-l="mean 57.0" style="left:51.3%;"></div></div>
+        <div class="spectrum-x"><span>37 · recreational</span><span>elite · 76</span></div>
+        <div class="spectrum-band"><span>recreational</span><span>competitive</span><span>elite</span></div>
+        <p class="elite-call">Including <b>6 elite runners</b> at VDOT ≥ 70 — the level where a single mistimed session can cost a season.</p>
+      </div>
+
+      <div class="viz-block rv rv-d2">
+        <div class="vh">Where they run · <b>language</b></div>
+        <div class="hbars" id="langBars"></div>
+      </div>
+
+      <div class="viz-block rv rv-d1">
+        <div class="vh">Activity mix · <b>20,343 sessions</b></div>
+        <div class="hbars" id="typeBars"></div>
+      </div>
+
+      <div class="viz-block rv rv-d2">
+        <div class="vh">Perceived effort · <b>892 logged RPE</b></div>
+        <div class="bars" id="rpeBars"></div>
+        <div class="bars-x" id="rpeBarsX"></div>
+        <p class="elite-call" style="margin-top:14px;">Most sessions sit at the easy end (RPE 1–3) — the base of endurance training, and exactly where subjective–objective mismatches hide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEMO -->
+<section id="demo" class="demo">
+  <div class="wrap">
+    <div class="sec-label rv">08 — From the Operational Data</div>
+    <h2 class="rv">The framework, <em>run on real data</em></h2>
+    <p class="lead rv rv-d1">The same dataset, made interactive. Every figure is computed from the real data or reported in the paper — all aggregate or de-identified, so no individual runner can be identified.</p>
+    <p class="whatnow-lead rv rv-d1">Each panel answers one question: <em>what can we now see that accuracy-only evaluation cannot?</em></p>
+
+    <div class="demo-grid">
+      <div class="panel rv rv-d1">
+        <div class="nowtag">Now visible · the coaching itself reacts</div>
+        <div class="ph">Interactive · M1 Intuitive Alert</div>
+        <h3>Same session — one changing variable</h3>
+        <p style="font-size:15px;color:var(--ink-soft);font-weight:300;margin:10px 0 0;">A real recovery session from the dataset. The objective data is fixed. Move the perceived-effort slider and watch the system's confidence — and its reply — change.</p>
+
+        <div class="obj-readout">
+          <span class="chip"><b>23.6 km</b></span>
+          <span class="chip"><b>Zone 1</b> · easy</span>
+          <span class="chip">TSB <b>+16.3</b> · fresh</span>
+          <span class="chip">post-injury return</span>
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-top"><span>Perceived effort · RPE</span><span class="rpe-val" id="rpeVal">2</span></div>
+          <input type="range" id="rpe" min="1" max="10" step="1" value="2" />
+          <div class="scale-ends"><span>1 · very easy</span><span>10 · maximal</span></div>
+        </div>
+
+        <div class="gauges">
+          <div class="gauge"><div class="gl">M1 · Intuitive Alert</div><div class="gv" id="m1v">10.0</div><div class="m1-state" id="m1state">— consistent</div></div>
+          <div class="gauge"><div class="gl">Training Confidence</div><div class="gv" id="tciv">84</div><div><span class="zone-pill" id="zone">Green</span></div></div>
+        </div>
+
+        <div class="contradiction" id="contra">Contradiction check: <b>none</b> — subjective and objective agree.</div>
+
+        <div class="coach-box">
+          <div class="who">EKIDEN.AI · coach response</div>
+          <div class="msg" id="coachMsg"></div>
+        </div>
+      </div>
+
+      <div class="rv rv-d2" style="display:flex;flex-direction:column;gap:22px;">
+        <div class="panel donut-wrap">
+          <div class="nowtag" style="align-self:flex-start">Now visible · the size of the blind spot</div>
+          <div class="ph" style="align-self:flex-start;">Subjective–Objective Discrepancy</div>
+          <svg id="donut" viewBox="0 0 200 200" width="186" height="186" style="margin-top:10px;">
+            <circle class="donut-seg" data-k="0" cx="100" cy="100" r="78" fill="none" stroke="#4C7252" stroke-width="24" stroke-dasharray="406 84" transform="rotate(-90 100 100)"/>
+            <circle class="donut-seg" data-k="1" cx="100" cy="100" r="78" fill="none" stroke="#9B2C25" stroke-width="24" stroke-dasharray="48 442" stroke-dashoffset="-406" transform="rotate(-90 100 100)"/>
+            <circle class="donut-seg" data-k="2" cx="100" cy="100" r="78" fill="none" stroke="#B07D27" stroke-width="24" stroke-dasharray="36 454" stroke-dashoffset="-454" transform="rotate(-90 100 100)"/>
+            <text id="donutBig" x="100" y="95" text-anchor="middle" font-family="Fraunces, serif" font-size="40" fill="#9B2C25">17.1%</text>
+            <text id="donutSmall" x="100" y="117" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.5" fill="#8A7E6E">DISCREPANCY</text>
+          </svg>
+          <div class="donut-legend" id="donutLegend">
+            <div class="dlr" data-k="0"><i style="background:#4C7252"></i><span>Subjective matches objective</span><span class="v">738 · 82.9%</span></div>
+            <div class="dlr" data-k="1"><i style="background:#9B2C25"></i><span>Felt harder — overload warning</span><span class="v">87 · 9.8%</span></div>
+            <div class="dlr" data-k="2"><i style="background:#B07D27"></i><span>Felt easier — good adaptation</span><span class="v">65 · 7.3%</span></div>
+          </div>
+          <p style="font-size:12.5px;color:var(--ink-faint);font-weight:300;margin:16px 0 0;align-self:flex-start;">n = 890 sessions with both RPE and objective intensity. Hover a slice — one session in six is invisible to accuracy alone.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel rv rv-d1" style="margin-top:22px;">
+      <div class="nowtag">Now visible · per session, who was overreaching</div>
+      <div class="ph">Real discrepancy cases · elite runners (VDOT 68–76, de-identified)</div>
+      <div class="axis-legend"><span><i style="background:var(--paper);border:2px solid var(--ink-faint)"></i><span id="legObj">objective intensity</span></span><span><i style="background:var(--ink)"></i><span id="legFelt">felt effort (RPE)</span></span></div>
+      <div class="cases" id="cases"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DOMAINS -->
+<section id="domains">
+  <div class="wrap">
+    <div class="sec-label rv">09 — Generality</div>
+    <h2 class="rv">Validated in coaching. <em>Domain-agnostic by design.</em></h2>
+    <p class="lead rv rv-d1">The framework was validated through human–AI running coaching — a domain where every dimension genuinely matters. But the five categories carry over wherever measurable accuracy and contextual appropriateness can diverge, and where the cost of that divergence is real.</p>
+
+    <div class="domains-grid">
+      <div class="domain rv rv-d1"><div class="dnum">00</div><div class="dname">Human–AI Coaching</div><div class="dtext">The validation domain. Where one mistimed session, for an elite athlete, can forfeit a window that comes once every four years.</div></div>
+      <div class="domain rv rv-d1"><div class="dnum">01</div><div class="dname">Clinical Decision Support</div><div class="dtext">Where a statistically sound recommendation must still fit a patient's life, values, and felt experience.</div></div>
+      <div class="domain rv rv-d2"><div class="dnum">02</div><div class="dname">Financial Advisory</div><div class="dtext">Where a correct allocation can still be the wrong advice for this person's tolerance and plans.</div></div>
+      <div class="domain rv rv-d2"><div class="dnum">03</div><div class="dname">Legal Reasoning</div><div class="dtext">Where appropriateness, trust, and the weight of context shape what "correct" can mean.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="wrap">
+    <div class="sec-label rv">10 — In Plain Language</div>
+    <h2 class="rv">Frequently Asked <em>Questions</em></h2>
+    <p class="lead rv rv-d1">No jargon. If you're new to all of this, start here.</p>
+
+    <div class="faq-list rv rv-d1">
+      <details class="faq-item" open>
+        <summary><span class="qn">Q1</span><span class="faq-q">What is this research actually about?</span></summary>
+        <div class="faq-a">When an AI gives you an answer, it's usually judged on one thing: is it factually correct? This research argues that's <b>not enough</b>. An answer can be perfectly correct and still be wrong <b>for you, right now</b>. The 10 Senses Model adds four more things to weigh beyond the science — whether it fits your goals, whether it's simple and clear, whether you trust the source, and whether something just feels off — and folds them into a single trust score. In the real running data behind this work, what people <b>felt</b> and what the numbers <b>said</b> disagreed in <b>17.1% of sessions</b> — about one in six — which is exactly the blind spot a correctness-only system can't see.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q2</span><span class="faq-q">What does "Truth is not enough" mean?</span></summary>
+        <div class="faq-a">Say a coach tells you "run 10 km today." That can be scientifically correct training — and still a bad idea if you're exhausted, carrying an injury, or you'd dread every step. Truth (the science) is necessary, but so is whether it's <b>good for you</b> (your goals and preferences), whether it's <b>simple and harmonious</b> enough to actually stick to, whether you <b>trust</b> the source, and whether your gut says something's wrong. The framework weighs all five families at once, so a recommendation that is "correct but cold," "correct but too complex," or "correct but badly timed" no longer slips through unnoticed.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q3</span><span class="faq-q">What are the "10 senses"?</span></summary>
+        <div class="faq-a">They're ten ways of judging whether an AI's answer can be trusted, grouped into five families. <b>Truth</b> (4 senses): the science, how you compare to similar people, what an expert would say, and your own training history. <b>Good</b> (2): your goals, and your preferences and satisfaction. <b>Beauty</b> (1): how simple and harmonious the plan is. <b>Relation</b> (2): how much you trust the coach, and how warm it feels. The tenth, the <b>Moderator</b> (M1), is special — a <b>gut-feeling alarm</b> that doesn't add points but can hold the whole score back when something doesn't add up.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q4</span><span class="faq-q">What is the TCI score?</span></summary>
+        <div class="faq-a">The Training Confidence Index folds the senses into a single score from <b>0 to 100</b>, shown as a traffic light: <b>green (≥ 75)</b> means go, <b>yellow (50–74)</b> means look closer, <b>red (≤ 49)</b> means caution. It's built in layers — a scientific foundation, then execution, quality, and relationship, combined with set weights — and every sense is measured <b>twice</b>: once from the <b>device data</b> and once from what you <b>actually reported feeling</b>, then reconciled into one number.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q5</span><span class="faq-q">What is the "M1 intuitive alert"?</span></summary>
+        <div class="faq-a">It's that gut-feeling alarm. Sometimes every number looks fine, but something is off — your watch logs an "easy" Zone-1 effort while you rate it brutal. M1 catches the mismatch and, instead of cheerfully saying "great job," it <b>holds the confidence score back and asks a clarifying question</b>. In the actual data, one identical 23.6 km easy walk drew warm praise at RPE 2 but a gentle "what made this feel hard?" at RPE 8 — same objective numbers, different felt experience, deliberately different response.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q6</span><span class="faq-q">Why test it on runners?</span></summary>
+        <div class="faq-a">Running produces honest, measurable data — distance, pace, heart rate — paired with how hard it actually <b>felt</b>, which makes the gap between the two visible. This work draws on <b>299 runners and 20,343 sessions</b> over five months. And for elite athletes at Olympic-qualifying level (VDOT 70–76), one mistimed call can forfeit a competitive window that comes only once every four years — so getting the judgment right is anything but academic. The same five-category logic transfers directly to clinical decisions, financial advice, and legal reasoning.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q7</span><span class="faq-q">Is anyone's personal data shown here?</span></summary>
+        <div class="faq-a">No. Everything on this page is either a big-picture total (like "299 runners" or "160,876 km") or an example already published in the paper with all identifying details removed. The downloadable dataset contains <b>only aggregate counts</b> — no individual records, names, locations, or free text. <b>No individual's private data is shown or shared here.</b></div>
+      </details>
+
+      <p class="faq-rw-lead">How 10SM relates to — and differs from — the prior work it builds on, reference by reference.</p>
+
+      <div class="faq-cat">Related work · AI output evaluation</div>
+      <details class="faq-item">
+        <summary><span class="qn">[3]</span><span class="faq-q">G-Eval — Liu et al. (2023)</span></summary>
+        <div class="faq-a">Uses GPT-4 with chain-of-thought reasoning as an automatic judge of generated text, reaching about 0.51 correlation with human ratings on summarization. Like other "LLM-as-judge" methods it still measures fidelity to a ground truth; 10SM keeps that accuracy as one category (Truth) and adds individual fit, trust, harmony, and an intuitive-dissonance check.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[4]</span><span class="faq-q">RAGAS — Es et al. (2023)</span></summary>
+        <div class="faq-a">Scores retrieval-augmented systems on faithfulness, answer relevancy, and context precision. It sharpens accuracy measurement for RAG, but — like G-Eval — never asks whether an answer is right <b>for this person, in this context</b>. That is exactly the gap 10SM is built to close.</div>
+      </details>
+
+      <div class="faq-cat">Related work · Training-load science</div>
+      <details class="faq-item">
+        <summary><span class="qn">[5]</span><span class="faq-q">Fitness–Fatigue Model — Banister (1991)</span></summary>
+        <div class="faq-a">Models performance as the running balance between accumulated fitness and fatigue from training. 10SM treats such physiological models as inputs to the Truth dimension (T1 Scientific) — foundational, but not the whole judgment.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[6]</span><span class="faq-q">Training Stress Score (TSS) — Coggan (2003)</span></summary>
+        <div class="faq-a">Compresses the load of a session into a single number. In 10SM, TSS is one objective signal feeding T1 Scientific — necessary, but blind to how the athlete actually felt.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[7]</span><span class="faq-q">Acute:Chronic Workload Ratio — Hulin et al. (2016)</span></summary>
+        <div class="faq-a">Showed that the ratio of recent to longer-term training load predicts injury risk. 10SM adopts the ACWR safe range (0.8–1.3) inside T1 Scientific, then layers subjective and relational checks on top of it.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[8]</span><span class="faq-q">Session-RPE — Foster et al. (2001)</span></summary>
+        <div class="faq-a">Introduced session-RPE — perceived exertion times duration — as a simple subjective load measure. 10SM uses RPE as a core subjective signal, but pairs it with objective intensity so mismatches (the 17.1% finding) become visible.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[9]</span><span class="faq-q">Hooper Index — Hooper et al. (1995)</span></summary>
+        <div class="faq-a">Monitors overtraining via sleep, stress, fatigue, and muscle soreness. It addresses the subjective side that accuracy metrics miss; 10SM systematizes both the subjective and objective layers under a single index.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[22]</span><span class="faq-q">RPE scale — Borg (1982)</span></summary>
+        <div class="faq-a">The psychophysical scale that turns "how hard it feels" into a number. It underpins the subjective-intensity input that 10SM compares against objective intensity to detect discrepancy.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[23]</span><span class="faq-q">VDOT — Daniels (2014)</span></summary>
+        <div class="faq-a">Daniels' Running Formula defines VDOT, a single scale of fitness and intensity derived from race performance. 10SM uses VDOT-based intensity as the objective reference that subjective RPE is checked against.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[19]</span><span class="faq-q">AI for injury prediction — Claudino et al. (2019)</span></summary>
+        <div class="faq-a">A systematic review of AI for injury-risk and performance prediction in team sports. Such systems predict outcomes, but do not evaluate or explain the reliability of a recommendation; 10SM focuses on evaluating that reliability and surfacing the reasoning behind it.</div>
+      </details>
+
+      <div class="faq-cat">Related work · Epistemology &amp; knowledge bases</div>
+      <details class="faq-item">
+        <summary><span class="qn">[1]</span><span class="faq-q">The twelve senses — Steiner (1916)</span></summary>
+        <div class="faq-a">Steiner proposed that humans perceive through twelve senses, not five. 10SM borrows the <b>spirit</b> of that idea — perception is multi-dimensional — without adopting his system; two senses (R1 Coach Trust, R2 Relational Warmth) echo his "ego" and "warmth" senses.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[10]</span><span class="faq-q">Beauty and Revolution in Science — McAllister (1996)</span></summary>
+        <div class="faq-a">Showed empirically that scientists use aesthetic criteria when choosing between theories. This grounds 10SM's claim that Beauty — simplicity and harmony — is a legitimate evaluation axis, not decoration.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[11]</span><span class="faq-q">The Structure of Scientific Revolutions — Kuhn (1962)</span></summary>
+        <div class="faq-a">Argued that aesthetic judgement plays a real role in how scientists choose paradigms. Together with McAllister, it justifies including B1 Aesthetic Harmony as a serious evaluation dimension.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[2]</span><span class="faq-q">The physicist's picture of nature — Dirac (1963)</span></summary>
+        <div class="faq-a">Dirac argued that a physical theory should possess mathematical beauty. It sits among the foundations 10SM cites for treating Beauty as a genuine marker of a good output.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[20]</span><span class="faq-q">Truth and Method — Gadamer (1960)</span></summary>
+        <div class="faq-a">Gadamer's hermeneutics holds that understanding is always shaped by context and the interpreter's situation. This grounds 10SM's premise that what counts as "correct" depends on context, and informs its sense-as-evaluation framing.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[12]</span><span class="faq-q">Federated database systems — Sheth &amp; Larson (1990)</span></summary>
+        <div class="faq-a">Defined how to integrate heterogeneous, autonomous databases. It is a systems-side precursor to 10SM's idea of evaluating across many differently-shaped data sources at once.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[13][14]</span><span class="faq-q">Semantic interoperability — Kiyoki et al. (1995, 2002)</span></summary>
+        <div class="faq-a">A mathematical model of meaning enabling semantic interoperability across databases. It provides the conceptual basis for fusing differently-shaped signals — objective, subjective, relational — into one assessment.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[15]</span><span class="faq-q">Meta-Chronicle — Ishibashi &amp; Kiyoki (2004)</span></summary>
+        <div class="faq-a">A spatial-temporal multidatabase system. A direct lineage ancestor of 10SM's multi-source, multi-layer evaluation approach.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[16]</span><span class="faq-q">Career-opportunity knowledge base — Takahashi &amp; Kiyoki (2008)</span></summary>
+        <div class="faq-a">A meta-level knowledge-base system that discovers career opportunities by connecting heterogeneous occupational and educational databases. It is the closest conceptual precursor to 10SM: multi-layer evaluation across heterogeneous sources.</div>
+      </details>
+
+      <div class="faq-cat">Related work · Validation statistics</div>
+      <details class="faq-item">
+        <summary><span class="qn">[17]</span><span class="faq-q">Cohen's Kappa — Cohen (1960)</span></summary>
+        <div class="faq-a">A measure of agreement between raters that corrects for chance (κ ≥ 0.61 is "substantial"). 10SM uses it to check the inter-rater reliability of its expert evaluations.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">[18]</span><span class="faq-q">Cronbach's alpha — Cronbach (1951)</span></summary>
+        <div class="faq-a">Measures the internal consistency of a multi-item scale. 10SM uses it, alongside Spearman and Pearson correlations, to validate the consistency of expert ratings.</div>
+      </details>
+
+      <div class="faq-cat">Related work · Measurement blueprint</div>
+      <details class="faq-item">
+        <summary><span class="qn">[24]</span><span class="faq-q">Seven dimensions of human action — Iwata (2024)</span></summary>
+        <div class="faq-a">Proposes a seven-dimensional model for describing human experience. 10SM adopts it as the blueprint for future validation — measuring TCI's effects across the Physio dimension (HRV), the Psycho dimension (RPE and satisfaction), and the Social dimension (coach–athlete dialogue).</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- PAPER -->
+<section id="paper" class="paper-sec">
+  <div class="wrap">
+    <div class="sec-label rv">11 — The Paper</div>
+    <h2 class="rv" style="color:var(--paper)">Read the work</h2>
+
+    <div class="citation rv rv-d1">
+      <div class="ctitle">Truth Is Not Enough: An Epistemological Framework for Multi-Dimensional AI Output Evaluation with Empirical Validation in Human-AI Coaching</div>
+      <div class="authors">Yusuke Takahashi</div>
+      <div class="venue">Asia AI Institute · AIx{ } · Tokyo, Japan<br>EJC 2026 — 36th International Conference on Information Modelling and Knowledge Bases<br>Vaasa, Finland · June 8–12, 2026</div>
+      <div class="links-row">
+        <a class="btn solid" href="https://drive.google.com/file/d/1tRPGLhC0OqYewZkux1XqFvzrSiafIfYr/view?usp=sharing" target="_blank" rel="noopener">Read the paper ↗</a>
+        <a class="btn" href="https://ekiden.ai" target="_blank" rel="noopener">Visit EKIDEN.AI ↗</a>
+        <a class="btn" href="https://github.com/aix-sc/10senses-model" target="_blank" rel="noopener">Code &amp; data ↗</a>
+        <a class="btn" href="#thesis">Back to top</a>
+      </div>
+      <p style="margin-top:26px;color:rgba(244,238,226,.5);font-size:14px;font-weight:300;font-family:var(--serif);max-width:62ch;">Record-level results and full statistical analysis are reported in the paper. The aggregate data and the code behind this page are openly available in the repository; no individual-level data is published.</p>
+    </div>
+
+      <div class="pubhist rv rv-d1">
+        <div class="pub-label">Publication history</div>
+        <div class="pub-item">
+          <span class="pub-when">2026.06</span>
+          <div class="pub-body"><span class="pub-what"><b>Conference paper</b> — presented at EJC 2026, the 36th International Conference on Information Modelling and Knowledge Bases, University of Vaasa, Vaasa, Finland (June 8–12, 2026).</span> <a class="reflink" href="https://sites.uwasa.fi/ejc2026/" target="_blank" rel="noopener">EJC 2026 ↗</a></div>
+        </div>
+        <div class="pub-item">
+          <span class="pub-when"><span class="toappear">To appear</span></span>
+          <div class="pub-body"><span class="pub-what"><b>Journal / proceedings</b> — Information Modelling and Knowledge Bases (Frontiers in Artificial Intelligence and Applications), IOS Press — post-conference volume, forthcoming 2026.</span> <a class="reflink" href="https://www.iospress.com/catalog/books/information-modelling-and-knowledge-bases-xxxvii" target="_blank" rel="noopener">IOS Press ↗</a></div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REFERENCES -->
+<section id="references" class="paper-sec refs">
+  <div class="wrap">
+    <div class="sec-label rv" style="color:rgba(244,238,226,.5)">12 — References</div>
+    <h2 class="rv" style="color:var(--paper)">The <em>shoulders</em> it stands on</h2>
+    <p class="lead rv rv-d1" style="color:rgba(244,238,226,.72)">The twenty-four works this framework builds on — spanning AI output evaluation, training-load science, and the epistemology of Truth, Good, and Beauty. Each entry links to its source.</p>
+    <ol class="reflist rv rv-d1">
+      <li>Steiner R. The riddle of humanity (GA 170). London: Rudolf Steiner Press; 1990 (orig. 1916). <a href="https://scholar.google.com/scholar?q=Steiner+The+riddle+of+humanity+GA+170" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Dirac PAM. The evolution of the physicist's picture of nature. <i>Scientific American</i>. 1963;208(5):45–53. <a href="https://scholar.google.com/scholar?q=Dirac+evolution+of+the+physicist+picture+of+nature+1963" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Liu Y, Iter D, Xu Y, Wang S, Xu R, Zhu C. G-Eval: NLG evaluation using GPT-4 with better human alignment. <i>EMNLP 2023</i>. p. 2511–2522. <a href="https://doi.org/10.18653/v1/2023.emnlp-main.153" target="_blank" rel="noopener">doi.org ↗</a></li>
+      <li>Es S, James J, Espinosa-Anke L, Schockaert S. RAGAS: Automated evaluation of retrieval augmented generation. <i>arXiv</i>:2309.15217; 2023. <a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">arXiv ↗</a></li>
+      <li>Banister EW. Modeling elite athletic performance. In: Physiological testing of the high-performance athlete. Human Kinetics; 1991. p. 403–424. <a href="https://scholar.google.com/scholar?q=Banister+Modeling+elite+athletic+performance" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Coggan AR. Training and racing with a power meter: an introduction. TrainingPeaks; 2003. <a href="https://scholar.google.com/scholar?q=Coggan+Training+and+racing+with+a+power+meter" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Hulin BT, Gabbett TJ, Lawson DW, Caputi P, Sampson JA. The acute:chronic workload ratio predicts injury: high chronic workload may decrease injury risk in elite rugby league players. <i>Br J Sports Med</i>. 2016;50(4):231–236. <a href="https://doi.org/10.1136/bjsports-2015-094817" target="_blank" rel="noopener">doi.org ↗</a></li>
+      <li>Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. <i>J Strength Cond Res</i>. 2001;15(1):109–115. <a href="https://pubmed.ncbi.nlm.nih.gov/11708692/" target="_blank" rel="noopener">PubMed ↗</a></li>
+      <li>Hooper SL, Mackinnon LT, Howard A, Gordon RD, Bachmann AW. Markers for monitoring overtraining and recovery. <i>Med Sci Sports Exerc</i>. 1995;27(1):106–112. <a href="https://scholar.google.com/scholar?q=Hooper+Markers+for+monitoring+overtraining+and+recovery+1995" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>McAllister JW. Beauty and revolution in science. Ithaca (NY): Cornell University Press; 1996. <a href="https://scholar.google.com/scholar?q=McAllister+Beauty+and+revolution+in+science" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Kuhn TS. The structure of scientific revolutions. Chicago: University of Chicago Press; 1962. <a href="https://scholar.google.com/scholar?q=Kuhn+The+structure+of+scientific+revolutions" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Sheth AP, Larson JA. Federated database systems for managing distributed, heterogeneous, and autonomous databases. <i>ACM Computing Surveys</i>. 1990;22(3):183–236. <a href="https://scholar.google.com/scholar?q=Sheth+Larson+Federated+database+systems+ACM+Computing+Surveys" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Kiyoki Y, Kitagawa T, Hitomi Y. A fundamental framework for realizing semantic interoperability in a multidatabase environment. <i>Int J Integrated Computer-Aided Engineering</i>. 1995;2(1):3–20. <a href="https://scholar.google.com/scholar?q=Kiyoki+fundamental+framework+semantic+interoperability+multidatabase" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Kiyoki Y, Ishihara S. A semantic search space integration method for meta-level knowledge acquisition from heterogeneous databases. <i>Information Modelling and Knowledge Bases</i>. 2002;XIV:86–103. <a href="https://scholar.google.com/scholar?q=Kiyoki+Ishihara+semantic+search+space+integration+meta-level+knowledge" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Ishibashi N, Kiyoki Y. Meta-Chronicle: a spatial and temporal multidatabase system and its application to histories. <i>SAINT 2004</i>. p. 515–522. <a href="https://scholar.google.com/scholar?q=Ishibashi+Kiyoki+Meta-Chronicle+spatial+temporal+multidatabase" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Takahashi Y, Kiyoki Y. A meta-level knowledge base system for discovering personal career opportunities by connecting and analyzing occupational and educational databases. In: Information Modelling and Knowledge Bases XX (EJC 2008). IOS Press; 2009. p. 294–311. <a href="https://scholar.google.com/scholar?q=Takahashi+Kiyoki+meta-level+knowledge+base+career+opportunities" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Cohen J. A coefficient of agreement for nominal scales. <i>Educational and Psychological Measurement</i>. 1960;20(1):37–46. <a href="https://scholar.google.com/scholar?q=Cohen+A+coefficient+of+agreement+for+nominal+scales+1960" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Cronbach LJ. Coefficient alpha and the internal structure of tests. <i>Psychometrika</i>. 1951;16:297–334. <a href="https://scholar.google.com/scholar?q=Cronbach+Coefficient+alpha+and+the+internal+structure+of+tests" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Claudino JG, Capanema DO, de Souza TV, Serrão JC, Machado Pereira AC, Nassis GP. Current approaches to the use of artificial intelligence for injury risk assessment and performance prediction in team sports: a systematic review. <i>Sports Med Open</i>. 2019;5(1):28. <a href="https://doi.org/10.1186/s40798-019-0202-3" target="_blank" rel="noopener">doi.org ↗</a></li>
+      <li>Gadamer H-G. Wahrheit und Methode. Tübingen: J.C.B. Mohr; 1960. <a href="https://scholar.google.com/scholar?q=Gadamer+Wahrheit+und+Methode+1960" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>EKIDEN.AI. Train with Confidence [Internet]. [cited 2026 Apr]. <a href="https://ekiden.ai" target="_blank" rel="noopener">ekiden.ai ↗</a></li>
+      <li>Borg G. Psychophysical bases of perceived exertion. <i>Med Sci Sports Exerc</i>. 1982;14(5):377–381. <a href="https://doi.org/10.1249/00005768-198205000-00012" target="_blank" rel="noopener">doi.org ↗</a></li>
+      <li>Daniels J. Daniels' running formula. 3rd ed. Champaign (IL): Human Kinetics; 2014. <a href="https://scholar.google.com/scholar?q=Daniels+running+formula+3rd+edition" target="_blank" rel="noopener">Scholar ↗</a></li>
+      <li>Iwata H. Conceptual modeling of human action: seven dimensions for description of human experience. In: Information Modelling and Knowledge Bases XXXVII, Vol. 418. IOS Press; 2026. p. 209–214. <a href="https://dx.doi.org/10.3233/FAIA418" target="_blank" rel="noopener">doi.org ↗</a></li>
+    </ol>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-row">
+        <span>© 2026 Yusuke Takahashi · Asia AI Institute · AIx{ }</span>
+        <span>The 10 Senses Model &amp; Training Confidence Index</span>
+        <span><a href="https://sites.uwasa.fi/ejc2026/" target="_blank" rel="noopener">EJC 2026 · Vaasa ↗</a></span>
+        <span><a href="https://ekiden.ai" target="_blank" rel="noopener">ekiden.ai ↗</a></span>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<script>
+(function(){
+  // ---------- nav scroll ----------
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // ---------- reveal on scroll ----------
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
+
+  // ========== i18n (EN canonical in HTML, JA overrides here) ==========
+  function norm(s){return s.replace(/<br\s*\/?>/gi,'<br>').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();}
+  const PAIRS=[
+  [`EJC 2026 · Information Modelling & Knowledge Bases`,`EJC 2026 · 情報モデリングと知識ベース`],
+  [`<span class="t">Truth</span><span class="sep">·</span> <span class="g">Good</span><span class="sep">·</span> <span class="b">Beauty</span>`,`<span class="t">真</span><span class="sep">·</span> <span class="g">善</span><span class="sep">·</span> <span class="b">美</span>`],
+  [`Truth Is Not<br><em>Enough</em>`,`真実だけでは<br><em>足りない</em>`],
+  [`An epistemological framework for the multi-dimensional evaluation of AI outputs — extending scientific accuracy with individual fit, relational trust, practical harmony, and intuitive dissonance.`,`AIの出力を多面的に評価するための認識論的フレームワーク。科学的な正確さに、個人への適合・関係的な信頼・実用的な調和・直観的な違和感を加えて捉え直す。`],
+  [`<b>Yusuke Takahashi</b>`,`<b>高橋雄介</b>`],
+  [`Tokyo, Japan`,`東京, 日本`],
+  [`scroll`,`スクロール`],
+  [`01 — The Thesis`,`01 — 主題`],
+  [`02 — Epistemological Foundation`,`02 — 認識論的基盤`],
+  [`03 — The Model`,`03 — モデル`],
+  [`04 — Structure`,`04 — 構造`],
+  [`05 — Operationalization`,`05 — 実装`],
+  [`06 — The Moderator`,`06 — モデレーター`],
+  [`07 — The Dataset`,`07 — データセット`],
+  [`08 — From the Operational Data`,`08 — 実データから`],
+  [`09 — Generality`,`09 — 一般性`],
+  [`What EKIDEN.AI is`,`EKIDEN.AI とは`],
+  [`Why this data was used`,`なぜこのデータを使ったか`],
+  [`The data comes from <b>EKIDEN.AI</b> — an agentic AI running coach delivered largely through email. It computes the same indicators elite coaches rely on, weighs every session against the runner's own goals, and — crucially — folds in <b>subjective effort and free-text feedback</b> alongside the device data. Its founding ambition is the first professional running team coached entirely by AI.`,`データは <b>EKIDEN.AI</b> から得ています — 主にメールで届くエージェント型のAIランニングコーチです。トップコーチが用いる指標を算出し、各セッションを本人の目標と照らし合わせ、そして決定的なことに、デバイスのデータに加えて<b>主観的な強度と自由記述のフィードバック</b>も取り込みます。その創業の志は、AIだけがコーチを務める世界初のプロ・ランニングチームの結成です。`],
+  [`It fuses <b>objective signals</b> — Garmin device and physiological data, weather context — with the runner's own <b>subjective report</b>. That is precisely where measurable accuracy and felt experience can diverge, which is the gap this framework measures.`,`<b>客観的な信号</b>（Garmin のデバイス・生理データ、天候の文脈）と、本人の<b>主観的な報告</b>を融合します。まさにそこが、測定可能な正確さと体感がずれうる場所であり、このフレームワークが測ろうとするギャップです。`],
+  [`Its runners span <b>first-timers to national-record holders and Olympians</b>, so the cost of a "correct but wrong" recommendation ranges from trivial to career-defining — the full stakes spectrum in one dataset.`,`利用するランナーは<b>初心者から日本記録保持者・五輪選手まで</b>。だからこそ「正しいが間違っている」助言の代償は、些細なものからキャリアを左右するものまで幅広く — 一つのデータセットに賭け金の全域が収まっています。`],
+  [`EKIDEN.AI is built on a <b>human–AI hybrid</b> principle: don't trust AI alone, don't read only the numbers, understand the runner's story. That makes it a natural testbed for a framework arguing that truth is necessary but not sufficient.`,`EKIDEN.AI は<b>人とAIのハイブリッド</b>という原則で作られています — AIだけに頼らない、数値だけを見ない、ランナーの物語を理解する。真実は必要だが十分ではない、と説くフレームワークにとって、これは自然な検証の場になります。`],
+  [`10 — In Plain Language`,`10 — やさしい言葉で`],
+  [`11 — The Paper`,`11 — 論文`],
+  [`When an AI claims correctness, <em>correct for whom?</em>`,`AIが「正しい」と言うとき、<em>誰にとって正しいのか？</em>`],
+  [`An ancient triad, <em>extended for AI</em>`,`古代からの三幅対を、<em>AIへ拡張する</em>`],
+  [`The 10 Senses Model`,`10センス・モデル`],
+  [`From foundation to <em>felt quality</em>`,`基盤から<em>体感される質</em>へ`],
+  [`The Training <em>Confidence</em> Index`,`トレーニング<em>信頼度</em>指標`],
+  [`Making <em>"something feels off"</em> computable`,`<em>「何かおかしい」</em>を計算可能にする`],
+  [`A portrait of <em>the data</em>`,`<em>データ</em>の素顔`],
+  [`The framework, <em>run on real data</em>`,`フレームワークを<em>実データで動かす</em>`],
+  [`Validated in coaching. <em>Domain-agnostic by design.</em>`,`コーチングで検証。<em>設計上ドメインに依存しない。</em>`],
+  [`Read the work`,`論文を読む`],
+  [`For decades, AI and information-retrieval evaluation has treated correctness as fidelity to ground truth — Precision, Recall, BERTScore, ROUGE. These measures excel where a single right answer can be defined. But they are constitutively unable to ask the questions that matter once AI begins to guide human decisions: right <em>for whom</em>, in <em>what context</em>, at <em>what moment</em>.`,`AIや情報検索の評価は長年、正しさを「正解との一致」として扱ってきました — Precision、Recall、BERTScore、ROUGE。これらは正解が一つに定まる場面では優れています。しかしAIが人の意思決定を導き始めると、本当に重要な問いには構造的に答えられません。すなわち、<em>誰にとって</em>、<em>どんな文脈で</em>、<em>どの瞬間に</em>正しいのか、という問いです。`],
+  [`The framework rests on the three modes of recognition that have survived two and a half millennia of philosophical scrutiny since Plato, systematized in Kant's <em>Critique of Judgment</em>: Truth (<span class="mono">aletheia</span>), Good (<span class="mono">agathon</span>), and Beauty (<span class="mono">kalon</span>). To these, the model adds two dimensions essential once AI meets a human: Relation and a Moderator.`,`このフレームワークは、プラトン以来2500年の哲学的吟味を生き延び、カントの<em>『判断力批判』</em>で体系化された三つの認識様式に基づきます — 真理（<span class="mono">aletheia</span>）、善（<span class="mono">agathon</span>）、美（<span class="mono">kalon</span>）。さらにAIが人と接する際に不可欠な二つの次元、関係（Relation）とモデレーター（Moderator）を加えます。`],
+  [`Ten cognitive senses for judging the reliability of an AI output — mutually exclusive, collectively exhaustive within the space of value judgment. Nine contribute to the score; one watches over all of them.`,`AI出力の信頼性を判断するための10の認知的「センス」。価値判断の空間において相互に排他的で、全体として網羅的です。9つがスコアに寄与し、1つがそのすべてを見張ります。`],
+  [`The senses are not a flat list. They build in layers — from the bedrock of scientific evidence, through feasibility and individual fit, up to the quality of the human interface — with a single moderator presiding over the whole.`,`これらのセンスは単なる並列ではありません。科学的根拠という土台から、実行可能性と個人への適合を経て、人との接点の質まで、層をなして積み上がります — そして一つのモデレーターが全体を統べます。`],
+  [`The 10 Senses become computable through the TCI — a hierarchical index that fuses what the system measures with what the person reports, then lets intuition override the arithmetic when it must.`,`10のセンスは TCI によって計算可能になります — システムが測る値と本人が報告する値を統合する階層的な指標で、必要なときには直観が計算を上書きできます。`],
+  [`M1 is the framework's most distinctive move: it treats human intuitive dissonance as <em>signal, not noise</em>. When the numbers look fine but perception disagrees, M1 holds the confidence score back and opens a conversation — rather than confidently confirming an answer that may be wrong.`,`M1 はこのフレームワークの最も独自な一手です。人の直観的な違和感を<em>ノイズではなくシグナル</em>として扱います。数値は問題なく見えるのに感覚が一致しないとき、M1 は信頼度スコアを抑え、誤っているかもしれない答えを自信満々に肯定する代わりに、対話を始めます。`],
+  [`Five months of real coaching on EKIDEN.AI, from first-time joggers to Olympic-level runners. Everything below is aggregate and non-identifying — and openly published.`,`EKIDEN.AI 上での5か月間の実コーチング — 初めて走る人からオリンピック級のランナーまで。以下はすべて集計・非特定の情報で、公開しています。`],
+  [`The same dataset, made interactive. Every figure is computed from the real data or reported in the paper — all aggregate or de-identified, so no individual runner can be identified.`,`同じデータセットをインタラクティブに。各数値は実データから計算したもの、または論文に掲載されたもので、すべて集計済みか匿名化済み。個々のランナーは特定できません。`],
+  [`The framework was validated through human–AI running coaching — a domain where every dimension genuinely matters. But the five categories carry over wherever measurable accuracy and contextual appropriateness can diverge, and where the cost of that divergence is real.`,`このフレームワークは人とAIによるランニングコーチングで検証しました — すべての次元が本当に効いてくる領域です。しかし5つのカテゴリは、測定可能な正確さと文脈上の適切さがずれうるあらゆる場面、そしてそのずれの代償が現実に大きい場面へと一般化できます。`],
+  [`Scientific accuracy is a necessary condition for a reliable AI output. It is not a sufficient one. A diagnosis that ignores a patient's life circumstances, an investment that ignores a client's risk tolerance, a training plan that ignores how an athlete actually feels — each can be <em>measurably correct</em> and <em>practically wrong</em> at the same time.`,`科学的な正確さは、信頼できるAI出力の必要条件です。しかし十分条件ではありません。患者の生活背景を無視した診断、顧客のリスク許容度を無視した投資、選手の実際の感覚を無視したトレーニング計画 — どれも<em>測定上は正しく</em>、同時に<em>実用上は誤っている</em>ことがありえます。`],
+  [`This work formalizes that gap. It treats contextual appropriateness not as a soft afterthought but as a first-class, computable property of output quality.`,`本研究はそのギャップを形式化します。文脈上の適切さを、後付けの曖昧な要素ではなく、出力品質の第一級の計算可能な性質として扱います。`],
+  [`The reliable base — scientific evidence and personal history.`,`信頼できる土台 — 科学的根拠と個人の履歴。`],
+  [`Feasibility and individual fit — population knowledge, expert guidance, the person's own goals and preferences.`,`実行可能性と個人への適合 — 集団の知見、専門家の助言、本人の目標と好み。`],
+  [`The quality of the interface with the user — harmony, trust, and interpersonal connection.`,`ユーザーとの接点の質 — 調和、信頼、そして人と人とのつながり。`],
+  [`A safety valve. When intuitive dissonance is detected, it suppresses the composite score — even if every layer below it scores high.`,`安全弁。直観的な違和感を検知すると、下のすべての層が高得点でも、総合スコアを抑え込みます。`],
+  [`A dual structure`,`二重構造`],
+  [`Every sense is measured twice — and reconciled.`,`各センスは二度測られ、突き合わされます。`],
+  [`System-side signals: device data, model outputs, computed consistency.`,`システム側の信号 — デバイスのデータ、モデルの出力、計算された一貫性。`],
+  [`User-side signals: perceived effort, satisfaction, the report of lived experience.`,`ユーザー側の信号 — 主観的な負荷、満足度、生きた体験の報告。`],
+  [`An easy-intensity session is logged — but the person reports it felt extremely hard.`,`イージー強度のセッションが記録された — しかし本人は「非常にきつかった」と報告。`],
+  [`"Your metrics look great. Freshness is high — you're well prepared. Keep it up."`,`「数値は素晴らしいです。新鮮さも高く、よく整っています。この調子で。」`],
+  [`The same session — objective load and perceived effort sharply disagree.`,`同じセッション — 客観的負荷と主観的な負荷感が大きく食い違う。`],
+  [`"A very hard effort on an easy session is unusual. What made it feel that way — fatigue, terrain, something else? Let's clarify before deciding."`,`「イージーなセッションで『非常にきつい』のは珍しいです。理由は何でしょう — 疲労、地形、それとも別の要因？ 決める前に確認しましょう。」`],
+  [`This is the difference between an evaluation that asks only <em>what an output measures</em> and one that also asks <em>what it might be missing</em>. The example is illustrative; the mechanism is the contribution.`,`これは、<em>出力が何を測っているか</em>だけを問う評価と、<em>何を見落としているかもしれないか</em>まで問う評価の違いです。例は説明用ですが、その仕組みこそが本研究の貢献です。`],
+  [`Including <b>6 elite runners</b> at VDOT ≥ 70 — the level where a single mistimed session can cost a season.`,`VDOT 70以上の<b>エリートランナー6名</b>を含む — たった一度タイミングを誤ったセッションが、シーズンを台無しにしかねないレベル。`],
+  [`Most sessions sit at the easy end (RPE 1–3) — the base of endurance training, and exactly where subjective–objective mismatches hide.`,`大半のセッションはイージー側（RPE 1–3）に集中 — 持久力トレーニングの土台であり、まさに主観と客観のずれが潜む場所です。`],
+  [`A real recovery session from the dataset. The objective data is fixed. Move the perceived-effort slider and watch the system's confidence — and its reply — change.`,`データセット中の実際のリカバリーセッション。客観データは固定です。主観的負荷（RPE）のスライダーを動かすと、システムの信頼度 — そして返答 — が変わります。`],
+  [`n = 890 sessions with both RPE and objective intensity. One session in six is invisible to accuracy alone.`,`RPE と客観的強度の両方がある 890 セッション。6回に1回は、正確さだけでは見えません。`],
+  [`Record-level results and full statistical analysis are reported in the paper. The aggregate data and the code behind this page are openly available in the repository; no individual-level data is published.`,`レコード単位の結果と完全な統計分析は論文に掲載しています。このページの集計データとコードはリポジトリで公開していますが、個人単位のデータは公開していません。`],
+  [`Truth`,`真理`],[`Good`,`善`],[`Beauty`,`美`],[`Relation`,`関係`],[`Moderator`,`モデレーター`],
+  [`Is it scientifically accurate?`,`科学的に正確か？`],
+  [`Is it appropriate for this user?`,`この人に適切か？`],
+  [`Is it simple and harmonious?`,`シンプルで調和しているか？`],
+  [`Is there trust and warmth?`,`信頼と温かさがあるか？`],
+  [`Is there an intuitive warning?`,`直観的な警告はないか？`],
+  [`<i style="background:var(--truth)"></i>Truth`,`<i style="background:var(--truth)"></i>真理`],
+  [`<i style="background:var(--good)"></i>Good`,`<i style="background:var(--good)"></i>善`],
+  [`<i style="background:var(--beauty)"></i>Beauty`,`<i style="background:var(--beauty)"></i>美`],
+  [`<i style="background:var(--relation)"></i>Relation`,`<i style="background:var(--relation)"></i>関係`],
+  [`<i style="background:var(--moderator)"></i>Moderator`,`<i style="background:var(--moderator)"></i>モデレーター`],
+  [`Scientific`,`科学`],[`Statistical`,`統計`],[`Authority`,`権威`],[`Experience`,`経験`],
+  [`Goal`,`目標`],[`Preference`,`好み`],[`Aesthetic Harmony`,`美的調和`],[`Coach Trust`,`コーチへの信頼`],[`Relational Warmth`,`関係の温かさ`],[`Intuitive Alert`,`直観的アラート`],
+  [`Consistency with proven scientific knowledge — physiological limits, safe load ranges.`,`実証された科学的知見との整合 — 生理的限界、安全な負荷の範囲。`],
+  [`Comparison against population trends and peers at a similar level.`,`集団の傾向や同レベルの仲間との比較。`],
+  [`Alignment with expert judgment — a coach's instruction, a physician's diagnosis.`,`専門家の判断との一致 — コーチの指示、医師の診断。`],
+  [`Learning from one's own history — what has worked, what preceded injury.`,`自分自身の履歴からの学習 — 何が効いたか、何が故障の前にあったか。`],
+  [`Alignment with the individual's actual objectives and target outcomes.`,`本人の実際の目標・狙う成果との一致。`],
+  [`Personal preference and subjective satisfaction — enjoyment, motivation, comfort.`,`個人の好みと主観的満足 — 楽しさ、意欲、快適さ。`],
+  [`Simplicity, consistency, elegance — Occam's razor applied to the output itself.`,`単純さ、一貫性、エレガンス — 出力そのものに適用されるオッカムの剃刀。`],
+  [`The degree to which a person trusts, and will act on, the system's judgment.`,`システムの判断を人がどれだけ信頼し、実際に従うか。`],
+  [`Felt psychological connection — the sense of being treated as a unique individual.`,`心理的なつながりの実感 — 一人の個人として扱われている感覚。`],
+  [`Detection of dissonance — the sense that "something feels off" even when every metric looks normal.`,`不協和の検知 — どの指標も正常に見えても「何かおかしい」と感じる感覚。`],
+  [`Foundation Layer`,`基盤レイヤー`],[`Execution Layer`,`実行レイヤー`],[`Quality Layer`,`品質レイヤー`],[`M1 — across all layers`,`M1 — 全レイヤーを横断`],
+  [`T1 Scientific`,`T1 科学`],[`T4 Experience`,`T4 経験`],[`T2 Statistical`,`T2 統計`],[`T3 Authority`,`T3 権威`],[`G1 Goal`,`G1 目標`],[`G2 Preference`,`G2 好み`],[`B1 Aesthetic Harmony`,`B1 美的調和`],[`R1 Coach Trust`,`R1 コーチへの信頼`],[`R2 Relational Warmth`,`R2 関係の温かさ`],[`M1 Intuitive Alert`,`M1 直観的アラート`],
+  [`Foundation`,`基盤`],[`Execution`,`実行`],[`Quality`,`品質`],
+  [`<b>Zone 1</b> · easy`,`<b>ゾーン1</b> · イージー`],
+  [`TSB <b>+16.3</b> · fresh`,`TSB <b>+16.3</b> · 新鮮`],
+  [`post-injury return`,`故障明けの復帰`],
+  [`Perceived effort · RPE`,`主観的運動強度 · RPE`],
+  [`1 · very easy`,`1 · かなり楽`],[`10 · maximal`,`10 · 最大`],
+  [`M1 · Intuitive Alert`,`M1 · 直観的アラート`],[`Training Confidence`,`トレーニング信頼度`],
+  [`EKIDEN.AI · coach response`,`EKIDEN.AI · コーチの返答`],
+  [`Interactive · M1 Intuitive Alert`,`インタラクティブ · M1 直観的アラート`],
+  [`Subjective–Objective Discrepancy`,`主観と客観の不一致`],
+  [`Real discrepancy cases · elite runners (VDOT 68–76, de-identified)`,`実際の不一致ケース · エリートランナー（VDOT 68–76、匿名化済み）`],
+  [`Each panel answers one question: <em>what can we now see that accuracy-only evaluation cannot?</em>`,`各パネルは一つの問いに答えます — <em>正確さだけの評価では見えないものが、いま何が見えるのか？</em>`],
+  [`Now visible · the coaching itself reacts`,`いま見えること · コーチング自体が反応する`],
+  [`Now visible · the size of the blind spot`,`いま見えること · 盲点の大きさ`],
+  [`Now visible · per session, who was overreaching`,`いま見えること · セッション単位で、誰が無理をしていたか`],
+  [`Eq. 1 · per sense — fuse objective & subjective`,`式1 · センスごと — 客観と主観を融合`],
+  [`Eq. 2 · aggregate senses into layers`,`式2 · センスをレイヤーへ集約`],
+  [`Eq. 3 · compose, then let M1 moderate`,`式3 · 合成し、M1 が調整する`],
+  [`M1 enters as a multiplier, never an addend — it can only hold the score back, never inflate it.`,`M1 は加算項ではなく乗数として入る — スコアを抑えることはできても、けっして引き上げない。`],
+  [`n = 890 sessions with both RPE and objective intensity. Hover a slice — one session in six is invisible to accuracy alone.`,`RPE と客観的強度の両方がある 890 セッション。スライスにカーソルを合わせてみてください — 6回に1回は、正確さだけでは見えません。`],
+  [`12 — References`,`12 — 参考文献`],
+  [`Refs`,`文献`],
+  [`The <em>shoulders</em> it stands on`,`巨人の<em>肩</em>の上に`],
+  [`The twenty-four works this framework builds on — spanning AI output evaluation, training-load science, and the epistemology of Truth, Good, and Beauty. Each entry links to its source.`,`このフレームワークが土台とする24の文献 — AI出力の評価、トレーニング負荷の科学、そして真・善・美の認識論にまたがります。各項目は出典にリンクしています。`],
+  [`Publication history`,`発表履歴`],
+  [`To appear`,`掲載予定`],
+  [`<b>Conference paper</b> — presented at EJC 2026, the 36th International Conference on Information Modelling and Knowledge Bases, University of Vaasa, Vaasa, Finland (June 8–12, 2026).`,`<b>会議論文</b> — EJC 2026（第36回 情報モデリングと知識ベースに関する国際会議、ヴァーサ大学、フィンランド・ヴァーサ、2026年6月8〜12日）にて発表。`],
+  [`<b>Journal / proceedings</b> — Information Modelling and Knowledge Bases (Frontiers in Artificial Intelligence and Applications), IOS Press — post-conference volume, forthcoming 2026.`,`<b>論文誌 / 予稿集</b> — Information Modelling and Knowledge Bases（Frontiers in Artificial Intelligence and Applications）, IOS Press — 会議後の巻に収録予定（2026年）。`],
+  [`Same session — one changing variable`,`同じセッション — 変えるのは一つだけ`],
+  [`Subjective matches objective`,`主観と客観が一致`],
+  [`Felt harder — overload warning`,`実際よりきつい — オーバーロード警告`],
+  [`Felt easier — good adaptation`,`実際より楽 — 良い適応`],
+  [`Session`,`セッション`],[`Objective`,`客観`],[`M1 reading`,`M1判定`],
+  [`Run 3.2 km`,`ラン 3.2 km`],[`easy`,`イージー`],[`▲ fatigue warning`,`▲ 疲労警告`],
+  [`Run 10.6 km`,`ラン 10.6 km`],[`▲ severe fatigue alert`,`▲ 強い疲労アラート`],
+  [`Track 17.2 km`,`トラック 17.2 km`],[`▲ overload · rest advised`,`▲ オーバーロード · 休養推奨`],
+  [`Track 2.2 km`,`トラック 2.2 km`],[`very hard`,`非常にきつい`],[`○ good form · adapted`,`○ 良い状態 · 適応済み`],
+  [`Run 21.2 km`,`ラン 21.2 km`],[`maximal`,`最大`],[`○ peak condition`,`○ ピーク状態`],
+  [`Fitness spectrum · <b>VDOT 37–76</b>`,`フィットネスの幅 · <b>VDOT 37–76</b>`],
+  [`Where they run · <b>language</b>`,`使用言語 · <b>言語</b>`],
+  [`Activity mix · <b>20,343 sessions</b>`,`アクティビティ構成 · <b>20,343 セッション</b>`],
+  [`Perceived effort · <b>892 logged RPE</b>`,`主観的強度 · <b>892件のRPE記録</b>`],
+  [`Runners`,`ランナー`],[`Activities`,`アクティビティ`],[`Coaching dialogues`,`コーチング対話`],[`Kilometres logged`,`走行距離(km)`],[`Hours in motion`,`活動時間`],
+  [`37 · recreational`,`37 · 市民ランナー`],[`elite · 76`,`エリート · 76`],
+  [`recreational`,`市民`],[`competitive`,`競技`],[`elite`,`エリート`],
+  [`Human–AI Coaching`,`人とAIのコーチング`],[`Clinical Decision Support`,`臨床意思決定支援`],[`Financial Advisory`,`金融アドバイザリー`],[`Legal Reasoning`,`法的推論`],
+  [`The validation domain. Where one mistimed session, for an elite athlete, can forfeit a window that comes once every four years.`,`検証の領域。エリート選手にとって、一度のタイミングミスが4年に一度の機会を奪いかねない場所。`],
+  [`Where a statistically sound recommendation must still fit a patient's life, values, and felt experience.`,`統計的に妥当な推奨であっても、患者の生活・価値観・体感に合っていなければならない場所。`],
+  [`Where a correct allocation can still be the wrong advice for this person's tolerance and plans.`,`正しい資産配分でも、その人の許容度や計画には誤った助言になりうる場所。`],
+  [`Where appropriateness, trust, and the weight of context shape what "correct" can mean.`,`適切さ・信頼・文脈の重みが、「正しい」の意味そのものを形づくる場所。`],
+  [`Truth Is Not Enough: An Epistemological Framework for Multi-Dimensional AI Output Evaluation with Empirical Validation in Human-AI Coaching`,`Truth Is Not Enough: 人とAIのコーチングにおける実証を伴う、AI出力の多面的評価のための認識論的フレームワーク`],
+  [`Yusuke Takahashi`,`高橋雄介`],
+  [`Asia AI Institute · AIx{ } · Tokyo, Japan<br>EJC 2026 — 36th International Conference on Information Modelling and Knowledge Bases<br>Vaasa, Finland · June 8–12, 2026`,`Asia AI Institute · AIx{ } · 東京, 日本<br>EJC 2026 — 第36回 情報モデリングと知識ベース国際会議<br>フィンランド・ヴァーサ · 2026年6月8–12日`],
+  [`Read the paper ↗`,`論文を読む ↗`],[`Visit EKIDEN.AI ↗`,`EKIDEN.AIを見る ↗`],[`Code & data ↗`,`コードとデータ ↗`],[`Back to top`,`トップへ戻る`],
+  [`The 10 Senses Model & Training Confidence Index`,`10センス・モデルとトレーニング信頼度指標`],
+  [`Truth Is Not <em>Enough</em>`,`真実だけでは<em>足りない</em>`],
+  [`Thesis`,`主題`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Paper`,`論文`],
+  [`Frequently Asked <em>Questions</em>`,`よくある<em>質問</em>`],
+  [`No jargon. If you're new to all of this, start here.`,`専門用語なし。はじめての方はここから。`],
+  [`What is this research actually about?`,`この研究は結局、何の話？`],
+  [`When an AI gives you an answer, it's usually judged on one thing: is it factually correct? This research argues that's <b>not enough</b>. An answer can be perfectly correct and still be wrong <b>for you, right now</b>. The 10 Senses Model adds four more things to weigh beyond the science — whether it fits your goals, whether it's simple and clear, whether you trust the source, and whether something just feels off — and folds them into a single trust score. In the real running data behind this work, what people <b>felt</b> and what the numbers <b>said</b> disagreed in <b>17.1% of sessions</b> — about one in six — which is exactly the blind spot a correctness-only system can't see.`,`AIが答えを出すとき、ふつうは一点だけで評価されます — 事実として正しいか。この研究は、それだけでは<b>足りない</b>と主張します。完全に正しくても、<b>いまのあなたには</b>間違っていることがある。10センスモデルは、科学に加えてさらに4つを天秤にかけます — 目標に合うか、シンプルで分かりやすいか、情報源を信頼できるか、そして何か引っかかる感じはないか — そしてそれらを一つの信頼スコアにまとめます。この研究の実データでは、人が<b>感じたこと</b>と数値が<b>示すこと</b>が<b>17.1%のセッション</b>（約6回に1回）でずれていました。これこそ、正確さだけのシステムには見えない盲点です。`],
+  [`What does "Truth is not enough" mean?`,`「真実だけでは足りない」ってどういう意味？`],
+  [`Say a coach tells you "run 10 km today." That can be scientifically correct training — and still a bad idea if you're exhausted, carrying an injury, or you'd dread every step. Truth (the science) is necessary, but so is whether it's <b>good for you</b> (your goals and preferences), whether it's <b>simple and harmonious</b> enough to actually stick to, whether you <b>trust</b> the source, and whether your gut says something's wrong. The framework weighs all five families at once, so a recommendation that is "correct but cold," "correct but too complex," or "correct but badly timed" no longer slips through unnoticed.`,`コーチが「今日は10km走ろう」と言ったとします。科学的には正しい練習かもしれません — でも、へとへとだったり、故障を抱えていたり、一歩ごとに気が重いなら、良い案ではありません。真実（科学）は必要条件。でも、<b>あなたに good か</b>（目標と好み）、続けられるくらい<b>シンプルで調和している</b>か、情報源を<b>信頼</b>できるか、そして直感が「何かおかしい」と言っていないか、も同じく重要です。この枠組みは5つの系統を一度に天秤にかけるので、「正しいが冷たい」「正しいが複雑すぎる」「正しいがタイミングが悪い」推奨が、見過ごされずに済みます。`],
+  [`What are the "10 senses"?`,`「10のセンス」って何？`],
+  [`They're ten ways of judging whether an AI's answer can be trusted, grouped into five families. <b>Truth</b> (4 senses): the science, how you compare to similar people, what an expert would say, and your own training history. <b>Good</b> (2): your goals, and your preferences and satisfaction. <b>Beauty</b> (1): how simple and harmonious the plan is. <b>Relation</b> (2): how much you trust the coach, and how warm it feels. The tenth, the <b>Moderator</b> (M1), is special — a <b>gut-feeling alarm</b> that doesn't add points but can hold the whole score back when something doesn't add up.`,`AIの答えを信頼できるか判断する10の見方で、5つの系統にまとまります。<b>真理</b>（4つ）：科学、似た人との比較、専門家ならどう言うか、自分の練習履歴。<b>善</b>（2つ）：目標、そして好みと満足。<b>美</b>（1つ）：計画がどれだけシンプルで調和しているか。<b>関係</b>（2つ）：コーチをどれだけ信頼するか、どれだけ温かく感じるか。10番目の<b>モデレーター</b>（M1）は特別で、点数を足すのではなく、何かつじつまが合わないときに<b>全体のスコアを抑える直感の警報</b>です。`],
+  [`What is the TCI score?`,`TCIスコアって何？`],
+  [`The Training Confidence Index folds the senses into a single score from <b>0 to 100</b>, shown as a traffic light: <b>green (≥ 75)</b> means go, <b>yellow (50–74)</b> means look closer, <b>red (≤ 49)</b> means caution. It's built in layers — a scientific foundation, then execution, quality, and relationship, combined with set weights — and every sense is measured <b>twice</b>: once from the <b>device data</b> and once from what you <b>actually reported feeling</b>, then reconciled into one number.`,`トレーニング信頼度指標（TCI）は、センス群を<b>0〜100</b>の一つのスコアにまとめ、信号機で示します — <b>緑（75以上）</b>は「進め」、<b>黄（50〜74）</b>は「よく見て」、<b>赤（49以下）</b>は「注意」。土台（科学）→実行→質→関係という階層に、決まった重みをかけて合成します。そして各センスは<b>2回</b>測られます — <b>デバイスのデータ</b>から1回、<b>あなたが実際に報告した感覚</b>から1回 — それを照合して一つの数値にします。`],
+  [`What is the "M1 intuitive alert"?`,`「M1 直観的アラート」って何？`],
+  [`It's that gut-feeling alarm. Sometimes every number looks fine, but something is off — your watch logs an "easy" Zone-1 effort while you rate it brutal. M1 catches the mismatch and, instead of cheerfully saying "great job," it <b>holds the confidence score back and asks a clarifying question</b>. In the actual data, one identical 23.6 km easy walk drew warm praise at RPE 2 but a gentle "what made this feel hard?" at RPE 8 — same objective numbers, different felt experience, deliberately different response.`,`あの直感の警報です。どの数値も問題なく見えるのに、何かおかしい — 時計は「イージー（ゾーン1）」と記録するのに、本人はきつかったと評価する。M1はそのズレに気づき、「よくできました」と無邪気に言う代わりに、<b>信頼度スコアを抑えて、確認の質問をします</b>。実データでは、まったく同じ 23.6km のイージーウォークが、RPE 2 では温かい称賛を、RPE 8 では「何がきつく感じさせたのですか？」という穏やかな問いを引き出しました — 客観的な数値は同じ、体感だけが違い、応答も意図的に変えています。`],
+  [`Why test it on runners?`,`なぜランナーで試したの？`],
+  [`Running produces honest, measurable data — distance, pace, heart rate — paired with how hard it actually <b>felt</b>, which makes the gap between the two visible. This work draws on <b>299 runners and 20,343 sessions</b> over five months. And for elite athletes at Olympic-qualifying level (VDOT 70–76), one mistimed call can forfeit a competitive window that comes only once every four years — so getting the judgment right is anything but academic. The same five-category logic transfers directly to clinical decisions, financial advice, and legal reasoning.`,`ランニングは、正直で測りやすいデータ — 距離、ペース、心拍 — を、実際に<b>どれだけきつかったか</b>と対にして与えてくれるので、両者のズレが見えます。この研究は5か月の<b>ランナー299名・20,343セッション</b>に基づいています。さらに、オリンピック出場レベル（VDOT 70〜76）のエリート選手にとっては、一度のタイミングの誤りが、4年に一度しか来ない勝負どころを失わせかねません — だから判断の正しさは決して机上の話ではありません。同じ5カテゴリの論理は、臨床判断・金融アドバイス・法的推論にもそのまま応用できます。`],
+  [`Is anyone's personal data shown here?`,`誰かの個人データは表示されている？`],
+  [`No. Everything on this page is either a big-picture total (like "299 runners" or "160,876 km") or an example already published in the paper with all identifying details removed. The downloadable dataset contains <b>only aggregate counts</b> — no individual records, names, locations, or free text. <b>No individual's private data is shown or shared here.</b>`,`いいえ。このページにあるのは、全体の合計（「ランナー299名」「160,876 km」など）か、論文に既に掲載された、識別情報をすべて取り除いた例だけです。ダウンロードできるデータセットには<b>集計値のみ</b>が含まれます — 個人の記録・氏名・位置情報・自由記述は一切ありません。<b>個人のプライベートなデータは、ここでは表示も共有もしていません。</b>`],
+  [`How 10SM relates to — and differs from — the prior work it builds on, reference by reference.`,`10SM が土台とする先行研究と、それぞれとの関係・違いを、文献ごとに示します。`],
+  [`Related work · AI output evaluation`,`関連研究 · AI出力の評価`],
+  [`G-Eval — Liu et al. (2023)`,`G-Eval — Liu ほか (2023)`],
+  [`Uses GPT-4 with chain-of-thought reasoning as an automatic judge of generated text, reaching about 0.51 correlation with human ratings on summarization. Like other "LLM-as-judge" methods it still measures fidelity to a ground truth; 10SM keeps that accuracy as one category (Truth) and adds individual fit, trust, harmony, and an intuitive-dissonance check.`,`GPT-4 に思考連鎖（CoT）をさせ、生成文を自動採点する手法で、要約タスクで人手評価と約0.51の相関を達成。他の「LLM-as-judge」と同様、依然として正解への忠実度を測ります。10SM はその正確さを一カテゴリ（真理）として残しつつ、個人適合・信頼・調和・直観的不協和のチェックを加えます。`],
+  [`RAGAS — Es et al. (2023)`,`RAGAS — Es ほか (2023)`],
+  [`Scores retrieval-augmented systems on faithfulness, answer relevancy, and context precision. It sharpens accuracy measurement for RAG, but — like G-Eval — never asks whether an answer is right <b>for this person, in this context</b>. That is exactly the gap 10SM is built to close.`,`検索拡張（RAG）システムを、忠実性・回答の関連性・文脈精度で採点します。RAG の正確さ測定を磨きますが、G-Eval と同じく「<b>この人に、この文脈で</b>」正しいかは問いません。まさにそこが 10SM の埋めるギャップです。`],
+  [`Related work · Training-load science`,`関連研究 · トレーニング負荷の科学`],
+  [`Fitness–Fatigue Model — Banister (1991)`,`フィットネス–疲労モデル — Banister (1991)`],
+  [`Models performance as the running balance between accumulated fitness and fatigue from training. 10SM treats such physiological models as inputs to the Truth dimension (T1 Scientific) — foundational, but not the whole judgment.`,`パフォーマンスを、蓄積したフィットネスと疲労の差し引きとしてモデル化します。10SM はこうした生理モデルを真理次元（T1 科学）への入力として扱います — 土台ではあるが、判断の全部ではありません。`],
+  [`Training Stress Score (TSS) — Coggan (2003)`,`トレーニング・ストレス・スコア(TSS) — Coggan (2003)`],
+  [`Compresses the load of a session into a single number. In 10SM, TSS is one objective signal feeding T1 Scientific — necessary, but blind to how the athlete actually felt.`,`1セッションの負荷を一つの数値に圧縮します。10SM では TSS は T1 科学に入る客観信号の一つ — 必要ですが、本人がどう感じたかは見えません。`],
+  [`Acute:Chronic Workload Ratio — Hulin et al. (2016)`,`急性:慢性 負荷比(ACWR) — Hulin ほか (2016)`],
+  [`Showed that the ratio of recent to longer-term training load predicts injury risk. 10SM adopts the ACWR safe range (0.8–1.3) inside T1 Scientific, then layers subjective and relational checks on top of it.`,`直近と長期の負荷比が故障リスクを予測することを示しました。10SM は ACWR の安全域（0.8–1.3）を T1 科学に取り込み、その上に主観・関係のチェックを重ねます。`],
+  [`Session-RPE — Foster et al. (2001)`,`セッションRPE — Foster ほか (2001)`],
+  [`Introduced session-RPE — perceived exertion times duration — as a simple subjective load measure. 10SM uses RPE as a core subjective signal, but pairs it with objective intensity so mismatches (the 17.1% finding) become visible.`,`主観的運動強度×時間という簡便な主観的負荷指標（セッションRPE）を提案。10SM は RPE を主要な主観信号として使い、客観的強度と対にすることで、ずれ（17.1%の発見）を可視化します。`],
+  [`Hooper Index — Hooper et al. (1995)`,`フーパー指数 — Hooper ほか (1995)`],
+  [`Monitors overtraining via sleep, stress, fatigue, and muscle soreness. It addresses the subjective side that accuracy metrics miss; 10SM systematizes both the subjective and objective layers under a single index.`,`睡眠・ストレス・疲労・筋肉痛からオーバートレーニングを監視します。正確さ指標が見落とす主観側を扱う点で、10SM は主観・客観の両層を一つの指標の下に体系化します。`],
+  [`RPE scale — Borg (1982)`,`RPEスケール — Borg (1982)`],
+  [`The psychophysical scale that turns "how hard it feels" into a number. It underpins the subjective-intensity input that 10SM compares against objective intensity to detect discrepancy.`,`「どれだけきついか」を数値に変える精神物理学的スケール。10SM が客観的強度と比べてずれを検出する、主観的強度の入力の基礎です。`],
+  [`VDOT — Daniels (2014)`,`VDOT — Daniels (2014)`],
+  [`Daniels' Running Formula defines VDOT, a single scale of fitness and intensity derived from race performance. 10SM uses VDOT-based intensity as the objective reference that subjective RPE is checked against.`,`Daniels の『Running Formula』が定義する VDOT は、レース成績から導く単一のフィットネス・強度スケール。10SM は VDOT 由来の強度を、主観的 RPE を照合する客観基準として使います。`],
+  [`AI for injury prediction — Claudino et al. (2019)`,`故障予測のためのAI — Claudino ほか (2019)`],
+  [`A systematic review of AI for injury-risk and performance prediction in team sports. Such systems predict outcomes, but do not evaluate or explain the reliability of a recommendation; 10SM focuses on evaluating that reliability and surfacing the reasoning behind it.`,`チームスポーツにおける故障リスク・パフォーマンス予測のためのAIの系統的レビュー。こうしたシステムは結果を予測しますが、推奨の信頼性を評価・説明はしません。10SM はその信頼性の評価と、根拠の提示に焦点を当てます。`],
+  [`Related work · Epistemology & knowledge bases`,`関連研究 · 認識論と知識ベース`],
+  [`The twelve senses — Steiner (1916)`,`十二感覚 — Steiner (1916)`],
+  [`Steiner proposed that humans perceive through twelve senses, not five. 10SM borrows the <b>spirit</b> of that idea — perception is multi-dimensional — without adopting his system; two senses (R1 Coach Trust, R2 Relational Warmth) echo his "ego" and "warmth" senses.`,`シュタイナーは、人は五感ではなく十二の感覚で世界を知覚すると提案しました。10SM はその<b>精神</b>（知覚は多次元である）を借りますが、体系をそのまま採用はしません。二つの感覚（R1 コーチへの信頼、R2 関係の温かさ）は彼の「自我感覚」「温感」に呼応します。`],
+  [`Beauty and Revolution in Science — McAllister (1996)`,`科学における美と革命 — McAllister (1996)`],
+  [`Showed empirically that scientists use aesthetic criteria when choosing between theories. This grounds 10SM's claim that Beauty — simplicity and harmony — is a legitimate evaluation axis, not decoration.`,`科学者が理論選択時に美的基準を用いることを実証的に示しました。これは、美（単純さ・調和）が飾りではなく正当な評価軸だという 10SM の主張を支えます。`],
+  [`The Structure of Scientific Revolutions — Kuhn (1962)`,`科学革命の構造 — Kuhn (1962)`],
+  [`Argued that aesthetic judgement plays a real role in how scientists choose paradigms. Together with McAllister, it justifies including B1 Aesthetic Harmony as a serious evaluation dimension.`,`科学者がパラダイムを選ぶ際、美的判断が実際に役割を果たすと論じました。McAllister とともに、B1 美的調和を本格的な評価次元に含める根拠になります。`],
+  [`The physicist's picture of nature — Dirac (1963)`,`物理学者から見た自然像 — Dirac (1963)`],
+  [`Dirac argued that a physical theory should possess mathematical beauty. It sits among the foundations 10SM cites for treating Beauty as a genuine marker of a good output.`,`ディラックは、物理理論は数学的な美を備えるべきだと論じました。良い出力の指標として美を扱う 10SM が引く基盤の一つです。`],
+  [`Truth and Method — Gadamer (1960)`,`真理と方法 — Gadamer (1960)`],
+  [`Gadamer's hermeneutics holds that understanding is always shaped by context and the interpreter's situation. This grounds 10SM's premise that what counts as "correct" depends on context, and informs its sense-as-evaluation framing.`,`ガダマーの解釈学では、理解は常に文脈と解釈者の状況に形づくられます。「正しさ」は文脈に依存するという 10SM の前提を支え、「感覚＝評価軸」という枠組みにも影響しています。`],
+  [`Federated database systems — Sheth & Larson (1990)`,`連合データベースシステム — Sheth & Larson (1990)`],
+  [`Defined how to integrate heterogeneous, autonomous databases. It is a systems-side precursor to 10SM's idea of evaluating across many differently-shaped data sources at once.`,`異種で自律的なデータベースを統合する方法を定義しました。多様な形のデータ源を横断して同時に評価するという 10SM の発想の、システム面での先駆です。`],
+  [`Semantic interoperability — Kiyoki et al. (1995, 2002)`,`意味的相互運用性 — Kiyoki ほか (1995, 2002)`],
+  [`A mathematical model of meaning enabling semantic interoperability across databases. It provides the conceptual basis for fusing differently-shaped signals — objective, subjective, relational — into one assessment.`,`データベース間の意味的相互運用を可能にする「意味の数学モデル」。客観・主観・関係という形の異なる信号を一つの評価へ融合する概念的基礎を与えます。`],
+  [`Meta-Chronicle — Ishibashi & Kiyoki (2004)`,`Meta-Chronicle — Ishibashi & Kiyoki (2004)`],
+  [`A spatial-temporal multidatabase system. A direct lineage ancestor of 10SM's multi-source, multi-layer evaluation approach.`,`時空間マルチデータベースシステム。10SM の多源・多層の評価アプローチの直接の系譜上の先祖です。`],
+  [`Career-opportunity knowledge base — Takahashi & Kiyoki (2008)`,`キャリア機会発見の知識ベース — Takahashi & Kiyoki (2008)`],
+  [`A meta-level knowledge-base system that discovers career opportunities by connecting heterogeneous occupational and educational databases. It is the closest conceptual precursor to 10SM: multi-layer evaluation across heterogeneous sources.`,`異種の職業・教育データベースを接続してキャリア機会を発見する、メタレベルの知識ベースシステム。異種の源を横断する多層評価という点で、10SM に最も近い概念的先駆です。`],
+  [`Related work · Validation statistics`,`関連研究 · 検証統計`],
+  [`Cohen's Kappa — Cohen (1960)`,`コーエンのカッパ — Cohen (1960)`],
+  [`A measure of agreement between raters that corrects for chance (κ ≥ 0.61 is "substantial"). 10SM uses it to check the inter-rater reliability of its expert evaluations.`,`偶然の一致を補正した評価者間の一致度の指標（κ ≥ 0.61 で「相当の一致」）。10SM は専門家評価の評価者間信頼性の確認に用います。`],
+  [`Cronbach's alpha — Cronbach (1951)`,`クロンバックのα — Cronbach (1951)`],
+  [`Measures the internal consistency of a multi-item scale. 10SM uses it, alongside Spearman and Pearson correlations, to validate the consistency of expert ratings.`,`多項目尺度の内的一貫性を測る指標。10SM は Spearman・Pearson 相関とともに、専門家評価の一貫性の検証に用います。`],
+  [`Related work · Measurement blueprint`,`関連研究 · 測定の設計図`],
+  [`Seven dimensions of human action — Iwata (2024)`,`人間行為の七次元 — Iwata (2024)`],
+  [`Proposes a seven-dimensional model for describing human experience. 10SM adopts it as the blueprint for future validation — measuring TCI's effects across the Physio dimension (HRV), the Psycho dimension (RPE and satisfaction), and the Social dimension (coach–athlete dialogue).`,`人間の経験を記述する七次元モデルを提案。10SM はこれを今後の検証の設計図として採用します — TCI の効果を、生理次元（HRV）、心理次元（RPE・満足度）、社会次元（コーチと選手の対話）にわたって測定します。`]
+  ];
+  const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what';
+  const els=[];
+  document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
+  els.forEach(el=>{ el.__en=el.innerHTML; });
+  function applyStatic(lang){
+    els.forEach(el=>{ const k=norm(el.__en); el.innerHTML=(lang==='ja'&&JA[k]!=null)?JA[k]:el.__en; });
+  }
+
+  let CUR='en';
+
+  // ---------- charts (language aware) ----------
+  const TYPE_ROWS=[[14704,'Run','ラン'],[3383,'Other','その他'],[1169,'Ride','バイク'],[833,'Walk','ウォーク'],[223,'Swim','スイム'],[31,'Hike','ハイク']];
+  const TYPE_COL=['#8FB3D1','#C9A45E','#B98C6A','#86A98C','#8FB7C6','#B58A8A'];
+  const LANG_ROWS=[[168,'Japanese','日本語'],[74,'English','英語'],[20,'Indonesian','インドネシア語'],[4,'Thai','タイ語'],[33,'Other','その他']];
+  const LANG_COL=['#8FB3D1','#C9A45E','#86A98C','#B98C6A','#A99CC4'];
+  function buildHbars(id,rows,total,colors,lang){
+    const c=document.getElementById(id); if(!c) return; c.innerHTML='';
+    rows.forEach((r,i)=>{
+      const pct=r[0]/total*100, label=lang==='ja'?r[2]:r[1];
+      const el=document.createElement('div'); el.className='hbar';
+      el.innerHTML='<div class="hl"><span>'+label+'</span><span class="hp">'+pct.toFixed(1)+'%</span></div>'+
+        '<div class="track"><div class="fill" style="background:'+colors[i%colors.length]+'"></div></div>';
+      c.appendChild(el);
+      const fill=el.querySelector('.fill');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{fill.style.width=Math.max(pct,1.2)+'%';}));
+    });
+  }
+  function rebuildCharts(lang){
+    buildHbars('typeBars',TYPE_ROWS,20343,TYPE_COL,lang);
+    buildHbars('langBars',LANG_ROWS,299,LANG_COL,lang);
+  }
+
+  // ---------- RPE distribution bars (static, numeric) ----------
+  (function(){
+    const wrap=document.getElementById('rpeBars'), xs=document.getElementById('rpeBarsX');
+    if(!wrap) return;
+    const RPE=[285,196,226,53,40,34,27,17,6,8], mx=Math.max.apply(null,RPE);
+    RPE.forEach((v,i)=>{
+      const b=document.createElement('div'); b.className='bar';
+      b.style.height=(v/mx*100)+'%'; b.title='RPE '+(i+1)+': '+v;
+      wrap.appendChild(b);
+      const s=document.createElement('span'); s.textContent=(i+1); xs.appendChild(s);
+    });
+  })();
+
+  // ---------- M1 explorer (language aware) ----------
+  const EXP={
+    en:{pos:"Covering 23.6 km at a ‘very easy’ effort points to excellent condition. A TSB of +16.3 confirms high freshness — your body has recovered well and is primed. Keep this with light movement to stay sharp.",
+        clarify:"A ‘very hard’ effort on an easy Zone 1 walk — though you noted feeling ‘super happy’ — doesn’t quite line up. What made it feel that hard: duration, terrain, or pushing past the easy intent? Let’s clarify together before drawing conclusions.",
+        consistent:"— consistent",mild:"— mild dissonance",alert:"⚠ alert triggered",green:"Green",yellow:"Yellow",red:"Red",
+        cn:'Contradiction check: <b>none</b> — subjective and objective agree.',
+        cd:r=>'Contradiction check: <b style="color:#9B2C25">detected</b> — RPE '+r+' vs Zone 1 (easy).'},
+    ja:{pos:"23.6 kmを「かなり楽」な感覚でこなせているのは、心身がとても良い状態にあるサインです。TSB +16.3 は新鮮さの高さを示し、体はよく回復してキレがあります。軽い運動でこのコンディションを保ちましょう。",
+        clarify:"イージーなゾーン1のウォークで「非常にきつい」と感じた一方、「とても楽しい」とも記録されています — ここが少しかみ合いません。きつく感じた理由は何でしょう（時間、地形、イージーの範囲を超えた？）。結論を出す前に、一緒に確認しましょう。",
+        consistent:"— 一致",mild:"— わずかな不協和",alert:"⚠ 警告が発火",green:"緑",yellow:"黄",red:"赤",
+        cn:'矛盾チェック: <b>なし</b> — 主観と客観は一致。',
+        cd:r=>'矛盾チェック: <b style="color:#9B2C25">検出</b> — RPE '+r+' と ゾーン1（イージー）。'}
+  };
+  let explorerUpdate=function(){};
+  (function(){
+    const rpe=document.getElementById('rpe'); if(!rpe) return;
+    const rpeVal=document.getElementById('rpeVal'), m1v=document.getElementById('m1v'),
+          m1state=document.getElementById('m1state'), tciv=document.getElementById('tciv'),
+          zone=document.getElementById('zone'), contra=document.getElementById('contra'),
+          coachMsg=document.getElementById('coachMsg');
+    const GREEN='#4C7252', YELLOW='#B07D27', RED='#9B2C25', INK='#221B14', SOFT='#5C5246';
+    explorerUpdate=function(){
+      const t=EXP[CUR], r=+rpe.value, expected=2, disc=Math.max(0,r-expected);
+      const m1=Math.max(0,Math.min(10,10-1.3*disc));
+      const detected=(r-expected)>=3, triggered=m1<4.0;
+      const factor=m1>=5?1.0:(0.45+0.11*m1), tci=Math.round(84*factor);
+      rpeVal.textContent=r;
+      m1v.textContent=m1.toFixed(1); m1v.style.color=triggered?RED:INK;
+      m1state.textContent=triggered?t.alert:(detected?t.mild:t.consistent);
+      m1state.style.color=triggered?RED:SOFT;
+      tciv.textContent=tci;
+      let zc=GREEN,zt=t.green;
+      if(tci<50){zc=RED;zt=t.red;} else if(tci<75){zc=YELLOW;zt=t.yellow;}
+      tciv.style.color=zc; zone.textContent=zt; zone.style.background=zc;
+      if(detected){ contra.innerHTML=t.cd(r); coachMsg.textContent=t.clarify; coachMsg.style.color=RED; }
+      else { contra.innerHTML=t.cn; coachMsg.textContent=t.pos; coachMsg.style.color=INK; }
+    };
+    rpe.addEventListener('input',explorerUpdate);
+  })();
+
+  // ---------- Table 1 carousel (section 02) ----------
+  const T1CATS={
+    truth:{c:'--truth',en:'Truth',ja:'真理',gk:'aletheia',phil_en:'\u201CIs it correct?\u201D',phil_ja:'\u300C正しいか？\u300D',ai_en:'Is it scientifically accurate?',ai_ja:'科学的に正確か？'},
+    good:{c:'--good',en:'Good',ja:'善',gk:'agathon',phil_en:'\u201CIs it good?\u201D',phil_ja:'\u300C善いか？\u300D',ai_en:'Is it appropriate for this user?',ai_ja:'この人に適切か？'},
+    beauty:{c:'--beauty',en:'Beauty',ja:'美',gk:'kalon',phil_en:'\u201CIs it beautiful?\u201D',phil_ja:'\u300C美しいか？\u300D',ai_en:'Is it simple and harmonious?',ai_ja:'シンプルで調和しているか？'},
+    relation:{c:'--relation',en:'Relation',ja:'関係',gk:'',phil_en:'\u201CIs there a connection?\u201D',phil_ja:'\u300Cつながりはあるか？\u300D',ai_en:'Is there trust and warmth?',ai_ja:'信頼と温かさがあるか？'},
+    moderator:{c:'--moderator',en:'Moderator',ja:'モデレーター',gk:'',phil_en:'\u201CIs there dissonance?\u201D',phil_ja:'\u300C不協和はないか？\u300D',ai_en:'Is there an intuitive warning?',ai_ja:'直観的な警告はないか？'}
+  };
+  const T1SENSES=[
+    ['truth','T1','Scientific','科学','Consistency with scientific knowledge','科学的知見との整合'],
+    ['truth','T2','Statistical','統計','Comparison with population trends','集団傾向との比較'],
+    ['truth','T3','Authority','権威','Expert judgment','専門家の判断'],
+    ['truth','T4','Experience','経験','Personal past experience','自身の過去の経験'],
+    ['good','G1','Goal','目標','Alignment with goals','目標との一致'],
+    ['good','G2','Preference','好み','Personal preferences & satisfaction','個人の好みと満足'],
+    ['beauty','B1','Aesthetic Harmony','美的調和','Simplicity, consistency, harmony','単純さ・一貫性・調和'],
+    ['relation','R1','Coach Trust','コーチへの信頼','Trust in the information source','情報源への信頼'],
+    ['relation','R2','Relational Warmth','関係の温かさ','Psychological connection & warmth','心理的つながりと温かさ'],
+    ['moderator','M1','Intuitive Alert','直観的アラート','Detection of intuitive dissonance','直観的不協和の検知']
+  ];
+  function buildT1(lang){
+    const tr=document.getElementById('t1track'); if(!tr) return; tr.innerHTML='';
+    const j=lang==='ja';
+    T1SENSES.forEach(s=>{
+      const cat=T1CATS[s[0]];
+      const catnm=j?cat.ja:cat.en, gk=cat.gk?(' · '+cat.gk):'', phil=j?cat.phil_ja:cat.phil_en, ai=j?cat.ai_ja:cat.ai_en;
+      const sn=j?s[3]:s[2], tg=j?s[5]:s[4];
+      const card=document.createElement('div'); card.className='t1-card'; card.style.setProperty('--cat','var('+cat.c+')');
+      card.innerHTML='<div class="t1-top"><span class="t1-cat-nm">'+catnm+'<span class="t1-gk">'+gk+'</span></span><span class="t1-code">'+s[1]+'</span></div>'+
+        '<div class="t1-phil">'+phil+'</div>'+
+        '<div class="t1-ai"><span class="aitag">AI →</span>'+ai+'</div>'+
+        '<div class="t1-sense"><b><span class="scode">'+s[1]+'</span>'+sn+'</b><span>'+tg+'</span></div>';
+      tr.appendChild(card);
+    });
+  }
+  (function(){
+    const tr=document.getElementById('t1track'), pv=document.getElementById('t1prev'), nx=document.getElementById('t1next');
+    if(!tr) return;
+    const step=()=>{const card=tr.querySelector('.t1-card'); return card?card.getBoundingClientRect().width+16:300;};
+    if(pv) pv.addEventListener('click',()=>tr.scrollBy({left:-step(),behavior:'smooth'}));
+    if(nx) nx.addEventListener('click',()=>tr.scrollBy({left:step(),behavior:'smooth'}));
+  })();
+
+  // ---------- elite discrepancy cases (section 08) ----------
+  const CASES=[
+    {t:'over',vdot:76,act_en:'Run 3.2 km',act_ja:'ラン 3.2 km',obj_en:'easy',obj_ja:'イージー',objv:2,rpe:8,r_en:'Fatigue warning',r_ja:'疲労警告'},
+    {t:'over',vdot:73,act_en:'Run 10.6 km',act_ja:'ラン 10.6 km',obj_en:'easy',obj_ja:'イージー',objv:2,rpe:10,r_en:'Severe fatigue alert',r_ja:'強い疲労アラート'},
+    {t:'over',vdot:73,act_en:'Track 17.2 km',act_ja:'トラック 17.2 km',obj_en:'easy',obj_ja:'イージー',objv:2,rpe:8,r_en:'Overload · rest advised',r_ja:'オーバーロード · 休養推奨'},
+    {t:'good',vdot:73,act_en:'Track 2.2 km',act_ja:'トラック 2.2 km',obj_en:'very hard',obj_ja:'非常にきつい',objv:8,rpe:2,r_en:'Good form · adapted',r_ja:'良い状態 · 適応済み'},
+    {t:'good',vdot:68,act_en:'Run 21.2 km',act_ja:'ラン 21.2 km',obj_en:'max',obj_ja:'最大',objv:10,rpe:1,r_en:'Peak condition',r_ja:'ピーク状態'}
+  ];
+  function buildCases(lang){
+    const c=document.getElementById('cases'); if(!c) return; c.innerHTML='';
+    const j=lang==='ja';
+    CASES.forEach(d=>{
+      const col=d.t==='over'?'var(--moderator)':'var(--relation)';
+      const tlabel=d.t==='over'?(j?'▲ オーバーロード':'▲ OVERLOAD'):(j?'○ 適応':'○ ADAPTED');
+      const op=(d.objv-1)/9*100, fp=(d.rpe-1)/9*100, lo=Math.min(op,fp), w=Math.abs(op-fp);
+      const objL=j?d.obj_ja:d.obj_en, act=j?d.act_ja:d.act_en, read=j?d.r_ja:d.r_en;
+      const el=document.createElement('div'); el.className='case '+d.t;
+      el.innerHTML=
+        '<div class="case-id"><span class="case-type">'+tlabel+'</span><span class="case-act">'+act+'</span><span class="case-vdot">VDOT '+d.vdot+'</span></div>'+
+        '<div class="axis"><div class="axis-line"></div>'+
+          '<div class="axis-link" style="left:'+lo+'%;width:'+w+'%;background:'+col+'"></div>'+
+          '<div class="tick obj" style="left:'+op+'%"><span class="dotk"></span><span class="tlab">'+objL+'</span></div>'+
+          '<div class="tick felt" style="left:'+fp+'%"><span class="dotk" style="background:'+col+'"></span><span class="tlab" style="color:'+col+'">RPE '+d.rpe+'</span></div>'+
+        '</div>'+
+        '<div class="case-read">'+read+'</div>';
+      c.appendChild(el);
+    });
+  }
+
+  // ---------- donut hover (section 08) ----------
+  (function(){
+    const svg=document.getElementById('donut'), leg=document.getElementById('donutLegend');
+    const big=document.getElementById('donutBig'), small=document.getElementById('donutSmall');
+    if(!svg||!leg) return;
+    const segs=[...svg.querySelectorAll('.donut-seg')], rows=[...leg.querySelectorAll('.dlr')];
+    const D=[{p:'82.9%',c:'#4C7252',en:'MATCH',ja:'一致'},{p:'9.8%',c:'#9B2C25',en:'FELT HARDER',ja:'実際よりきつい'},{p:'7.3%',c:'#B07D27',en:'FELT EASIER',ja:'実際より楽'}];
+    function hi(k){
+      svg.classList.add('dim');
+      segs.forEach(s=>s.classList.toggle('hot',+s.dataset.k===k));
+      rows.forEach(r=>{r.classList.toggle('hot',+r.dataset.k===k);r.classList.toggle('dimmed',+r.dataset.k!==k);});
+      big.textContent=D[k].p; big.setAttribute('fill',D[k].c);
+      small.textContent=(CUR==='ja'?D[k].ja:D[k].en);
+    }
+    function reset(){
+      svg.classList.remove('dim');
+      segs.forEach(s=>s.classList.remove('hot'));
+      rows.forEach(r=>r.classList.remove('hot','dimmed'));
+      big.textContent='17.1%'; big.setAttribute('fill','#9B2C25');
+      small.textContent=(CUR==='ja'?'不一致':'DISCREPANCY');
+    }
+    segs.concat(rows).forEach(elm=>{
+      elm.addEventListener('mouseenter',()=>hi(+elm.dataset.k));
+      elm.addEventListener('mouseleave',reset);
+    });
+  })();
+
+  // ---------- math (KaTeX) ----------
+  function renderMath(){
+    if(!window.katex) return;
+    document.querySelectorAll('.eq[data-tex]').forEach(e=>{
+      try{ katex.render(e.getAttribute('data-tex'), e, {displayMode:true, throwOnError:false}); }catch(_){}
+    });
+  }
+  if(window.katex) renderMath(); else window.addEventListener('load',renderMath);
+
+  // ---------- section dot-nav + next cue ----------
+  (function(){
+    const dotnav=document.getElementById('dotnav'), nextcue=document.getElementById('nextcue');
+    const secs=[...document.querySelectorAll('header.hero, section[id]')];
+    secs.forEach(s=>{ if(!s.id) s.id='top'; });
+    if(dotnav){
+      secs.forEach(s=>{
+        const a=document.createElement('a'); a.href='#'+s.id;
+        const lab=s.querySelector('.sec-label'); a.title=lab?lab.textContent.trim():'Top';
+        a.addEventListener('click',ev=>{ev.preventDefault();s.scrollIntoView({behavior:'smooth'});});
+        dotnav.appendChild(a);
+      });
+      const dots=[...dotnav.children];
+      const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=secs.indexOf(e.target);dots.forEach((d,di)=>d.classList.toggle('on',di===i));}});},{threshold:.5});
+      secs.forEach(s=>io2.observe(s));
+    }
+    if(nextcue){
+      nextcue.addEventListener('click',()=>{
+        const y=window.scrollY+10;
+        const next=secs.find(s=>s.offsetTop>y+5);
+        (next||secs[secs.length-1]).scrollIntoView({behavior:'smooth'});
+      });
+      const onS=()=>{ nextcue.classList.toggle('hide', window.innerHeight+window.scrollY >= document.body.scrollHeight-120); };
+      onS(); window.addEventListener('scroll',onS,{passive:true});
+    }
+  })();
+
+  // ---------- background-layer parallax ----------
+  (function(){
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('section[id]').forEach(s=>{
+      const lbl=s.querySelector('.sec-label');
+      const m=lbl&&lbl.textContent.match(/\d+/);
+      if(!m) return;
+      s.classList.add('pbg');
+      const g=document.createElement('span');
+      g.className='bg-num'; g.setAttribute('aria-hidden','true');
+      g.textContent=m[0]; g.dataset.parallax='0.16';
+      s.insertBefore(g, s.firstChild);
+    });
+    if(reduce) return;
+    const layers=[...document.querySelectorAll('[data-parallax]')];
+    let ticking=false;
+    function update(){
+      const vh=window.innerHeight;
+      layers.forEach(el=>{
+        const sp=parseFloat(el.dataset.parallax)||0.15;
+        const base=el.dataset.pbase?el.dataset.pbase+' ':'';
+        const r=el.getBoundingClientRect();
+        const d=(((r.top+r.height/2)-vh/2))*-sp;
+        el.style.transform=base+'translate3d(0,'+d.toFixed(1)+'px,0)';
+      });
+      ticking=false;
+    }
+    const onScroll=()=>{ if(!ticking){ticking=true; requestAnimationFrame(update);} };
+    update();
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll,{passive:true});
+  })();
+
+  // ---------- language switch wiring ----------
+  const btnEn=document.getElementById('langEn'), btnJa=document.getElementById('langJa');
+  function setLang(lang){
+    CUR=lang; document.documentElement.lang=lang;
+    applyStatic(lang); rebuildCharts(lang); explorerUpdate(); buildT1(lang); buildCases(lang);
+    const hint=document.getElementById('t1hint'); if(hint) hint.textContent=(lang==='ja'?'Table 1 · 哲学的な問い → AI文脈での問い → センス':'Table 1 · philosophical question → AI question → sense');
+    const lo=document.getElementById('legObj'), lf=document.getElementById('legFelt'), ds=document.getElementById('donutSmall');
+    if(lo) lo.textContent=(lang==='ja'?'客観的強度':'objective intensity');
+    if(lf) lf.textContent=(lang==='ja'?'体感（RPE）':'felt effort (RPE)');
+    if(ds) ds.textContent=(lang==='ja'?'不一致':'DISCREPANCY');
+    btnEn.classList.toggle('on',lang==='en'); btnJa.classList.toggle('on',lang==='ja');
+  }
+  btnEn.addEventListener('click',()=>setLang('en'));
+  btnJa.addEventListener('click',()=>setLang('ja'));
+  setLang((navigator.language||'').toLowerCase().indexOf('ja')===0?'ja':'en');
+})();
+</script>
+</body>
+</html>
