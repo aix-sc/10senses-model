@@ -89,6 +89,10 @@
     letter-spacing:.01em;
   }
   .brand em{font-style:italic;font-weight:400;}
+  .brand-wrap{display:flex;align-items:center;gap:14px;}
+  .brand-logo{display:inline-flex;align-items:center;}
+  .brand-logo img{height:26px;width:auto;display:block;}
+  @media(max-width:860px){.brand-logo img{height:22px;}}
   .nav-links{display:flex;gap:28px;}
   .nav-links a{
     font-family:var(--mono);font-size:12px;letter-spacing:.1em;
@@ -124,6 +128,8 @@
   .triad-line .t{color:var(--truth);}
   .triad-line .g{color:var(--good);}
   .triad-line .b{color:var(--beauty);}
+  .triad-line .r{color:var(--relation);}
+  .triad-line .m{color:var(--moderator);}
   .triad-line .sep{color:var(--ink-faint);font-style:normal;}
   h1.title{
     font-family:var(--display);
@@ -579,7 +585,10 @@
 <body>
 
 <nav id="nav">
-  <div class="brand">Truth Is Not <em>Enough</em></div>
+  <div class="brand-wrap">
+    <a class="brand-logo" href="https://aix.sc" target="_blank" rel="noopener" aria-label="AIx"><img src="assets/aix-logo.svg" alt="AIx" onerror="this.closest('.brand-logo').style.display='none'"></a>
+    <div class="brand">Truth Is Not <em>Enough</em></div>
+  </div>
   <div class="nav-right">
     <div class="nav-links">
       <a href="#thesis">Thesis</a>
@@ -616,7 +625,9 @@
     <div class="triad-line rv in rv-d1">
       <span class="t">Truth</span><span class="sep">·</span>
       <span class="g">Good</span><span class="sep">·</span>
-      <span class="b">Beauty</span>
+      <span class="b">Beauty</span><span class="sep">·</span>
+      <span class="r">Relation</span><span class="sep">·</span>
+      <span class="m">Moderator</span>
     </div>
     <h1 class="title rv in rv-d1">Truth Is Not<br><em>Enough</em></h1>
     <p class="hero-sub rv in rv-d2">An epistemological framework for the multi-dimensional evaluation of AI outputs — extending scientific accuracy with individual fit, relational trust, practical harmony, and intuitive dissonance.</p>
@@ -1229,7 +1240,7 @@
   function norm(s){return s.replace(/<br\s*\/?>/gi,'<br>').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();}
   const PAIRS=[
   [`EJC 2026 · Information Modelling & Knowledge Bases`,`EJC 2026 · 情報モデリングと知識ベース`],
-  [`<span class="t">Truth</span><span class="sep">·</span> <span class="g">Good</span><span class="sep">·</span> <span class="b">Beauty</span>`,`<span class="t">真</span><span class="sep">·</span> <span class="g">善</span><span class="sep">·</span> <span class="b">美</span>`],
+  [`<span class="t">Truth</span><span class="sep">·</span> <span class="g">Good</span><span class="sep">·</span> <span class="b">Beauty</span><span class="sep">·</span> <span class="r">Relation</span><span class="sep">·</span> <span class="m">Moderator</span>`,`<span class="t">真</span><span class="sep">·</span> <span class="g">善</span><span class="sep">·</span> <span class="b">美</span><span class="sep">·</span> <span class="r">関係</span><span class="sep">·</span> <span class="m">調整</span>`],
   [`Truth Is Not<br><em>Enough</em>`,`真実だけでは<br><em>足りない</em>`],
   [`An epistemological framework for the multi-dimensional evaluation of AI outputs — extending scientific accuracy with individual fit, relational trust, practical harmony, and intuitive dissonance.`,`AIの出力を多面的に評価するための認識論的フレームワーク。科学的な正確さに、個人への適合・関係的な信頼・実用的な調和・直観的な違和感を加えて捉え直す。`],
   [`<b>Yusuke Takahashi</b>`,`<b>高橋雄介</b>`],
