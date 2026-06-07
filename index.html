@@ -138,9 +138,10 @@
     font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0;
     font-size:clamp(52px,11vw,148px);
     line-height:.95;letter-spacing:-.03em;
-    margin:0 0 8px;
+    margin:0 0 8px;word-break:keep-all;overflow-wrap:normal;
   }
   h1.title em{font-style:italic;font-weight:300;}
+  html[lang="ja"] h1.title{font-size:clamp(44px,11vw,140px);}
   .hero-sub{
     font-size:clamp(19px,2.3vw,25px);
     line-height:1.5;max-width:680px;
