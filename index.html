@@ -1813,10 +1813,15 @@
   <div class="chat-foot" id="chatFoot"></div>
 </aside>
 
+<!-- Firebase web config (create this file once; it is NOT overwritten by index.html updates) -->
+<script src="firebase-config.js"></script>
 <script type="module">
 (function(){
-  /* ===== CONFIG — fill these two from Firebase console → Project settings → your Web app ===== */
-  const CONFIG = {
+  /* ===== Firebase web config =====
+     Values are loaded from firebase-config.js (window.__FB) so that re-deploying a new
+     index.html never overwrites them. Create firebase-config.js ONCE (see instructions).
+     The placeholder below is only a fallback. ===== */
+  const CONFIG = (typeof window!=='undefined' && window.__FB) ? window.__FB : {
     apiKey:     "PASTE_FIREBASE_WEB_API_KEY",
     authDomain: "tensenses-model.firebaseapp.com",
     projectId:  "tensenses-model",
