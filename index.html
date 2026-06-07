@@ -87,7 +87,7 @@
   .brand{
     font-family:var(--display);font-weight:500;font-size:18px;
     font-variation-settings:"opsz" 24,"SOFT" 0;
-    letter-spacing:.01em;
+    letter-spacing:.01em;white-space:nowrap;line-height:1.16;
   }
   .brand em{font-style:italic;font-weight:400;}
   .brand-wrap{display:flex;align-items:center;gap:14px;}
@@ -669,7 +669,7 @@
 <nav id="nav">
   <div class="brand-wrap">
     <a class="brand-logo" href="https://aix.sc" target="_blank" rel="noopener" aria-label="AIx"><img src="assets/aix-logo.svg" alt="AIx" onerror="this.closest('.brand-logo').style.display='none'"></a>
-    <div class="brand">Truth Is Not <em>Enough</em></div>
+    <div class="brand">Truth Is Not<br><em>Enough</em></div>
   </div>
   <div class="nav-right">
     <div class="nav-links">
