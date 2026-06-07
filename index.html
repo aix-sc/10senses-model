@@ -204,7 +204,7 @@
   @media(min-width:900px){.triad-wrap{grid-template-columns:1fr 1fr;}}
   .triad-svg{width:100%;max-width:440px;margin:0 auto;display:block;}
   .fw-grid{display:grid;gap:48px;align-items:start;}
-  @media(min-width:900px){.fw-grid{grid-template-columns:1.55fr 1fr;}}
+  @media(min-width:900px){.fw-grid{grid-template-columns:1fr 1fr;}}
   .fw-left .triad-svg{max-width:340px;margin:30px 0 0;}
   .triad-svg circle{mix-blend-mode:multiply;}
   .cat-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
@@ -580,6 +580,47 @@
   .greek-bg{will-change:transform;}
   @media (prefers-reduced-motion:reduce){ .bg-num,.greek-bg{transform:none !important;} }
   @media (max-width:860px){ .bg-num{opacity:.03;font-size:clamp(160px,46vw,300px);} }
+  /* ---- Gemini research chat ---- */
+  .chat-fab{position:fixed;right:22px;bottom:22px;z-index:120;display:inline-flex;align-items:center;gap:9px;
+    padding:12px 18px 12px 14px;border:none;border-radius:40px;cursor:pointer;
+    background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:14px;font-weight:500;letter-spacing:.01em;
+    box-shadow:0 6px 24px rgba(34,27,20,.28);transition:transform .25s ease, box-shadow .25s ease, opacity .3s ease;}
+  .chat-fab:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,27,20,.34);}
+  .chat-fab svg{width:18px;height:18px;flex:none;color:#C9A35A;}
+  body.chat-open .chat-fab{opacity:0;pointer-events:none;}
+  @media(max-width:560px){.chat-fab{right:14px;bottom:14px;padding:11px 14px;}.chat-fab-label{display:none;}}
+
+  .chat-panel{position:fixed;top:0;right:0;height:100%;width:382px;max-width:92vw;z-index:130;
+    background:var(--paper);border-left:1px solid var(--line);
+    box-shadow:-12px 0 44px rgba(34,27,20,.18);display:flex;flex-direction:column;
+    transform:translateX(103%);transition:transform .34s cubic-bezier(.4,0,.1,1);}
+  .chat-panel.open{transform:translateX(0);}
+  .chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:17px 18px 15px;border-bottom:1px solid var(--line);}
+  .chat-head-t{display:flex;align-items:center;gap:9px;font-family:var(--display);font-size:15px;font-weight:600;color:var(--ink);}
+  .chat-dot{width:8px;height:8px;border-radius:50%;background:var(--relation);box-shadow:0 0 0 3px rgba(76,114,82,.18);flex:none;}
+  .chat-x{border:none;background:transparent;font-size:23px;line-height:1;color:var(--ink-faint);cursor:pointer;padding:0 6px;border-radius:8px;}
+  .chat-x:hover{background:rgba(34,27,20,.06);color:var(--ink);}
+  .chat-log{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;}
+  .chat-msg{max-width:90%;padding:11px 14px;border-radius:15px;font-family:var(--serif);font-size:14px;line-height:1.62;white-space:pre-wrap;word-wrap:break-word;}
+  .chat-msg.bot{align-self:flex-start;background:var(--paper-3);color:var(--ink);border-bottom-left-radius:5px;}
+  .chat-msg.user{align-self:flex-end;background:var(--ink);color:var(--paper);border-bottom-right-radius:5px;}
+  .chat-msg.err{align-self:flex-start;background:#F1DED9;color:var(--beauty);font-size:13px;}
+  .chat-msg a{color:var(--beauty);}
+  .chat-typing{align-self:flex-start;display:inline-flex;gap:4px;padding:13px 15px;background:var(--paper-3);border-radius:15px;border-bottom-left-radius:5px;}
+  .chat-typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-faint);animation:chatdot 1s infinite ease-in-out;}
+  .chat-typing i:nth-child(2){animation-delay:.15s;}.chat-typing i:nth-child(3){animation-delay:.3s;}
+  @keyframes chatdot{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-3px);}}
+  .chat-suggest{display:flex;flex-wrap:wrap;gap:7px;padding:2px 18px 8px;}
+  .chat-chip{border:1px solid var(--line);background:transparent;border-radius:30px;padding:6px 12px;font-family:var(--serif);font-size:12px;color:var(--ink-soft);cursor:pointer;transition:background .2s,border-color .2s,color .2s;}
+  .chat-chip:hover{background:rgba(34,27,20,.05);border-color:var(--ink-faint);color:var(--ink);}
+  .chat-input-row{display:flex;align-items:flex-end;gap:8px;padding:12px 14px 8px;border-top:1px solid var(--line);}
+  .chat-input{flex:1;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-family:var(--serif);font-size:14px;color:var(--ink);background:#fff;resize:none;outline:none;line-height:1.45;max-height:120px;}
+  .chat-input:focus{border-color:#C9A35A;}
+  .chat-send{flex:none;width:39px;height:39px;border:none;border-radius:11px;background:var(--ink);color:var(--paper);font-size:18px;cursor:pointer;transition:opacity .2s;}
+  .chat-send:disabled{opacity:.4;cursor:default;}
+  .chat-foot{padding:0 16px 12px;font-family:var(--serif);font-size:10.5px;color:var(--ink-faint);line-height:1.5;}
+  @media(max-width:560px){.chat-panel{width:100%;max-width:100%;}}
 </style>
 </head>
 <body>
@@ -1183,8 +1224,6 @@
 <section id="references" class="paper-sec refs">
   <div class="wrap">
     <div class="sec-label rv" style="color:rgba(244,238,226,.5)">12 — References</div>
-    <h2 class="rv" style="color:var(--paper)">The <em>shoulders</em> it stands on</h2>
-    <p class="lead rv rv-d1" style="color:rgba(244,238,226,.72)">The twenty-four works this framework builds on — spanning AI output evaluation, training-load science, and the epistemology of Truth, Good, and Beauty. Each entry links to its source.</p>
     <ol class="reflist rv rv-d1">
       <li>Steiner R. The riddle of humanity (GA 170). London: Rudolf Steiner Press; 1990 (orig. 1916). <a href="https://scholar.google.com/scholar?q=Steiner+The+riddle+of+humanity+GA+170" target="_blank" rel="noopener">Scholar ↗</a></li>
       <li>Dirac PAM. The evolution of the physicist's picture of nature. <i>Scientific American</i>. 1963;208(5):45–53. <a href="https://scholar.google.com/scholar?q=Dirac+evolution+of+the+physicist+picture+of+nature+1963" target="_blank" rel="noopener">Scholar ↗</a></li>
@@ -1349,8 +1388,7 @@
   [`n = 890 sessions with both RPE and objective intensity. Hover a slice — one session in six is invisible to accuracy alone.`,`RPE と客観的強度の両方がある 890 セッション。スライスにカーソルを合わせてみてください — 6回に1回は、正確さだけでは見えません。`],
   [`12 — References`,`12 — 参考文献`],
   [`Refs`,`文献`],
-  [`The <em>shoulders</em> it stands on`,`巨人の<em>肩</em>の上に`],
-  [`The twenty-four works this framework builds on — spanning AI output evaluation, training-load science, and the epistemology of Truth, Good, and Beauty. Each entry links to its source.`,`このフレームワークが土台とする24の文献 — AI出力の評価、トレーニング負荷の科学、そして真・善・美の認識論にまたがります。各項目は出典にリンクしています。`],
+
   [`Publication history`,`発表履歴`],
   [`To appear`,`掲載予定`],
   [`<b>Conference paper</b> — presented at EJC 2026, the 36th International Conference on Information Modelling and Knowledge Bases, University of Vaasa, Vaasa, Finland (June 8–12, 2026).`,`<b>会議論文</b> — EJC 2026（第36回 情報モデリングと知識ベースに関する国際会議、ヴァーサ大学、フィンランド・ヴァーサ、2026年6月8〜12日）にて発表。`],
@@ -1753,6 +1791,146 @@
   btnEn.addEventListener('click',()=>setLang('en'));
   btnJa.addEventListener('click',()=>setLang('ja'));
   setLang((navigator.language||'').toLowerCase().indexOf('ja')===0?'ja':'en');
+})();
+</script>
+
+<!-- ============ Gemini research chat ============ -->
+<button id="chatFab" class="chat-fab" type="button" aria-label="Ask about this research">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" fill="currentColor"/></svg>
+  <span class="chat-fab-label">Ask AI</span>
+</button>
+<aside id="chatPanel" class="chat-panel" aria-hidden="true" role="dialog" aria-label="Research assistant">
+  <div class="chat-head">
+    <div class="chat-head-t"><span class="chat-dot"></span><span id="chatHeadLabel">Ask about this research</span></div>
+    <button id="chatClose" class="chat-x" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="chat-log" id="chatLog"></div>
+  <div class="chat-suggest" id="chatSuggest"></div>
+  <div class="chat-input-row">
+    <textarea id="chatText" class="chat-input" rows="1" autocomplete="off"></textarea>
+    <button id="chatSend" class="chat-send" type="button" aria-label="Send">&uarr;</button>
+  </div>
+  <div class="chat-foot" id="chatFoot"></div>
+</aside>
+
+<script type="module">
+(function(){
+  /* ===== CONFIG — fill these two from Firebase console → Project settings → your Web app ===== */
+  const CONFIG = {
+    apiKey:     "PASTE_FIREBASE_WEB_API_KEY",
+    authDomain: "tensenses-model.firebaseapp.com",
+    projectId:  "tensenses-model",
+    appId:      "PASTE_FIREBASE_WEB_APP_ID"
+  };
+  const MODEL = "gemini-2.5-flash";          // change here if you prefer another Gemini model
+  const SDK   = "11.3.0";                     // Firebase JS SDK version (gstatic CDN)
+
+  const SYSTEM = `You are the research assistant for the academic paper "Truth Is Not Enough: An Epistemological Framework for Multi-Dimensional AI Output Evaluation" by Yusuke Takahashi (Asia AI Institute / AIx), to appear in Information Modelling and Knowledge Bases (IOS Press), EJC 2026.
+
+The paper argues that factual accuracy ("Truth") is necessary but not sufficient for evaluating AI output, and proposes two artifacts:
+
+10 SENSES MODEL (10SM): ten evaluative "senses" grouped under an extended classical triad Truth–Good–Beauty, plus Relation and a Moderator.
+- TRUTH (is it correct / scientifically accurate?): T1 Scientific (fit with scientific knowledge), T2 Statistical (fit with population trends), T3 Authority (expert judgment), T4 Experience (one's own past experience).
+- GOOD (is it appropriate for this user?): G1 Goal (alignment with goals), G2 Preference (personal preference & satisfaction).
+- BEAUTY (is it simple & harmonious?): B1 Aesthetic Harmony (simplicity, consistency, harmony).
+- RELATION (is there trust & warmth?): R1 Coach Trust (trust in the source), R2 Relational Warmth (psychological connection).
+- MODERATOR: M1 Intuitive Alert (detection of intuitive dissonance) — a suppress-only signal, not additive.
+
+TRAINING CONFIDENCE INDEX (TCI): a 0–100 score. Each sense score S_i = a_i*O_i + (1-a_i)*U_i blends an objective (O) and subjective (U) view. Layer score L_k = sum of w_i*S_i. TCI = f(M1) * sum_k(beta_k * L_k), where beta weights are Foundation 0.30, Execution 0.35, Quality 0.25, Relation 0.10, and f(M1) only suppresses (never inflates) the score when intuitive dissonance is detected.
+
+EMPIRICAL VALIDATION: data from EKIDEN.AI, an agentic AI running-coaching platform — 299 runners, 20,343 activities, 6,027 dialogues, 160,876 km, Oct 2025–Feb 2026, VDOT 37–76. A key finding: in 17.1% of cases (152 of 890) the runner's felt effort (RPE) diverged from the objective training load — the gap that pure-accuracy evaluation misses and that the Moderator (M1) is designed to catch. Elite athletes (VDOT >= 70) show this divergence in both directions.
+
+Answer questions about this research clearly and concisely (usually under ~140 words unless more detail is requested). Reply in the same language the user writes in (Japanese or English). If something is outside the paper's scope, say so briefly rather than inventing details.`;
+
+  const TX = {
+    head:   {en:"Ask about this research", ja:"この研究について質問する"},
+    fab:    {en:"Ask AI", ja:"AIに質問"},
+    ph:     {en:"Ask anything about the 10 Senses Model or TCI…", ja:"10センスモデルやTCIについて質問…"},
+    hello:  {en:"Hi! I can answer questions about the 10 Senses Model, the Training Confidence Index, and the EKIDEN.AI validation. What would you like to know?",
+             ja:"こんにちは。10センスモデル、Training Confidence Index、EKIDEN.AI による検証について何でも聞いてください。"},
+    chips:  {en:["What is the 10 Senses Model?","Why isn't truth enough?","What does the 17.1% finding mean?","How is the TCI calculated?"],
+             ja:["10センスモデルとは？","なぜ真実だけでは不十分？","17.1%の発見とは？","TCIはどう計算する？"]},
+    foot:   {en:"Answers are AI-generated by Gemini and may be imperfect.", ja:"回答は Gemini による生成で、不正確な場合があります。"},
+    notcfg: {en:"The assistant isn't connected yet. Add your Firebase web config to CONFIG in index.html and enable Firebase AI Logic.",
+             ja:"アシスタントは未接続です。index.html の CONFIG に Firebase の Web 設定を入力し、Firebase AI Logic を有効化してください。"},
+    fail:   {en:"Sorry — I couldn't reach the model. Please check the Firebase AI Logic setup and try again.",
+             ja:"モデルに接続できませんでした。Firebase AI Logic の設定を確認して、もう一度お試しください。"}
+  };
+  const lang = ()=> (document.documentElement.lang==='ja' ? 'ja' : 'en');
+
+  const fab=document.getElementById('chatFab'), panel=document.getElementById('chatPanel'),
+        closeB=document.getElementById('chatClose'), log=document.getElementById('chatLog'),
+        sug=document.getElementById('chatSuggest'), input=document.getElementById('chatText'),
+        sendB=document.getElementById('chatSend'), head=document.getElementById('chatHeadLabel'),
+        foot=document.getElementById('chatFoot'), fabLabel=fab.querySelector('.chat-fab-label');
+
+  let chatSession=null, initStarted=false, busy=false, greeted=false;
+
+  function paintStatic(){
+    const L=lang();
+    head.textContent=TX.head[L]; fabLabel.textContent=TX.fab[L];
+    input.placeholder=TX.ph[L]; foot.textContent=TX.foot[L];
+    sug.innerHTML='';
+    TX.chips[L].forEach(q=>{
+      const b=document.createElement('button'); b.className='chat-chip'; b.type='button'; b.textContent=q;
+      b.addEventListener('click',()=>{ input.value=q; send(); });
+      sug.appendChild(b);
+    });
+  }
+  function add(role,text){
+    const d=document.createElement('div'); d.className='chat-msg '+role; d.textContent=text;
+    log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
+  }
+  function typing(){
+    const d=document.createElement('div'); d.className='chat-typing'; d.innerHTML='<i></i><i></i><i></i>';
+    log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
+  }
+  const configured = ()=> CONFIG.apiKey && CONFIG.apiKey.indexOf('PASTE')!==0 && CONFIG.appId && CONFIG.appId.indexOf('PASTE')!==0;
+
+  async function ensureModel(){
+    if(chatSession||initStarted) return;
+    initStarted=true;
+    const base='https://www.gstatic.com/firebasejs/'+SDK+'/';
+    const { initializeApp } = await import(base+'firebase-app.js');
+    const { getAI, getGenerativeModel, GoogleAIBackend } = await import(base+'firebase-ai.js');
+    const app = initializeApp(CONFIG);
+    const ai  = getAI(app, { backend: new GoogleAIBackend() });
+    const model = getGenerativeModel(ai, { model: MODEL, systemInstruction: SYSTEM });
+    chatSession = model.startChat({ history: [] });
+  }
+  async function send(){
+    const text=input.value.trim(); if(!text||busy) return;
+    if(!configured()){ add('user',text); input.value=''; add('err',TX.notcfg[lang()]); return; }
+    busy=true; sendB.disabled=true;
+    add('user',text); input.value=''; input.style.height='auto';
+    const t=typing();
+    try{
+      await ensureModel();
+      const res=await chatSession.sendMessage(text);
+      t.remove(); add('bot', res.response.text());
+    }catch(e){
+      t.remove(); add('err',TX.fail[lang()]); console.error('[chat]',e);
+    }finally{ busy=false; sendB.disabled=false; input.focus(); }
+  }
+  function open(){
+    document.body.classList.add('chat-open');
+    panel.classList.add('open'); panel.setAttribute('aria-hidden','false');
+    if(!greeted){ greeted=true; add('bot',TX.hello[lang()]); }
+    setTimeout(()=>input.focus(),300);
+  }
+  function close(){
+    document.body.classList.remove('chat-open');
+    panel.classList.remove('open'); panel.setAttribute('aria-hidden','true');
+  }
+  fab.addEventListener('click',open);
+  closeB.addEventListener('click',close);
+  sendB.addEventListener('click',send);
+  input.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); send(); } });
+  input.addEventListener('input',()=>{ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,120)+'px'; });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&panel.classList.contains('open')) close(); });
+  // keep labels in sync when the page language toggle is used
+  new MutationObserver(paintStatic).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  paintStatic();
 })();
 </script>
 </body>
