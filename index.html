@@ -197,6 +197,9 @@
   .triad-wrap{display:grid;gap:56px;align-items:center;margin-top:46px;}
   @media(min-width:900px){.triad-wrap{grid-template-columns:1fr 1fr;}}
   .triad-svg{width:100%;max-width:440px;margin:0 auto;display:block;}
+  .fw-grid{display:grid;gap:48px;align-items:start;}
+  @media(min-width:900px){.fw-grid{grid-template-columns:1.55fr 1fr;}}
+  .fw-left .triad-svg{max-width:340px;margin:30px 0 0;}
   .triad-svg circle{mix-blend-mode:multiply;}
   .cat-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
   .cat-row{
@@ -654,26 +657,29 @@
 <!-- FRAMEWORK -->
 <section id="framework">
   <div class="wrap">
-    <div class="sec-label rv">02 — Epistemological Foundation</div>
-    <h2 class="rv">An ancient triad, <em>extended for AI</em></h2>
-    <p class="lead rv rv-d1">The framework rests on the three modes of recognition that have survived two and a half millennia of philosophical scrutiny since Plato, systematized in Kant's <em>Critique of Judgment</em>: Truth (<span class="mono">aletheia</span>), Good (<span class="mono">agathon</span>), and Beauty (<span class="mono">kalon</span>). To these, the model adds two dimensions essential once AI meets a human: Relation and a Moderator.</p>
+    <div class="fw-grid">
+      <div class="fw-left">
+        <div class="sec-label rv">02 — Epistemological Foundation</div>
+        <h2 class="rv">An ancient triad, <em>extended for AI</em></h2>
+        <p class="lead rv rv-d1">The framework rests on the three modes of recognition that have survived two and a half millennia of philosophical scrutiny since Plato, systematized in Kant's <em>Critique of Judgment</em>: Truth (<span class="mono">aletheia</span>), Good (<span class="mono">agathon</span>), and Beauty (<span class="mono">kalon</span>). To these, the model adds two dimensions essential once AI meets a human: Relation and a Moderator.</p>
+        <svg class="triad-svg rv rv-d1" viewBox="0 0 300 280" aria-hidden="true">
+          <circle cx="150" cy="95" r="78" fill="#1F496B" opacity="0.82"/>
+          <circle cx="106" cy="172" r="78" fill="#B07D27" opacity="0.82"/>
+          <circle cx="194" cy="172" r="78" fill="#A85037" opacity="0.82"/>
+          <text x="150" y="70" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">TRUTH</text>
+          <text x="92" y="195" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">GOOD</text>
+          <text x="208" y="195" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">BEAUTY</text>
+        </svg>
+      </div>
 
-    <div class="triad-wrap">
-      <svg class="triad-svg rv rv-d1" viewBox="0 0 300 280" aria-hidden="true">
-        <circle cx="150" cy="95" r="78" fill="#1F496B" opacity="0.82"/>
-        <circle cx="106" cy="172" r="78" fill="#B07D27" opacity="0.82"/>
-        <circle cx="194" cy="172" r="78" fill="#A85037" opacity="0.82"/>
-        <text x="150" y="70" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">TRUTH</text>
-        <text x="92" y="195" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">GOOD</text>
-        <text x="208" y="195" text-anchor="middle" fill="#F4EEE2" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1">BEAUTY</text>
-      </svg>
-
-      <div class="t1-wrap rv rv-d2">
-        <div class="t1-hint"><span id="t1hint">Table 1 · philosophical question → AI question → sense</span></div>
-        <div class="t1-stage">
-          <button class="t1-arrow left" type="button" id="t1prev" aria-label="Previous">‹</button>
-          <div class="t1-track" id="t1track"></div>
-          <button class="t1-arrow right" type="button" id="t1next" aria-label="Next">›</button>
+      <div class="fw-right">
+        <div class="t1-wrap rv rv-d2">
+          <div class="t1-hint"><span id="t1hint">Table 1 · philosophical question → AI question → sense</span></div>
+          <div class="t1-stage">
+            <button class="t1-arrow left" type="button" id="t1prev" aria-label="Previous">‹</button>
+            <div class="t1-track" id="t1track"></div>
+            <button class="t1-arrow right" type="button" id="t1next" aria-label="Next">›</button>
+          </div>
         </div>
       </div>
     </div>
