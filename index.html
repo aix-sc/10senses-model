@@ -322,30 +322,60 @@
   .card-cmp .verdict{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-soft);}
   .card-cmp.flag .verdict{color:var(--moderator);}
 
-  /* ---------- M1 real-feedback comparison ---------- */
-  .fb-demo{margin-top:48px;}
-  .fb-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;}
-  .fb-shared{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin-bottom:16px;}
-  .fb-same{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);border-radius:20px;padding:3px 10px;white-space:nowrap;}
-  .fb-meta{font-family:var(--serif);font-size:14px;color:var(--ink-soft);}
-  .fb-meta b{color:var(--ink);font-weight:600;}
-  .fb-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  @media(max-width:720px){.fb-pair{grid-template-columns:1fr;}}
-  .fb-card{border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;background:var(--paper);display:flex;flex-direction:column;gap:11px;}
-  .fb-card.weak{border-color:rgba(155,44,37,.4);}
-  .fb-q{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
-  .fb-scale{display:flex;align-items:center;gap:9px;}
-  .fb-dot{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line-soft);transition:transform .2s;}
-  .fb-dot.on{transform:scale(1.35);}
-  .fb-card.strong .fb-dot.on{background:var(--relation);border-color:var(--relation);}
-  .fb-card.weak .fb-dot.on{background:var(--moderator);border-color:var(--moderator);}
-  .fb-val{font-family:var(--display);font-size:20px;font-weight:560;letter-spacing:-.01em;}
-  .fb-card.strong .fb-val{color:var(--relation);}
-  .fb-card.weak .fb-val{color:var(--moderator);}
-  .fb-note{font-family:var(--serif);font-size:14.5px;line-height:1.6;color:var(--ink-soft);font-style:italic;border-left:2px solid var(--line);padding-left:12px;margin:2px 0 0;}
-  .fb-read{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-faint);margin-top:auto;padding-top:4px;}
-  .fb-card.weak .fb-read{color:var(--moderator);}
-  .fb-explain{margin-top:22px;font-size:16px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:74ch;}
+  /* ---------- M1 interactive app emulation ---------- */
+  .fb-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px;}
+  .emu{margin-top:48px;}
+  .emu-stage{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start;}
+  @media(max-width:820px){.emu-stage{grid-template-columns:1fr;gap:22px;justify-items:center;}}
+  .phone{width:300px;max-width:100%;background:#100F0D;border-radius:42px;padding:11px;box-shadow:0 20px 54px rgba(34,27,20,.30);flex:none;}
+  .phone-screen{background:#fff;border-radius:32px;overflow:hidden;position:relative;height:566px;display:flex;flex-direction:column;}
+  .phone-screen::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:92px;height:6px;border-radius:6px;background:#100F0D;z-index:5;}
+  .app-head{display:flex;align-items:center;gap:9px;padding:24px 16px 8px;flex:none;}
+  .app-back{font-size:23px;color:#222;line-height:1;}
+  .app-title{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;font-weight:600;color:#1a1a1a;}
+  .app-body{flex:1;overflow-y:auto;padding:6px 16px 18px;display:flex;flex-direction:column;gap:9px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+  .app-activity{font-size:12.5px;color:#333;line-height:1.45;}
+  .app-activity b{font-weight:700;color:#111;}
+  .app-obj{display:block;margin-top:3px;font-size:10.5px;color:#8a8a8a;}
+  .app-q{font-size:13px;font-weight:600;color:#1a1a1a;margin-top:9px;}
+  .app-range{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:5px;background:#f1d8cd;outline:none;margin:2px 0;}
+  .app-range::-webkit-slider-thumb{-webkit-appearance:none;width:19px;height:19px;border-radius:50%;background:#E8612C;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.25);}
+  .app-range::-moz-range-thumb{width:19px;height:19px;border:0;border-radius:50%;background:#E8612C;cursor:pointer;}
+  .app-eff{font-size:11px;color:#9a9a9a;min-height:14px;}
+  .app-faces{display:flex;justify-content:space-between;gap:3px;}
+  .app-face{flex:1;background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:2px 0;}
+  .app-face .fc{width:34px;height:34px;border-radius:50%;border:2px solid #cfcfcf;display:flex;align-items:center;justify-content:center;color:#bcbcbc;transition:border-color .15s,color .15s,transform .15s;}
+  .app-face .fc svg{width:23px;height:23px;}
+  .app-face.on .fc{transform:scale(1.08);}
+  .app-face .fl{font-size:9px;color:#9a9a9a;text-align:center;line-height:1.12;}
+  .app-face.on .fl{color:#1a1a1a;font-weight:700;}
+  .app-face[data-v="1"].on .fc{border-color:#D8392B;color:#D8392B;}
+  .app-face[data-v="2"].on .fc{border-color:#E07A2E;color:#E07A2E;}
+  .app-face[data-v="3"].on .fc{border-color:#C9A35A;color:#C9A35A;}
+  .app-face[data-v="4"].on .fc{border-color:#5E9E63;color:#5E9E63;}
+  .app-face[data-v="5"].on .fc{border-color:#46A24B;color:#46A24B;}
+  .app-textarea{width:100%;box-sizing:border-box;border:0;border-radius:8px;background:#f3f3f3;padding:10px;font-family:inherit;font-size:12.5px;color:#222;resize:none;line-height:1.45;}
+  .app-textarea:focus{outline:2px solid rgba(232,97,44,.35);background:#fff;}
+  .app-submit{margin-top:5px;border:0;border-radius:8px;background:#e9f6ec;color:#2e8b57;font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.05em;padding:11px;cursor:pointer;transition:background .2s;}
+  .app-submit:hover{background:#daf0e0;}
+  .app-submit.flash{animation:emuFlash .55s ease;}
+  @keyframes emuFlash{0%{background:#bce8c6;}100%{background:#e9f6ec;}}
+  .emu-out{display:flex;flex-direction:column;gap:14px;width:100%;max-width:470px;}
+  .out-card{border:1px solid var(--line);border-radius:14px;padding:17px 18px;background:var(--paper);transition:border-color .3s,background .3s;}
+  .out-card.trig{border-color:rgba(155,44,37,.5);background:rgba(155,44,37,.035);}
+  .out-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:11px;}
+  .out-pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:4px 11px;border-radius:20px;border:1px solid var(--line);color:var(--ink-soft);margin-bottom:10px;}
+  .out-pill.ok{color:var(--relation);border-color:rgba(76,114,82,.5);}
+  .out-pill.bad{color:var(--moderator);border-color:rgba(155,44,37,.55);background:rgba(155,44,37,.07);}
+  .out-body{font-family:var(--serif);font-size:14.5px;line-height:1.62;color:var(--ink-soft);}
+  .out-body.coach{font-style:italic;color:var(--ink);}
+  .m1row{display:flex;align-items:center;gap:10px;margin-top:14px;}
+  .m1lab{font-family:var(--mono);font-size:11px;color:var(--ink-faint);}
+  .m1bar{flex:1;height:7px;border-radius:7px;background:var(--paper-3);overflow:hidden;}
+  .m1fill{height:100%;width:86%;border-radius:7px;background:var(--relation);transition:width .35s,background .35s;}
+  .m1fill.bad{background:var(--moderator);}
+  .m1num{font-family:var(--mono);font-size:12px;color:var(--ink-soft);min-width:56px;text-align:right;}
+  .fb-explain{margin-top:26px;font-size:16px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:74ch;}
   .fb-explain b{color:var(--ink);font-weight:500;}
 
   /* ---------- DOMAINS ---------- */
@@ -981,29 +1011,39 @@
     </div>
     <p class="rv rv-d2" style="margin-top:34px;color:var(--ink-soft);font-weight:300;">This is the difference between an evaluation that asks only <em>what an output measures</em> and one that also asks <em>what it might be missing</em>. The example is illustrative; the mechanism is the contribution.</p>
 
-    <div class="fb-demo rv rv-d2">
-      <div class="fb-eyebrow">From the athlete's own feedback</div>
-      <div class="fb-shared">
-        <span class="fb-same">identical objective record</span>
-        <span class="fb-meta">Chiang Dao 160 (UTMB) · 5 Dec 2025 · effort <b>"Really hard"</b></span>
-      </div>
-      <div class="fb-pair">
-        <div class="fb-card strong">
-          <div class="fb-q">How strong afterward?</div>
-          <div class="fb-scale"><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot on"></span></div>
-          <div class="fb-val">Very Strong</div>
-          <p class="fb-note">"…a truly beautiful and enjoyable time. Next, if possible, I'd like to run the Tarawera 100-mile in February."</p>
-          <div class="fb-read">consistent → affirm and plan the next block</div>
+    <div class="emu rv rv-d2">
+      <div class="fb-eyebrow">The app, emulated — try it</div>
+      <div class="emu-stage">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="app-head"><span class="app-back">‹</span><span class="app-title">Post-workout survey</span></div>
+            <div class="app-body">
+              <div class="app-activity"><b>Chiang Dao 160</b> (UTMB) · Dec 5, 2025<span class="app-obj">objective record: long mountain ultra · ~24 h on feet</span></div>
+              <div class="app-q">How hard did you find the activity?</div>
+              <input type="range" id="emuEffort" class="app-range" min="0" max="100" value="88" aria-label="perceived effort">
+              <div class="app-eff" id="emuEffLabel"></div>
+              <div class="app-q">How strong do you feel afterward?</div>
+              <div class="app-faces" id="emuFaces"></div>
+              <div class="app-q">Any additional comments?</div>
+              <textarea id="emuComment" class="app-textarea" rows="3"></textarea>
+              <button id="emuSubmit" class="app-submit" type="button">✓ Submit</button>
+            </div>
+          </div>
         </div>
-        <div class="fb-card weak">
-          <div class="fb-q">How strong afterward?</div>
-          <div class="fb-scale"><span class="fb-dot on"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span></div>
-          <div class="fb-val">Very Weak</div>
-          <p class="fb-note">"I was really exhausted after a long race. I need a rest for a while."</p>
-          <div class="fb-read">M1 reads depletion → ease off, protect recovery</div>
+        <div class="emu-out">
+          <div class="out-card" id="outContra">
+            <div class="out-h">Contradiction check</div>
+            <span class="out-pill" id="contraPill"></span>
+            <div class="out-body" id="contraBody"></div>
+            <div class="m1row"><span class="m1lab">M1</span><div class="m1bar"><div class="m1fill" id="m1fill"></div></div><span class="m1num" id="m1num"></span></div>
+          </div>
+          <div class="out-card" id="outCoach">
+            <div class="out-h">Coach's reply</div>
+            <div class="out-body coach" id="coachBody"></div>
+          </div>
         </div>
       </div>
-      <p class="fb-explain">The same finish, reported two ways. The objective record is identical — yet one report says <b>Very Strong</b>, the other <b>Very Weak</b> and "I need rest." Because the TCI fuses this subjective layer with the device data and computes <b>M1</b> from the gap, the coach can act on how the athlete actually feels — affirm and plan ahead in the first case, ease off and protect recovery in the second. A system that reads only the objective data, assuming anything unstated is fine, would hand both the same plan. Treating the athlete's own words as possible signal — not assumed absence — is exactly the shift from a <b>Closed-World</b> to an <b>Open-World assumption</b>.</p>
+      <p class="fb-explain">Change the effort, the strength, or the note — the right side reacts live. The objective record never changes; only what the athlete reports does. Because the TCI fuses that subjective layer with the data and computes <b>M1</b> from the gap, the coach can notice when something feels off and open a conversation, instead of confirming a number. Treating the unsaid as possible signal — not assumed absence — is the move from a <b>Closed-World</b> to an <b>Open-World assumption</b>.</p>
     </div>
   </div>
 </section>
@@ -1443,17 +1483,16 @@
   [`05 — Structure`,`05 — 構造`],
   [`06 — Operationalization`,`06 — 実装`],
   [`07 — The Moderator`,`07 — モデレーター`],
-  [`From the athlete's own feedback`,`アスリート自身のフィードバックから`],
-  [`identical objective record`,`客観データは同一`],
-  [`Chiang Dao 160 (UTMB) · 5 Dec 2025 · effort <b>"Really hard"</b>`,`Chiang Dao 160（UTMB）・2025年12月5日・きつさ <b>「かなりキツい」</b>`],
-  [`How strong afterward?`,`終わった後の強さは？`],
-  [`Very Strong`,`とても強い`],
-  [`"…a truly beautiful and enjoyable time. Next, if possible, I'd like to run the Tarawera 100-mile in February."`,`「…本当に美しく、楽しい時間でした。次は可能なら2月の Tarawera 100マイルに出たい。」`],
-  [`consistent → affirm and plan the next block`,`一貫 → 肯定し、次のブロックを計画`],
-  [`Very Weak`,`とても弱い`],
-  [`"I was really exhausted after a long race. I need a rest for a while."`,`「長いレースの後で本当に疲れ果てた。しばらく休養が必要。」`],
-  [`M1 reads depletion → ease off, protect recovery`,`M1 が消耗を検知 → 強度を落とし回復を優先`],
-  [`The same finish, reported two ways. The objective record is identical — yet one report says <b>Very Strong</b>, the other <b>Very Weak</b> and "I need rest." Because the TCI fuses this subjective layer with the device data and computes <b>M1</b> from the gap, the coach can act on how the athlete actually feels — affirm and plan ahead in the first case, ease off and protect recovery in the second. A system that reads only the objective data, assuming anything unstated is fine, would hand both the same plan. Treating the athlete's own words as possible signal — not assumed absence — is exactly the shift from a <b>Closed-World</b> to an <b>Open-World assumption</b>.`,`同じ完走を、2通りに報告したものです。客観データは同一なのに、一方は<b>とても強い</b>、もう一方は<b>とても弱い</b>＋「休養が必要」。TCI はこの主観の層を機器データと融合し、そのズレから <b>M1</b> を計算するため、コーチはアスリートが実際に感じていることに基づいて動けます——前者では肯定して次を計画し、後者では強度を落として回復を守ります。客観データだけを読み、明示されないことは問題なしと仮定するシステムは、両者に同じ計画を渡してしまいます。アスリート自身の言葉を「不在＝偽」ではなく<b>あり得る信号</b>として扱うこと——これこそ <b>Closed World</b> から <b>Open World</b> 仮説への転換です。`],
+  [`The app, emulated — try it`,`アプリのエミュレーション — 試してみる`],
+  [`Post-workout survey`,`運動後アンケート`],
+  [`<b>Chiang Dao 160</b> (UTMB) · Dec 5, 2025<span class="app-obj">objective record: long mountain ultra · ~24 h on feet</span>`,`<b>Chiang Dao 160</b>（UTMB）・2025年12月5日<span class="app-obj">客観データ: ロングの山岳ウルトラ・行動時間 約24時間</span>`],
+  [`How hard did you find the activity?`,`今回のアクティビティはどれくらいキツかったですか？`],
+  [`How strong do you feel afterward?`,`終わった後、どれくらい強さを感じますか？`],
+  [`Any additional comments?`,`その他、コメントはありますか？`],
+  [`✓ Submit`,`✓ 送信`],
+  [`Contradiction check`,`矛盾チェック`],
+  [`Coach's reply`,`コーチの返答`],
+  [`Change the effort, the strength, or the note — the right side reacts live. The objective record never changes; only what the athlete reports does. Because the TCI fuses that subjective layer with the data and computes <b>M1</b> from the gap, the coach can notice when something feels off and open a conversation, instead of confirming a number. Treating the unsaid as possible signal — not assumed absence — is the move from a <b>Closed-World</b> to an <b>Open-World assumption</b>.`,`強度・強さ・コメントを変えると、右側がリアルタイムに反応します。客観データは一切変わらず、変わるのはアスリートが報告する主観だけ。TCI はその主観の層をデータと融合し、ズレから <b>M1</b> を計算するため、コーチは数値を鵜呑みにせず、違和感に気づいて対話を始められます。語られないことを「不在＝偽」ではなく<b>あり得る信号</b>として扱う——これが <b>Closed World</b> から <b>Open World</b> 仮説への転換です。`],
   [`08 — The Dataset`,`08 — データセット`],
   [`09 — From the Operational Data`,`09 — 実データから`],
   [`10 — Generality`,`10 — 一般性`],
@@ -1676,7 +1715,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-same,.fb-meta,.fb-q,.fb-val,.fb-note,.fb-read,.fb-explain';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
@@ -2003,6 +2042,116 @@
   </div>
   <div class="chat-foot" id="chatFoot"></div>
 </aside>
+
+<script>
+(function(){
+  var stage=document.querySelector('.emu'); if(!stage) return;
+  var $=function(id){return document.getElementById(id);};
+  var eff=$('emuEffort'), facesEl=$('emuFaces'), comment=$('emuComment'),
+      effLabel=$('emuEffLabel'), submit=$('emuSubmit'),
+      outContra=$('outContra'), contraPill=$('contraPill'), contraBody=$('contraBody'),
+      m1fill=$('m1fill'), m1num=$('m1num'), coachBody=$('coachBody');
+  if(!eff||!facesEl||!comment) return;
+  var strength=1;
+  var lang=function(){return document.documentElement.lang==='ja'?'ja':'en';};
+
+  var T={
+    eff:{en:["Very easy","Easy","Moderate","Hard","Really hard \u2014 pushing limits"],
+         ja:["とても楽","楽","普通","きつい","かなりキツい \u2014 限界近く"]},
+    faces:{en:["Very Weak","Weak","Normal","Strong","Very Strong"],
+           ja:["とても弱い","弱い","普通","強い","とても強い"]},
+    ph:{en:"Optional \u2014 how the race actually felt\u2026", ja:"任意 \u2014 レースが実際どう感じたか\u2026"},
+    pillOk:{en:"No contradiction", ja:"矛盾なし"},
+    pillWatch:{en:"Worth a look", ja:"要確認"},
+    pillBad:{en:"Detected", ja:"検知"},
+    consistent:{en:"Subjective effort lines up with the objective load of a long mountain ultra. Nothing to flag.",
+                ja:"主観的なきつさが、ロングの山岳ウルトラという客観的負荷と一致しています。問題なし。"},
+    bodyEasy:{en:"Rated easy on a 160 km mountain ultra \u2014 it felt far easier than the objective load says it should. M1 holds the score back and asks why before trusting it.",
+              ja:"160kmの山岳ウルトラを「楽」と評価 \u2014 客観的負荷から見てかなり楽に感じています。M1 はスコアを抑え、信頼する前に理由を尋ねます。"},
+    bodyConflict:{en:"The strength rating says you feel good, but the written note points to fatigue. The two disagree, so M1 flags the gap rather than averaging it away.",
+                  ja:"強さの評価は好調を示しますが、コメントは疲労を指しています。両者が食い違うため、M1 は平均で消さずにズレを検知します。"},
+    bodyWatch:{en:"Perceived effort sits a little below the objective load \u2014 not a contradiction, but worth a quick check.",
+               ja:"主観的なきつさが客観的負荷よりやや低め \u2014 矛盾ではありませんが、軽く確認する価値があります。"},
+    coachEasy:{en:"An \u2018easy\u2019 feel on a 160 km mountain ultra is unusual \u2014 that\u2019s either exceptional fitness or something worth a look. What made it feel that way, before I plan your next block?",
+               ja:"160kmの山岳ウルトラで「楽」に感じたのは異例です \u2014 並外れた好調か、確認すべき何かか。次のブロックを組む前に、何が楽に感じさせたのか教えてください。"},
+    coachConflict:{en:"Your rating says you feel strong, but your note mentions being wiped out. Which is closer to the truth right now? Let\u2019s get that clear before we decide anything.",
+                   ja:"評価は「強い」ですが、コメントには疲労が見えます。今はどちらが本当に近いですか？　決める前にそこをはっきりさせましょう。"},
+    coachRest:{en:"A hard 160 km effort and you\u2019re feeling depleted \u2014 completely expected. Let\u2019s protect recovery: easy movement, real sleep, and no hard sessions this week before we rebuild.",
+               ja:"ハードな160kmの後で消耗しているのは当然です。回復を最優先に \u2014 軽い動きと十分な睡眠、今週は強い練習なしで、その後に立て直しましょう。"},
+    coachStrong:{en:"Finishing that strong is a real sign of adaptation. Let\u2019s lock in the gains and start shaping the next target \u2014 the Tarawera 100-mile, perhaps?",
+                 ja:"それだけ強く完走できたのは、適応が進んだ確かな証拠です。成果を固めて、次の目標を描き始めましょう \u2014 Tarawera 100マイル、いかがですか？"},
+    coachNeutral:{en:"Solid work. Tell me how the legs feel over the next 48 hours and we\u2019ll shape the next block around it.",
+                  ja:"良い走りです。今後48時間の脚の感じを教えてください。それに合わせて次のブロックを組みます。"}
+  };
+
+  var FAT=/exhaust|tired|fatigu|rest|sore|pain|sleep|drained|dead|wiped|疲|痛|休|だる|眠|しんど/i;
+  var POS=/great|strong|amazing|happy|beautiful|enjoy|fresh|smooth|fantastic|楽し|嬉|最高|気持ち|快適|good/i;
+
+  function faceSVG(v){
+    var eyes, mouth;
+    if(v===1){ eyes='<path d="M7 8.4l2.2 2.2M9.2 8.4l-2.2 2.2"/><path d="M14.8 8.4l2.2 2.2M17 8.4l-2.2 2.2"/>'; mouth='<path d="M8 16.6q4 -3 8 0"/>'; }
+    else if(v===2){ eyes='<circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1.1" fill="currentColor" stroke="none"/>'; mouth='<path d="M8.5 16q3.5 -2 7 0"/>'; }
+    else if(v===3){ eyes='<circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1.1" fill="currentColor" stroke="none"/>'; mouth='<path d="M8.5 15h7"/>'; }
+    else if(v===4){ eyes='<circle cx="9" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1.1" fill="currentColor" stroke="none"/>'; mouth='<path d="M8.5 14.6q3.5 2.4 7 0"/>'; }
+    else { eyes='<path d="M7.3 10.6q1.6 -2 3.2 0"/><path d="M13.5 10.6q1.6 -2 3.2 0"/>'; mouth='<path d="M7.4 14q4.6 4 9.2 0"/>'; }
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+eyes+mouth+'</svg>';
+  }
+
+  [1,2,3,4,5].forEach(function(v){
+    var b=document.createElement('button'); b.className='app-face'; b.type='button'; b.setAttribute('data-v',v);
+    b.innerHTML='<span class="fc">'+faceSVG(v)+'</span><span class="fl"></span>';
+    b.addEventListener('click',function(){ strength=v; render(); });
+    facesEl.appendChild(b);
+  });
+
+  function compute(){
+    var e=+eff.value, c=comment.value, fat=FAT.test(c), pos=POS.test(c);
+    var state, m1;
+    if(strength>=4 && fat){ state='conflict'; m1=3.3; }
+    else if(e<=35){ state='easy'; m1=2.8+(e/35)*1.0; }
+    else if(e<=48){ state='watch'; m1=5.4; }
+    else { state='ok'; m1=(strength<=2||fat)?8.0:8.4; if(strength>=4&&pos) m1=9.0; }
+    return {e:e,fat:fat,pos:pos,state:state,m1:m1,trig:(state==='conflict'||state==='easy')};
+  }
+
+  function render(){
+    var g=lang();
+    var e=+eff.value, idx=e<20?0:e<40?1:e<60?2:e<80?3:4;
+    effLabel.textContent=T.eff[g][idx];
+    var kids=facesEl.children;
+    for(var i=0;i<kids.length;i++){ kids[i].querySelector('.fl').textContent=T.faces[g][i]; kids[i].classList.toggle('on',(i+1)===strength); }
+    comment.setAttribute('placeholder',T.ph[g]);
+    var r=compute();
+    outContra.classList.toggle('trig', r.trig);
+    if(r.state==='conflict'||r.state==='easy'){
+      contraPill.className='out-pill bad'; contraPill.textContent=T.pillBad[g];
+      contraBody.textContent=(r.state==='conflict'?T.bodyConflict[g]:T.bodyEasy[g]);
+    } else if(r.state==='watch'){
+      contraPill.className='out-pill'; contraPill.textContent=T.pillWatch[g];
+      contraBody.textContent=T.bodyWatch[g];
+    } else {
+      contraPill.className='out-pill ok'; contraPill.textContent=T.pillOk[g];
+      contraBody.textContent=T.consistent[g];
+    }
+    m1num.textContent=r.m1.toFixed(1)+' / 10';
+    m1fill.style.width=(r.m1*10)+'%';
+    m1fill.classList.toggle('bad', r.trig);
+    var coach;
+    if(r.state==='conflict') coach=T.coachConflict[g];
+    else if(r.state==='easy') coach=T.coachEasy[g];
+    else if(strength<=2||r.fat) coach=T.coachRest[g];
+    else if(strength>=4) coach=T.coachStrong[g];
+    else coach=T.coachNeutral[g];
+    coachBody.textContent=coach;
+  }
+
+  eff.addEventListener('input',render);
+  comment.addEventListener('input',render);
+  submit.addEventListener('click',function(){ render(); submit.classList.remove('flash'); void submit.offsetWidth; submit.classList.add('flash'); });
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  render();
+})();
+</script>
 
 <!-- Firebase web config (create this file once; it is NOT overwritten by index.html updates) -->
 <script src="firebase-config.js"></script>
