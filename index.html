@@ -322,6 +322,32 @@
   .card-cmp .verdict{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-soft);}
   .card-cmp.flag .verdict{color:var(--moderator);}
 
+  /* ---------- M1 real-feedback comparison ---------- */
+  .fb-demo{margin-top:48px;}
+  .fb-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;}
+  .fb-shared{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin-bottom:16px;}
+  .fb-same{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);border:1px solid var(--line);border-radius:20px;padding:3px 10px;white-space:nowrap;}
+  .fb-meta{font-family:var(--serif);font-size:14px;color:var(--ink-soft);}
+  .fb-meta b{color:var(--ink);font-weight:600;}
+  .fb-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:720px){.fb-pair{grid-template-columns:1fr;}}
+  .fb-card{border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;background:var(--paper);display:flex;flex-direction:column;gap:11px;}
+  .fb-card.weak{border-color:rgba(155,44,37,.4);}
+  .fb-q{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);}
+  .fb-scale{display:flex;align-items:center;gap:9px;}
+  .fb-dot{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line-soft);transition:transform .2s;}
+  .fb-dot.on{transform:scale(1.35);}
+  .fb-card.strong .fb-dot.on{background:var(--relation);border-color:var(--relation);}
+  .fb-card.weak .fb-dot.on{background:var(--moderator);border-color:var(--moderator);}
+  .fb-val{font-family:var(--display);font-size:20px;font-weight:560;letter-spacing:-.01em;}
+  .fb-card.strong .fb-val{color:var(--relation);}
+  .fb-card.weak .fb-val{color:var(--moderator);}
+  .fb-note{font-family:var(--serif);font-size:14.5px;line-height:1.6;color:var(--ink-soft);font-style:italic;border-left:2px solid var(--line);padding-left:12px;margin:2px 0 0;}
+  .fb-read{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--ink-faint);margin-top:auto;padding-top:4px;}
+  .fb-card.weak .fb-read{color:var(--moderator);}
+  .fb-explain{margin-top:22px;font-size:16px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:74ch;}
+  .fb-explain b{color:var(--ink);font-weight:500;}
+
   /* ---------- DOMAINS ---------- */
   .domains-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:46px;}
   .domain{background:var(--paper);padding:32px 26px;}
@@ -954,6 +980,31 @@
       </div>
     </div>
     <p class="rv rv-d2" style="margin-top:34px;color:var(--ink-soft);font-weight:300;">This is the difference between an evaluation that asks only <em>what an output measures</em> and one that also asks <em>what it might be missing</em>. The example is illustrative; the mechanism is the contribution.</p>
+
+    <div class="fb-demo rv rv-d2">
+      <div class="fb-eyebrow">From the athlete's own feedback</div>
+      <div class="fb-shared">
+        <span class="fb-same">identical objective record</span>
+        <span class="fb-meta">Chiang Dao 160 (UTMB) · 5 Dec 2025 · effort <b>"Really hard"</b></span>
+      </div>
+      <div class="fb-pair">
+        <div class="fb-card strong">
+          <div class="fb-q">How strong afterward?</div>
+          <div class="fb-scale"><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot on"></span></div>
+          <div class="fb-val">Very Strong</div>
+          <p class="fb-note">"…a truly beautiful and enjoyable time. Next, if possible, I'd like to run the Tarawera 100-mile in February."</p>
+          <div class="fb-read">consistent → affirm and plan the next block</div>
+        </div>
+        <div class="fb-card weak">
+          <div class="fb-q">How strong afterward?</div>
+          <div class="fb-scale"><span class="fb-dot on"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span><span class="fb-dot"></span></div>
+          <div class="fb-val">Very Weak</div>
+          <p class="fb-note">"I was really exhausted after a long race. I need a rest for a while."</p>
+          <div class="fb-read">M1 reads depletion → ease off, protect recovery</div>
+        </div>
+      </div>
+      <p class="fb-explain">The same finish, reported two ways. The objective record is identical — yet one report says <b>Very Strong</b>, the other <b>Very Weak</b> and "I need rest." Because the TCI fuses this subjective layer with the device data and computes <b>M1</b> from the gap, the coach can act on how the athlete actually feels — affirm and plan ahead in the first case, ease off and protect recovery in the second. A system that reads only the objective data, assuming anything unstated is fine, would hand both the same plan. Treating the athlete's own words as possible signal — not assumed absence — is exactly the shift from a <b>Closed-World</b> to an <b>Open-World assumption</b>.</p>
+    </div>
   </div>
 </section>
 
@@ -1392,6 +1443,17 @@
   [`05 — Structure`,`05 — 構造`],
   [`06 — Operationalization`,`06 — 実装`],
   [`07 — The Moderator`,`07 — モデレーター`],
+  [`From the athlete's own feedback`,`アスリート自身のフィードバックから`],
+  [`identical objective record`,`客観データは同一`],
+  [`Chiang Dao 160 (UTMB) · 5 Dec 2025 · effort <b>"Really hard"</b>`,`Chiang Dao 160（UTMB）・2025年12月5日・きつさ <b>「かなりキツい」</b>`],
+  [`How strong afterward?`,`終わった後の強さは？`],
+  [`Very Strong`,`とても強い`],
+  [`"…a truly beautiful and enjoyable time. Next, if possible, I'd like to run the Tarawera 100-mile in February."`,`「…本当に美しく、楽しい時間でした。次は可能なら2月の Tarawera 100マイルに出たい。」`],
+  [`consistent → affirm and plan the next block`,`一貫 → 肯定し、次のブロックを計画`],
+  [`Very Weak`,`とても弱い`],
+  [`"I was really exhausted after a long race. I need a rest for a while."`,`「長いレースの後で本当に疲れ果てた。しばらく休養が必要。」`],
+  [`M1 reads depletion → ease off, protect recovery`,`M1 が消耗を検知 → 強度を落とし回復を優先`],
+  [`The same finish, reported two ways. The objective record is identical — yet one report says <b>Very Strong</b>, the other <b>Very Weak</b> and "I need rest." Because the TCI fuses this subjective layer with the device data and computes <b>M1</b> from the gap, the coach can act on how the athlete actually feels — affirm and plan ahead in the first case, ease off and protect recovery in the second. A system that reads only the objective data, assuming anything unstated is fine, would hand both the same plan. Treating the athlete's own words as possible signal — not assumed absence — is exactly the shift from a <b>Closed-World</b> to an <b>Open-World assumption</b>.`,`同じ完走を、2通りに報告したものです。客観データは同一なのに、一方は<b>とても強い</b>、もう一方は<b>とても弱い</b>＋「休養が必要」。TCI はこの主観の層を機器データと融合し、そのズレから <b>M1</b> を計算するため、コーチはアスリートが実際に感じていることに基づいて動けます——前者では肯定して次を計画し、後者では強度を落として回復を守ります。客観データだけを読み、明示されないことは問題なしと仮定するシステムは、両者に同じ計画を渡してしまいます。アスリート自身の言葉を「不在＝偽」ではなく<b>あり得る信号</b>として扱うこと——これこそ <b>Closed World</b> から <b>Open World</b> 仮説への転換です。`],
   [`08 — The Dataset`,`08 — データセット`],
   [`09 — From the Operational Data`,`09 — 実データから`],
   [`10 — Generality`,`10 — 一般性`],
@@ -1614,7 +1676,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-same,.fb-meta,.fb-q,.fb-val,.fb-note,.fb-read,.fb-explain';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
