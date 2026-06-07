@@ -456,11 +456,14 @@
   .dotnav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:95;display:flex;flex-direction:column;gap:12px;mix-blend-mode:difference;}
   .dotnav a{width:9px;height:9px;border-radius:50%;border:1.5px solid #fff;background:transparent;transition:transform .25s,background .25s;}
   .dotnav a.on{background:#fff;transform:scale(1.3);}
-  .nextcue{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:95;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(244,238,226,.72);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .3s,transform .2s;}
-  .nextcue svg{width:18px;height:18px;stroke:var(--ink);stroke-width:1.7;fill:none;}
-  .nextcue:hover{transform:translateX(-50%) translateY(2px);}
-  .nextcue.hide{opacity:0;pointer-events:none;}
-  @media (max-width:980px){.dotnav,.nextcue{display:none;}}
+  .cuewrap{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:95;display:flex;gap:10px;}
+  .cuebtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(244,238,226,.72);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:opacity .3s,transform .2s,background .2s;}
+  .cuebtn svg{width:18px;height:18px;stroke:var(--ink);stroke-width:1.7;fill:none;}
+  .cuebtn:hover{background:rgba(244,238,226,.96);}
+  #prevcue:hover{transform:translateY(-2px);}
+  #nextcue:hover{transform:translateY(2px);}
+  .cuebtn.hide{opacity:0;pointer-events:none;}
+  @media (max-width:980px){.dotnav,.cuewrap{display:none;}}
 
   /* ===== Table 1 carousel (section 02) ===== */
   .t1-hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:14px;}
@@ -469,8 +472,15 @@
   .t1-nav button:hover{background:var(--ink);color:var(--paper);}
   .t1-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none;}
   .t1-track::-webkit-scrollbar{display:none;}
-  .t1-card{flex:0 0 80%;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--cat,var(--ink));border-radius:3px;padding:22px 22px 24px;min-height:230px;display:flex;flex-direction:column;}
-  @media(min-width:1100px){.t1-card{flex-basis:62%;}}
+  .t1-card{flex:0 0 248px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--cat,var(--ink));border-radius:3px;padding:22px 20px 24px;min-height:236px;display:flex;flex-direction:column;}
+  @media(max-width:560px){.t1-card{flex-basis:80%;}}
+  .t1-wrap{position:relative;}
+  .t1-stage{position:relative;}
+  .t1-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(244,238,226,.92);backdrop-filter:blur(6px);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:20px;line-height:1;padding:0;transition:background .2s,color .2s;}
+  .t1-arrow:hover{background:var(--ink);color:var(--paper);}
+  .t1-arrow.left{left:-16px;}
+  .t1-arrow.right{right:-16px;}
+  @media(max-width:560px){.t1-arrow{display:none;}}
   .t1-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;gap:10px;}
   .t1-cat-nm{font-family:var(--display);font-style:italic;font-weight:460;font-size:19px;color:var(--cat);}
   .t1-gk{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
@@ -585,9 +595,14 @@
 </nav>
 
 <div class="dotnav" id="dotnav" aria-label="Section navigation"></div>
-<button class="nextcue" id="nextcue" type="button" aria-label="Scroll to next section">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 10 12 16 18 10"></polyline></svg>
-</button>
+<div class="cuewrap">
+  <button class="cuebtn hide" id="prevcue" type="button" aria-label="Scroll to previous section">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"></polyline></svg>
+  </button>
+  <button class="cuebtn" id="nextcue" type="button" aria-label="Scroll to next section">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 10 12 16 18 10"></polyline></svg>
+  </button>
+</div>
 
 <header class="hero">
   <div class="greek-bg" data-parallax="0.10" data-pbase="translateY(-50%)">ἀλήθεια<br>ἀγαθόν<br>κάλλος</div>
@@ -652,10 +667,12 @@
       </svg>
 
       <div class="t1-wrap rv rv-d2">
-        <div class="t1-hint"><span id="t1hint">Table 1 · philosophical question → AI question → sense</span>
-          <span class="t1-nav"><button type="button" id="t1prev" aria-label="Previous">‹</button><button type="button" id="t1next" aria-label="Next">›</button></span>
+        <div class="t1-hint"><span id="t1hint">Table 1 · philosophical question → AI question → sense</span></div>
+        <div class="t1-stage">
+          <button class="t1-arrow left" type="button" id="t1prev" aria-label="Previous">‹</button>
+          <div class="t1-track" id="t1track"></div>
+          <button class="t1-arrow right" type="button" id="t1next" aria-label="Next">›</button>
         </div>
-        <div class="t1-track" id="t1track"></div>
       </div>
     </div>
   </div>
@@ -1625,15 +1642,23 @@
       const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=secs.indexOf(e.target);dots.forEach((d,di)=>d.classList.toggle('on',di===i));}});},{threshold:.5});
       secs.forEach(s=>io2.observe(s));
     }
-    if(nextcue){
-      nextcue.addEventListener('click',()=>{
-        const y=window.scrollY+10;
-        const next=secs.find(s=>s.offsetTop>y+5);
-        (next||secs[secs.length-1]).scrollIntoView({behavior:'smooth'});
-      });
-      const onS=()=>{ nextcue.classList.toggle('hide', window.innerHeight+window.scrollY >= document.body.scrollHeight-120); };
-      onS(); window.addEventListener('scroll',onS,{passive:true});
-    }
+    const prevcue=document.getElementById('prevcue');
+    if(nextcue) nextcue.addEventListener('click',()=>{
+      const y=window.scrollY+10;
+      const next=secs.find(s=>s.offsetTop>y+5);
+      (next||secs[secs.length-1]).scrollIntoView({behavior:'smooth'});
+    });
+    if(prevcue) prevcue.addEventListener('click',()=>{
+      const y=window.scrollY;
+      let prev=secs[0];
+      secs.forEach(s=>{ if(s.offsetTop < y-5) prev=s; });
+      prev.scrollIntoView({behavior:'smooth'});
+    });
+    const onS=()=>{
+      if(nextcue) nextcue.classList.toggle('hide', window.innerHeight+window.scrollY >= document.body.scrollHeight-120);
+      if(prevcue) prevcue.classList.toggle('hide', window.scrollY < 80);
+    };
+    onS(); window.addEventListener('scroll',onS,{passive:true});
   })();
 
   // ---------- background-layer parallax ----------
