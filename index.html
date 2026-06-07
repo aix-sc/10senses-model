@@ -204,7 +204,8 @@
   @media(min-width:900px){.triad-wrap{grid-template-columns:1fr 1fr;}}
   .triad-svg{width:100%;max-width:440px;margin:0 auto;display:block;}
   .fw-grid{display:grid;gap:48px;align-items:start;}
-  @media(min-width:900px){.fw-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:900px){.fw-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
+  .fw-left,.fw-right{min-width:0;}
   .fw-left .triad-svg{max-width:340px;margin:30px 0 0;}
   .triad-svg circle{mix-blend-mode:multiply;}
   .cat-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
