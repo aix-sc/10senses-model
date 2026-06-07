@@ -202,6 +202,9 @@
   .ds-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;}
   .ds-text{font-family:var(--serif);font-size:clamp(17px,1.55vw,20px);line-height:1.64;color:var(--ink-soft);font-weight:300;margin:0;}
   .ds-text em{font-style:italic;color:var(--truth);}
+  .ds-quote{margin:0;padding:2px 0 2px 22px;border-left:2px solid var(--truth);}
+  .ds-cite{display:block;margin-top:14px;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.03em;color:var(--ink-faint);}
+  .ds-after{margin-top:24px;}
 
   /* ---------- FRAMEWORK TRIAD ---------- */
   .triad-wrap{display:grid;gap:56px;align-items:center;margin-top:46px;}
@@ -708,8 +711,12 @@
     </div>
 
     <div class="ds-band rv rv-d2">
-      <div class="ds-eyebrow">What data science is for</div>
-      <p class="ds-text">Computer science handles human imagination inside the machine. Data science exists for something else — to bring computation and data to bear on society, the world, and nature. Its measure is not truth in the abstract, but consequence in the real. An evaluation grounded only in scientific <em>Truth</em>, the criterion of pure science, is therefore incomplete: once data and computation act on human lives, the metrics that matter must be human and social as well. That is the gap this framework is built to close.</p>
+      <div class="ds-eyebrow">Why data science is a science</div>
+      <blockquote class="ds-quote">
+        <p class="ds-text">Computer science gives form to the <em>nature of computation</em> the brain itself holds. Data science is something else: it imagines real-world phenomena — social, natural, and human — and materializes them by computing them inside the machine. Above all, it learns to give names to data. It is, in short, <em>the science that gives meaning to numbers</em>.</p>
+        <cite class="ds-cite">— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University</cite>
+      </blockquote>
+      <p class="ds-text ds-after">If data science exists to give meaning to numbers drawn from human and social reality, then evaluating its outputs cannot stop at scientific <em>Truth</em> — the criterion of pure science. The measures that matter must be human and social as well. That is the gap this framework is built to close.</p>
     </div>
   </div>
 </section>
@@ -1396,8 +1403,10 @@
   [`Eq. 3 · compose, then let M1 moderate`,`式3 · 合成し、M1 が調整する`],
   [`M1 enters as a multiplier, never an addend — it can only hold the score back, never inflate it.`,`M1 は加算項ではなく乗数として入る — スコアを抑えることはできても、けっして引き上げない。`],
   [`In a large-scale validation across human–AI coaching sessions, <b>subjective and objective intensity diverged in roughly one session in six</b> — a structural blind spot that accuracy-only systems cannot, by construction, surface. This not only raises injury risk, but also erodes the trust between athlete and coach.`,`人間とAIのコーチング・セッションを対象とした大規模検証で、<b>主観的な強度と客観的な強度が約6回に1回ずれていました</b> — 正確さだけのシステムには原理的に捉えられない、構造的な盲点です。これは、怪我のリスクを増大させるだけでなく、コーチとの信頼関係も壊します。`],
-  [`What data science is for`,`データサイエンスは何のためにあるのか`],
-  [`Computer science handles human imagination inside the machine. Data science exists for something else — to bring computation and data to bear on society, the world, and nature. Its measure is not truth in the abstract, but consequence in the real. An evaluation grounded only in scientific <em>Truth</em>, the criterion of pure science, is therefore incomplete: once data and computation act on human lives, the metrics that matter must be human and social as well. That is the gap this framework is built to close.`,`計算機科学（CS）が計算機の中で人間の「想像」を扱う学問だとすれば、データサイエンスは別の目的を持つ — 社会・世界・自然に対して計算とデータを活用するためのサイエンスである。その尺度は抽象的な真理ではなく、現実への帰結にある。だから、純粋科学の基準である科学的な<em>Truth（真）</em>だけに根ざした評価は不完全だ。データと計算が人の生に作用する以上、重要となる評価指標もまた、人間的・社会的なものでなければならない。本フレームワークは、まさにこの隔たりを埋めるために構築されている。`],
+  [`Why data science is a science`,`データサイエンスはなぜ「科学」なのか`],
+  [`Computer science gives form to the <em>nature of computation</em> the brain itself holds. Data science is something else: it imagines real-world phenomena — social, natural, and human — and materializes them by computing them inside the machine. Above all, it learns to give names to data. It is, in short, <em>the science that gives meaning to numbers</em>.`,`計算機科学（CS）は、脳そのものがもつ<em>計算の本性</em>に形を与える科学である。データサイエンスはそれとは異なる — 現実世界の現象（社会的・自然的・人間的な現象）を想像し、それを計算機の中で計算することで形にする。そして何より、データに名前を与えることを学ぶ。ひとことで言えば、<em>数に意味を与える科学</em>である。`],
+  [`— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University`,`— 清木 康（Yasushi Kiyoki）武蔵野大学 データサイエンス学部（MIDS）学部長`],
+  [`If data science exists to give meaning to numbers drawn from human and social reality, then evaluating its outputs cannot stop at scientific <em>Truth</em> — the criterion of pure science. The measures that matter must be human and social as well. That is the gap this framework is built to close.`,`データサイエンスが、人間や社会の現実から得られた数に意味を与える営みであるなら、その出力の評価は純粋科学の基準である科学的な<em>Truth（真）</em>だけにとどまることはできない。重要となる尺度は、人間的・社会的なものでもなければならない。本フレームワークは、まさにこの隔たりを埋めるために構築されている。`],
   [`n = 890 sessions with both RPE and objective intensity. Hover a slice — one session in six is invisible to accuracy alone.`,`RPE と客観的強度の両方がある 890 セッション。スライスにカーソルを合わせてみてください — 6回に1回は、正確さだけでは見えません。`],
   [`12 — References`,`12 — 参考文献`],
   [`Refs`,`文献`],
@@ -1503,7 +1512,7 @@
   [`Proposes a seven-dimensional model for describing human experience. 10SM adopts it as the blueprint for future validation — measuring TCI's effects across the Physio dimension (HRV), the Psycho dimension (RPE and satisfaction), and the Social dimension (coach–athlete dialogue).`,`人間の経験を記述する七次元モデルを提案。10SM はこれを今後の検証の設計図として採用します — TCI の効果を、生理次元（HRV）、心理次元（RPE・満足度）、社会次元（コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
