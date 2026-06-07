@@ -1817,13 +1817,13 @@
 (function(){
   /* ===== CONFIG — fill these two from Firebase console → Project settings → your Web app ===== */
   const CONFIG = {
-    apiKey:     "1:1036666585144:web:1bac62d1cfc53a5a0826cd",
+    apiKey:     "PASTE_FIREBASE_WEB_API_KEY",
     authDomain: "tensenses-model.firebaseapp.com",
     projectId:  "tensenses-model",
-    appId:      "AIzaSyATjIN9AzQKYihDtx-3ppkkWbtUXoH2EXI"
+    appId:      "PASTE_FIREBASE_WEB_APP_ID"
   };
   const MODEL = "gemini-2.5-flash";          // change here if you prefer another Gemini model
-  const SDK   = "11.3.0";                     // Firebase JS SDK version (gstatic CDN)
+  const SDK   = "12.14.0";                   // Firebase JS SDK version (gstatic CDN) — needs >= 11.8 for firebase/ai
 
   const SYSTEM = `You are the research assistant for the academic paper "Truth Is Not Enough: An Epistemological Framework for Multi-Dimensional AI Output Evaluation" by Yusuke Takahashi (Asia AI Institute / AIx), to appear in Information Modelling and Knowledge Bases (IOS Press), EJC 2026.
 
