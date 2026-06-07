@@ -730,7 +730,7 @@
     <div class="ds-band rv rv-d2">
       <div class="ds-eyebrow">Why data science is a science</div>
       <div class="ds-quote-row">
-        <img class="ds-portrait" src="assets/kiyoki.png" alt="Yasushi Kiyoki" onerror="this.style.display='none'">
+        <img class="ds-portrait" src="assets/kiyoki.jpg" alt="Yasushi Kiyoki" onerror="this.style.display='none'">
         <blockquote class="ds-quote">
           <p class="ds-text">Computer science gives form to the <em>nature of computation</em> the brain itself holds. Data science is something else: it imagines real-world phenomena — social, natural, and human — and materializes them by computing them inside the machine. Above all, it learns to give names to data. It is, in short, <em>the science that gives meaning to numbers</em>.</p>
           <cite class="ds-cite">— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University</cite>
@@ -1118,6 +1118,32 @@
         <div class="faq-a">No. Everything on this page is either a big-picture total (like "299 runners" or "160,876 km") or an example already published in the paper with all identifying details removed. The downloadable dataset contains <b>only aggregate counts</b> — no individual records, names, locations, or free text. <b>No individual's private data is shown or shared here.</b></div>
       </details>
 
+      <div class="faq-cat">Anticipated questions</div>
+      <details class="faq-item">
+        <summary><span class="qn">Q8</span><span class="faq-q">Isn't this "salami slicing" — splitting one study into many papers?</span></summary>
+        <div class="faq-a">No. The earlier 7-dimension and 12-dimension versions were internal drafts that were never published; they were consolidated into 10SM, and publication is unified in this single paper. Future papers for medicine, finance, or law would each carry their own domain-specific evaluation axes and empirical validation as independent contributions, so they would <b>not be redundant publication</b>.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q9</span><span class="faq-q">Can 10SM be used in other domains?</span></summary>
+        <div class="faq-a">The framework — Truth, Good, and Beauty plus Relation and a Moderator, five families in all — is <b>domain-independent</b>. The TCI is only its concrete realization for running. Transfer to medicine, finance, and education is a primary direction of future work; we expect it to matter most precisely where AI mediates consequential decisions.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q10</span><span class="faq-q">Doesn't the M1 Intuitive Alert cause false positives?</span></summary>
+        <div class="faq-a">M1 fires only on a large mismatch between subjective and objective signals — and even then it prompts <b>a clarifying dialogue</b> rather than an immediate verdict. If RPE 8 is entered for a Zone 1 walk, it concludes nothing and instead asks "what made it feel hard?" Steering toward a question rather than a warning keeps the cost of false positives low.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q11</span><span class="faq-q">How is this different from G-Eval or RAGAS?</span></summary>
+        <div class="faq-a">G-Eval and RAGAS measure agreement with a reference — consistency, faithfulness, relevancy — all of which sit within 10SM's Truth family. 10SM adds Good, Beauty, Relation, and Moderator orthogonally on top. It is <b>a complement, not a competitor</b>: 10SM can serve as a meta-framework that locates a G-Eval score within the larger space of practical validity.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q12</span><span class="faq-q">Can objectivity hold when the data is all your own?</span></summary>
+        <div class="faq-a">The empirical data come from EKIDEN.AI, a platform operated and funded by the author's organization, so a conflict of interest is possible. It is <b>disclosed explicitly</b> in the paper and mitigated by reporting the methods, data-collection procedures, and results transparently. We encourage and will pursue independent replication on third-party data.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qn">Q13</span><span class="faq-q">Why call them "Senses"?</span></summary>
+        <div class="faq-a">The name is inspired by Steiner's theory of twelve senses — not adopting his system wholesale, but extending his insight that humans perceive the world through many senses beyond the basic five. Here a "Sense" denotes <b>a cognitive axis</b> for evaluating an AI output.</div>
+      </details>
+
       <p class="faq-rw-lead">How 10SM relates to — and differs from — the prior work it builds on, reference by reference.</p>
 
       <div class="faq-cat">Related work · AI output evaluation</div>
@@ -1481,6 +1507,19 @@
   [`Is anyone's personal data shown here?`,`誰かの個人データは表示されている？`],
   [`No. Everything on this page is either a big-picture total (like "299 runners" or "160,876 km") or an example already published in the paper with all identifying details removed. The downloadable dataset contains <b>only aggregate counts</b> — no individual records, names, locations, or free text. <b>No individual's private data is shown or shared here.</b>`,`いいえ。このページにあるのは、全体の合計（「ランナー299名」「160,876 km」など）か、論文に既に掲載された、識別情報をすべて取り除いた例だけです。ダウンロードできるデータセットには<b>集計値のみ</b>が含まれます — 個人の記録・氏名・位置情報・自由記述は一切ありません。<b>個人のプライベートなデータは、ここでは表示も共有もしていません。</b>`],
   [`How 10SM relates to — and differs from — the prior work it builds on, reference by reference.`,`10SM が土台とする先行研究と、それぞれとの関係・違いを、文献ごとに示します。`],
+  [`Anticipated questions`,`想定問答`],
+  [`Isn't this "salami slicing" — splitting one study into many papers?`,`これは「論文の小分け（サラミ出版）」では？`],
+  [`No. The earlier 7-dimension and 12-dimension versions were internal drafts that were never published; they were consolidated into 10SM, and publication is unified in this single paper. Future papers for medicine, finance, or law would each carry their own domain-specific evaluation axes and empirical validation as independent contributions, so they would <b>not be redundant publication</b>.`,`いいえ。7次元版・12次元版は社内ドラフトで未公表のまま 10SM に統合しました。公表は本論文に一本化されています。将来の医療・金融・法務向け論文は、各ドメイン固有の評価軸と実証を独立した貢献として持つため<b>重複出版ではありません</b>。`],
+  [`Can 10SM be used in other domains?`,`10SM は他ドメインにも使えますか？`],
+  [`The framework — Truth, Good, and Beauty plus Relation and a Moderator, five families in all — is <b>domain-independent</b>. The TCI is only its concrete realization for running. Transfer to medicine, finance, and education is a primary direction of future work; we expect it to matter most precisely where AI mediates consequential decisions.`,`枠組み（真・善・美＋関係・調整の5圏）は<b>ドメイン非依存</b>です。TCI はランニング向けの具体化にすぎません。医療・金融・教育などへの横展開は主要な今後課題で、AIが重大な判断を媒介する領域ほど有効と考えています。`],
+  [`Doesn't the M1 Intuitive Alert cause false positives?`,`M1 Intuitive Alert は誤検出（過剰警告）を増やしませんか？`],
+  [`M1 fires only on a large mismatch between subjective and objective signals — and even then it prompts <b>a clarifying dialogue</b> rather than an immediate verdict. If RPE 8 is entered for a Zone 1 walk, it concludes nothing and instead asks "what made it feel hard?" Steering toward a question rather than a warning keeps the cost of false positives low.`,`M1 は主観と客観の「大きな不一致」が出たときだけ、即断ではなく<b>明確化のための対話</b>を促す設計です。例えば Zone1 の歩行に RPE8 が入力されると、結論を出さず「何が大変でしたか？」と問い返します。警告ではなく確認に振ることで誤検出のコストを下げています。`],
+  [`How is this different from G-Eval or RAGAS?`,`G-Eval や RAGAS との違いは？`],
+  [`G-Eval and RAGAS measure agreement with a reference — consistency, faithfulness, relevancy — all of which sit within 10SM's Truth family. 10SM adds Good, Beauty, Relation, and Moderator orthogonally on top. It is <b>a complement, not a competitor</b>: 10SM can serve as a meta-framework that locates a G-Eval score within the larger space of practical validity.`,`G-Eval・RAGAS は参照との一致（一貫性・忠実性・関連性）を測り、10SM でいう Truth 圏に収まります。10SM はそこに Good・Beauty・Relation・Moderator を直交的に足します。<b>競合ではなく補完</b>で、G-Eval の出力を 10SM の妥当性空間の中に位置づけるメタ枠組みとして使えます。`],
+  [`Can objectivity hold when the data is all your own?`,`自社データのみで客観性は保てますか（利益相反）？`],
+  [`The empirical data come from EKIDEN.AI, a platform operated and funded by the author's organization, so a conflict of interest is possible. It is <b>disclosed explicitly</b> in the paper and mitigated by reporting the methods, data-collection procedures, and results transparently. We encourage and will pursue independent replication on third-party data.`,`実証データは著者の組織が運用する EKIDEN.AI（資金も同組織）に由来し、利益相反があり得ます。これは論文中で<b>明示開示</b>し、方法・データ収集手順・結果を透明に報告して緩和しています。今後は第三者データでの独立再現を推奨・追求します。`],
+  [`Why call them "Senses"?`,`なぜ「Sense（感覚）」と呼ぶのですか？`],
+  [`The name is inspired by Steiner's theory of twelve senses — not adopting his system wholesale, but extending his insight that humans perceive the world through many senses beyond the basic five. Here a "Sense" denotes <b>a cognitive axis</b> for evaluating an AI output.`,`Steiner の十二感覚論に着想を得つつ、彼の体系を直輸入するのではなく「人は五感を超えた多様な感覚で世界を捉える」という洞察を拡張しています。ここでの Sense は、AI出力を評価するための<b>認知的な評価軸</b>を指します。`],
   [`Related work · AI output evaluation`,`関連研究 · AI出力の評価`],
   [`G-Eval — Liu et al. (2023)`,`G-Eval — Liu ほか (2023)`],
   [`Uses GPT-4 with chain-of-thought reasoning as an automatic judge of generated text, reaching about 0.51 correlation with human ratings on summarization. Like other "LLM-as-judge" methods it still measures fidelity to a ground truth; 10SM keeps that accuracy as one category (Truth) and adds individual fit, trust, harmony, and an intuitive-dissonance check.`,`GPT-4 に思考連鎖（CoT）をさせ、生成文を自動採点する手法で、要約タスクで人手評価と約0.51の相関を達成。他の「LLM-as-judge」と同様、依然として正解への忠実度を測ります。10SM はその正確さを一カテゴリ（真理）として残しつつ、個人適合・信頼・調和・直観的不協和のチェックを加えます。`],
