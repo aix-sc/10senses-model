@@ -470,10 +470,10 @@
   .t1-nav{display:flex;gap:8px;flex-shrink:0;}
   .t1-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;color:var(--ink-soft);font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;}
   .t1-nav button:hover{background:var(--ink);color:var(--paper);}
-  .t1-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none;}
+  .t1-track{display:flex;align-items:flex-start;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none;}
   .t1-track::-webkit-scrollbar{display:none;}
-  .t1-card{flex:0 0 248px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--cat,var(--ink));border-radius:3px;padding:22px 20px 24px;min-height:236px;display:flex;flex-direction:column;}
-  @media(max-width:560px){.t1-card{flex-basis:80%;}}
+  .t1-card{flex:0 0 88%;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--cat,var(--ink));border-radius:3px;padding:24px 24px 26px;min-height:240px;display:flex;flex-direction:column;}
+  @media(min-width:1100px){.t1-card{flex-basis:84%;}}
   .t1-wrap{position:relative;}
   .t1-stage{position:relative;}
   .t1-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(244,238,226,.92);backdrop-filter:blur(6px);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:20px;line-height:1;padding:0;transition:background .2s,color .2s;}
@@ -485,13 +485,15 @@
   .t1-cat-nm{font-family:var(--display);font-style:italic;font-weight:460;font-size:19px;color:var(--cat);}
   .t1-gk{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:.05em;}
   .t1-code{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--cat);letter-spacing:.08em;flex-shrink:0;}
-  .t1-phil{font-family:var(--display);font-weight:340;font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px;}
-  .t1-ai{font-size:15px;color:var(--ink-soft);font-weight:300;margin:0 0 auto;padding-bottom:18px;}
-  .t1-ai .aitag{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:.06em;margin-right:6px;}
-  .t1-sense{border-top:1px solid var(--line);padding-top:13px;}
-  .t1-sense b{font-size:15px;font-weight:500;display:block;}
-  .t1-sense span{font-size:13px;color:var(--ink-faint);font-weight:300;}
-  .t1-sense .scode{color:var(--cat);font-family:var(--mono);font-size:11px;font-weight:500;margin-right:7px;}
+  .t1-phil,.t1-ctx{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-soft);margin:0 0 5px;line-height:1.4;}
+  .t1-ctx{margin-bottom:16px;}
+  .t1-qlab{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-right:8px;}
+  .t1-senses{display:flex;flex-direction:column;}
+  .t1-srow{border-top:1px solid var(--line);padding:14px 0;}
+  .t1-srow:last-child{padding-bottom:0;}
+  .t1-sname{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:7px;letter-spacing:.02em;}
+  .t1-sname .scode{color:var(--cat);font-weight:600;margin-right:8px;}
+  .t1-sq{font-family:var(--display);font-weight:600;font-size:clamp(22px,2.8vw,30px);line-height:1.24;letter-spacing:-.015em;color:var(--ink);}
 
   /* ===== math (section 05) ===== */
   .eqs{display:flex;flex-direction:column;gap:24px;}
@@ -1519,37 +1521,62 @@
   })();
 
   // ---------- Table 1 carousel (section 02) ----------
-  const T1CATS={
-    truth:{c:'--truth',en:'Truth',ja:'真理',gk:'aletheia',phil_en:'\u201CIs it correct?\u201D',phil_ja:'\u300C正しいか？\u300D',ai_en:'Is it scientifically accurate?',ai_ja:'科学的に正確か？'},
-    good:{c:'--good',en:'Good',ja:'善',gk:'agathon',phil_en:'\u201CIs it good?\u201D',phil_ja:'\u300C善いか？\u300D',ai_en:'Is it appropriate for this user?',ai_ja:'この人に適切か？'},
-    beauty:{c:'--beauty',en:'Beauty',ja:'美',gk:'kalon',phil_en:'\u201CIs it beautiful?\u201D',phil_ja:'\u300C美しいか？\u300D',ai_en:'Is it simple and harmonious?',ai_ja:'シンプルで調和しているか？'},
-    relation:{c:'--relation',en:'Relation',ja:'関係',gk:'',phil_en:'\u201CIs there a connection?\u201D',phil_ja:'\u300Cつながりはあるか？\u300D',ai_en:'Is there trust and warmth?',ai_ja:'信頼と温かさがあるか？'},
-    moderator:{c:'--moderator',en:'Moderator',ja:'モデレーター',gk:'',phil_en:'\u201CIs there dissonance?\u201D',phil_ja:'\u300C不協和はないか？\u300D',ai_en:'Is there an intuitive warning?',ai_ja:'直観的な警告はないか？'}
-  };
-  const T1SENSES=[
-    ['truth','T1','Scientific','科学','Consistency with scientific knowledge','科学的知見との整合'],
-    ['truth','T2','Statistical','統計','Comparison with population trends','集団傾向との比較'],
-    ['truth','T3','Authority','権威','Expert judgment','専門家の判断'],
-    ['truth','T4','Experience','経験','Personal past experience','自身の過去の経験'],
-    ['good','G1','Goal','目標','Alignment with goals','目標との一致'],
-    ['good','G2','Preference','好み','Personal preferences & satisfaction','個人の好みと満足'],
-    ['beauty','B1','Aesthetic Harmony','美的調和','Simplicity, consistency, harmony','単純さ・一貫性・調和'],
-    ['relation','R1','Coach Trust','コーチへの信頼','Trust in the information source','情報源への信頼'],
-    ['relation','R2','Relational Warmth','関係の温かさ','Psychological connection & warmth','心理的つながりと温かさ'],
-    ['moderator','M1','Intuitive Alert','直観的アラート','Detection of intuitive dissonance','直観的不協和の検知']
+  const T1CATS=[
+    {c:'--truth',en:'Truth',ja:'真',gk:'aletheia',range:'T1–T4',
+     phil_en:'Is it correct?',phil_ja:'それは正しいか？',
+     ctx_en:'Is it scientifically and objectively accurate?',ctx_ja:'科学的・客観的に正確か？',
+     senses:[
+       {code:'T1',name:'Scientific Sense',q_en:'Does it fit scientific knowledge? Is it statistically significant?',q_ja:'科学的知見と適合するか？統計学的に優位か？'},
+       {code:'T2',name:'Statistical Sense',q_en:'Does it match population trends? Would most people accept it as correct?',q_ja:'集団傾向と合っているか？多くの人が正しいと認めるか？'},
+       {code:'T3',name:'Authority Sense',q_en:'Does it align with expert judgment?',q_ja:'専門家の判断と合っているか？'},
+       {code:'T4',name:'Experience Sense',q_en:'Does it fit my own past experience?',q_ja:'個人の過去経験と合っているか？'}
+     ]},
+    {c:'--good',en:'Good',ja:'善',gk:'agathon',range:'G1–G2',
+     phil_en:'Is it good?',phil_ja:'それは良いか？',
+     ctx_en:'Is it appropriate for this user?',ctx_ja:'このユーザーにとって適切か？',
+     senses:[
+       {code:'G1',name:'Goal Sense',q_en:'Does it align with my goals?',q_ja:'目標と合っているか？'},
+       {code:'G2',name:'Preference Sense',q_en:'Does it match my preferences and satisfaction?',q_ja:'個人の好み・満足度と合っているか？'}
+     ]},
+    {c:'--beauty',en:'Beauty',ja:'美',gk:'kalon',range:'B1',
+     phil_en:'Is it beautiful?',phil_ja:'それは美しいか？',
+     ctx_en:'Is it simple and harmonious?',ctx_ja:'簡潔で調和がとれているか？',
+     senses:[
+       {code:'B1',name:'Aesthetic Harmony',q_en:'Is it simple, consistent, and harmonious?',q_ja:'簡潔で一貫性・調和があるか？'}
+     ]},
+    {c:'--relation',en:'Relation',ja:'関係',gk:'',range:'R1–R2',
+     phil_en:'Is there a connection?',phil_ja:'繋がりはあるか？',
+     ctx_en:'Is there trust and warmth?',ctx_ja:'信頼と温かさはあるか？',
+     senses:[
+       {code:'R1',name:'Coach Trust',q_en:'Can it be judged from trust in the source?',q_ja:'情報源への信頼から判断できるか'},
+       {code:'R2',name:'Relational Warmth',q_en:'Is there psychological connection and warmth?',q_ja:'心理的繋がり・温かさがあるか？'}
+     ]},
+    {c:'--moderator',en:'Moderator',ja:'調整',gk:'',range:'M1',
+     phil_en:'Is there dissonance?',phil_ja:'違和感はないか？',
+     ctx_en:'Is there an intuitive warning?',ctx_ja:'直感的警告はないか？',
+     senses:[
+       {code:'M1',name:'Intuitive Alert',q_en:'Is intuitive dissonance detected?',q_ja:'直感的違和感の検知があるか？'}
+     ]}
   ];
   function buildT1(lang){
     const tr=document.getElementById('t1track'); if(!tr) return; tr.innerHTML='';
     const j=lang==='ja';
-    T1SENSES.forEach(s=>{
-      const cat=T1CATS[s[0]];
-      const catnm=j?cat.ja:cat.en, gk=cat.gk?(' · '+cat.gk):'', phil=j?cat.phil_ja:cat.phil_en, ai=j?cat.ai_ja:cat.ai_en;
-      const sn=j?s[3]:s[2], tg=j?s[5]:s[4];
+    const philLab=j?'哲学的問い':'Philosophical', ctxLab=j?'AI評価文脈':'In AI context';
+    const oq=j?'「':'\u201C', cq=j?'」':'\u201D';
+    T1CATS.forEach(cat=>{
+      const catnm=j?cat.ja:cat.en, gk=cat.gk?(' · '+cat.gk):'';
+      const phil=j?cat.phil_ja:cat.phil_en, ctx=j?cat.ctx_ja:cat.ctx_en;
+      let rows='';
+      cat.senses.forEach(s=>{
+        const q=j?s.q_ja:s.q_en;
+        rows+='<div class="t1-srow"><div class="t1-sname"><span class="scode">'+s.code+'</span>'+s.name+'</div>'+
+              '<div class="t1-sq">'+q+'</div></div>';
+      });
       const card=document.createElement('div'); card.className='t1-card'; card.style.setProperty('--cat','var('+cat.c+')');
-      card.innerHTML='<div class="t1-top"><span class="t1-cat-nm">'+catnm+'<span class="t1-gk">'+gk+'</span></span><span class="t1-code">'+s[1]+'</span></div>'+
-        '<div class="t1-phil">'+phil+'</div>'+
-        '<div class="t1-ai"><span class="aitag">AI →</span>'+ai+'</div>'+
-        '<div class="t1-sense"><b><span class="scode">'+s[1]+'</span>'+sn+'</b><span>'+tg+'</span></div>';
+      card.innerHTML='<div class="t1-top"><span class="t1-cat-nm">'+catnm+'<span class="t1-gk">'+gk+'</span></span><span class="t1-code">'+cat.range+'</span></div>'+
+        '<div class="t1-phil"><span class="t1-qlab">'+philLab+'</span>'+oq+phil+cq+'</div>'+
+        '<div class="t1-ctx"><span class="t1-qlab">'+ctxLab+'</span>'+oq+ctx+cq+'</div>'+
+        '<div class="t1-senses">'+rows+'</div>';
       tr.appendChild(card);
     });
   }
