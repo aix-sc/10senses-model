@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Truth Is Not Enough — The 10 Senses Model & Training Confidence Index</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23221B14'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%23F4EEE2' text-anchor='middle'%3E10%3C/text%3E%3C/svg%3E" />
 <meta name="description" content="An epistemological framework for multi-dimensional evaluation of AI outputs. The 10 Senses Model (10SM) extends scientific accuracy with individual fit, relational trust, practical harmony, and intuitive dissonance — operationalized as the Training Confidence Index (TCI). Yusuke Takahashi · EJC 2026." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -756,7 +757,7 @@
     <div class="ds-band rv rv-d2">
       <div class="ds-eyebrow">Why data science is a science</div>
       <div class="ds-quote-row">
-        <img class="ds-portrait" src="assets/kiyoki.jpg" alt="Yasushi Kiyoki" onerror="this.style.display='none'">
+        <img class="ds-portrait" src="assets/kiyoki.png" alt="Yasushi Kiyoki" onerror="this.style.display='none'">
         <blockquote class="ds-quote">
           <p class="ds-text">Computer science gives form to the <em>nature of computation</em> the brain itself holds. Data science is something else: it imagines real-world phenomena — social, natural, and human — and materializes them by computing them inside the machine. Above all, it learns to give names to data. It is, in short, <em>the science that gives meaning to numbers</em>.</p>
           <cite class="ds-cite">— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University</cite>
@@ -1954,7 +1955,8 @@
     projectId:  "tensenses-model",
     appId:      "PASTE_FIREBASE_WEB_APP_ID"
   };
-  const MODEL = "gemini-2.5-flash";          // change here if you prefer another Gemini model
+  const MODEL = "gemini-2.5-flash";          // primary Gemini model
+  const FALLBACK_MODEL = "gemini-2.0-flash"; // used automatically if the primary is overloaded (HTTP 500 high-demand)
   const SDK   = "12.14.0";                   // Firebase JS SDK version (gstatic CDN) — needs >= 11.8 for firebase/ai
 
   const SYSTEM = `You are the research assistant for the academic paper "Truth Is Not Enough: An Epistemological Framework for Multi-Dimensional AI Output Evaluation" by Yusuke Takahashi (Asia AI Institute / AIx), to appear in Information Modelling and Knowledge Bases (IOS Press), EJC 2026.
@@ -2001,6 +2003,22 @@ Answer questions about this research clearly and concisely (usually under ~140 w
         foot=document.getElementById('chatFoot'), fabLabel=fab.querySelector('.chat-fab-label');
 
   let chatSession=null, ai=null, chatModel=null, suggestModel=null, initStarted=false, busy=false, greeted=false, lastU='', lastBot='';
+  let mkModel=null, chatModelFallback=null, chatSessionFallback=null, suggestModelFallback=null, useFallback=false;
+
+  const sleep = ms => new Promise(r=>setTimeout(r,ms));
+  // transient = worth retrying / falling back (model overloaded, rate-limited, network hiccup)
+  function transient(e){
+    const m = ((e && (e.message||e.toString())) || '') + '';
+    return /high demand|temporar|overload|unavailable|fetch-error|deadline|\b(429|500|502|503|504)\b/i.test(m);
+  }
+  async function withRetry(fn, tries){
+    let last;
+    for(let i=0;i<tries;i++){
+      try{ return await fn(); }
+      catch(e){ last=e; if(!transient(e) || i===tries-1) throw e; await sleep(500*Math.pow(2,i)); }
+    }
+    throw last;
+  }
 
   /* ---- minimal, safe Markdown -> HTML (escapes first, then decorates) ---- */
   function mdToHtml(text){
@@ -2080,8 +2098,9 @@ Answer questions about this research clearly and concisely (usually under ~140 w
     const { getAI, getGenerativeModel, GoogleAIBackend } = await import(base+'firebase-ai.js');
     const app = initializeApp(CONFIG);
     ai  = getAI(app, { backend: new GoogleAIBackend() });
-    chatModel = getGenerativeModel(ai, { model: MODEL, systemInstruction: SYSTEM });
-    suggestModel = getGenerativeModel(ai, { model: MODEL, systemInstruction: SUGGEST_SYS });
+    mkModel = (m, sys)=> getGenerativeModel(ai, { model: m, systemInstruction: sys });
+    chatModel = mkModel(MODEL, SYSTEM);
+    suggestModel = mkModel(MODEL, SUGGEST_SYS);
     chatSession = chatModel.startChat({ history: [] });
   }
 
@@ -2099,8 +2118,15 @@ Answer questions about this research clearly and concisely (usually under ~140 w
     try{
       setSuggestLoading(true);
       await ensureModel();
-      const r = await suggestModel.generateContent(prompt);
-      let t = r.response.text().trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'').trim();
+      let raw;
+      try{
+        raw = (await withRetry(()=>suggestModel.generateContent(prompt), 2)).response.text();
+      }catch(e){
+        if(!transient(e)) throw e;
+        if(!suggestModelFallback) suggestModelFallback = mkModel(FALLBACK_MODEL, SUGGEST_SYS);
+        raw = (await withRetry(()=>suggestModelFallback.generateContent(prompt), 1)).response.text();
+      }
+      let t = raw.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'').trim();
       const m = t.match(/\[[\s\S]*\]/); if(m) t=m[0];
       const arr = JSON.parse(t);
       renderChips(Array.isArray(arr) && arr.length ? arr : fallback);
@@ -2123,12 +2149,22 @@ Answer questions about this research clearly and concisely (usually under ~140 w
     const t=typing();
     try{
       await ensureModel();
-      const res=await chatSession.sendMessage(text);
-      const botText=res.response.text();
+      let botText;
+      try{
+        botText = (await withRetry(()=> (useFallback?chatSessionFallback:chatSession).sendMessage(text), 3)).response.text();
+      }catch(e){
+        if(useFallback || !transient(e)) throw e;
+        // primary model overloaded — switch to the fallback model, carrying the conversation so far
+        let hist=[]; try{ hist = await chatSession.getHistory(); }catch(_){}
+        chatModelFallback = mkModel(FALLBACK_MODEL, SYSTEM);
+        chatSessionFallback = chatModelFallback.startChat({ history: hist || [] });
+        useFallback = true;
+        botText = (await withRetry(()=>chatSessionFallback.sendMessage(text), 2)).response.text();
+      }
       t.remove(); add('bot', botText, true);
       refreshSuggestions(text, botText);
     }catch(e){
-      t.remove(); add('err',TX.fail[lang()]); console.error('[chat]',e);
+      t.remove(); add('err',TX.fail[lang()]); console.warn('[chat]',e);
     }finally{ busy=false; sendB.disabled=false; input.focus(); }
   }
   function open(){
