@@ -205,6 +205,12 @@
   .ds-quote{margin:0;padding:2px 0 2px 22px;border-left:2px solid var(--truth);}
   .ds-cite{display:block;margin-top:14px;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.03em;color:var(--ink-faint);}
   .ds-after{margin-top:24px;}
+  .ds-statement{font-family:var(--display);font-weight:400;font-size:clamp(23px,2.7vw,33px);line-height:1.34;letter-spacing:-.01em;color:var(--ink);margin:0;}
+  .ds-statement em{font-style:italic;color:var(--truth);}
+  .ds-eyebrow2{margin-top:46px;}
+  .ds-quote-row{display:flex;align-items:flex-start;gap:22px;}
+  .ds-portrait{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex:none;box-shadow:0 0 0 1px var(--line),0 6px 18px rgba(34,27,20,.14);}
+  @media(max-width:600px){.ds-quote-row{gap:15px;}.ds-portrait{width:66px;height:66px;}}
 
   /* ---------- FRAMEWORK TRIAD ---------- */
   .triad-wrap{display:grid;gap:56px;align-items:center;margin-top:46px;}
@@ -641,6 +647,7 @@
   <div class="nav-right">
     <div class="nav-links">
       <a href="#thesis">Thesis</a>
+      <a href="#why">Why</a>
       <a href="#framework">Framework</a>
       <a href="#senses">10 Senses</a>
       <a href="#tci">TCI</a>
@@ -709,14 +716,26 @@
         <div class="cap">In a large-scale validation across human–AI coaching sessions, <b>subjective and objective intensity diverged in roughly one session in six</b> — a structural blind spot that accuracy-only systems cannot, by construction, surface. This not only raises injury risk, but also erodes the trust between athlete and coach.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY IT MATTERS -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-label rv">02 — Why It Matters</div>
+    <p class="ds-statement rv rv-d1">If data science exists to give meaning to numbers drawn from human and social reality, then evaluating its outputs cannot stop at scientific <em>Truth</em> — the criterion of pure science. The measures that matter must be human and social as well. That is the gap this framework is built to close.</p>
 
     <div class="ds-band rv rv-d2">
       <div class="ds-eyebrow">Why data science is a science</div>
-      <blockquote class="ds-quote">
-        <p class="ds-text">Computer science gives form to the <em>nature of computation</em> the brain itself holds. Data science is something else: it imagines real-world phenomena — social, natural, and human — and materializes them by computing them inside the machine. Above all, it learns to give names to data. It is, in short, <em>the science that gives meaning to numbers</em>.</p>
-        <cite class="ds-cite">— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University</cite>
-      </blockquote>
-      <p class="ds-text ds-after">If data science exists to give meaning to numbers drawn from human and social reality, then evaluating its outputs cannot stop at scientific <em>Truth</em> — the criterion of pure science. The measures that matter must be human and social as well. That is the gap this framework is built to close.</p>
+      <div class="ds-quote-row">
+        <img class="ds-portrait" src="assets/kiyoki.png" alt="Yasushi Kiyoki" onerror="this.style.display='none'">
+        <blockquote class="ds-quote">
+          <p class="ds-text">Computer science gives form to the <em>nature of computation</em> the brain itself holds. Data science is something else: it imagines real-world phenomena — social, natural, and human — and materializes them by computing them inside the machine. Above all, it learns to give names to data. It is, in short, <em>the science that gives meaning to numbers</em>.</p>
+          <cite class="ds-cite">— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University</cite>
+        </blockquote>
+      </div>
     </div>
   </div>
 </section>
@@ -728,7 +747,7 @@
   <div class="wrap">
     <div class="fw-grid">
       <div class="fw-left">
-        <div class="sec-label rv">02 — Epistemological Foundation</div>
+        <div class="sec-label rv">03 — Epistemological Foundation</div>
         <h2 class="rv">An ancient triad, <em>extended for AI</em></h2>
         <p class="lead rv rv-d1">The framework rests on the three modes of recognition that have survived two and a half millennia of philosophical scrutiny since Plato, systematized in Kant's <em>Critique of Judgment</em>: Truth (<span class="mono">aletheia</span>), Good (<span class="mono">agathon</span>), and Beauty (<span class="mono">kalon</span>). To these, the model adds two dimensions essential once AI meets a human: Relation and a Moderator.</p>
         <svg class="triad-svg rv rv-d1" viewBox="0 0 300 280" aria-hidden="true">
@@ -762,7 +781,7 @@
   <div class="wrap">
     <div class="senses-head">
       <div>
-        <div class="sec-label rv">03 — The Model</div>
+        <div class="sec-label rv">04 — The Model</div>
         <h2 class="rv">The 10 Senses Model</h2>
       </div>
       <div class="legend rv rv-d1">
@@ -797,7 +816,7 @@
 <!-- HIERARCHY -->
 <section id="hierarchy" class="hier">
   <div class="wrap">
-    <div class="sec-label rv">04 — Structure</div>
+    <div class="sec-label rv">05 — Structure</div>
     <h2 class="rv">From foundation to <em>felt quality</em></h2>
     <p class="lead rv rv-d1">The senses are not a flat list. They build in layers — from the bedrock of scientific evidence, through feasibility and individual fit, up to the quality of the human interface — with a single moderator presiding over the whole.</p>
 
@@ -841,7 +860,7 @@
 <!-- TCI -->
 <section id="tci">
   <div class="wrap">
-    <div class="sec-label rv">05 — Operationalization</div>
+    <div class="sec-label rv">06 — Operationalization</div>
     <h2 class="rv">The Training <em>Confidence</em> Index</h2>
     <p class="lead rv rv-d1">The 10 Senses become computable through the TCI — a hierarchical index that fuses what the system measures with what the person reports, then lets intuition override the arithmetic when it must.</p>
 
@@ -888,7 +907,7 @@
 <!-- M1 ALERT -->
 <section id="alert" class="alert">
   <div class="wrap">
-    <div class="sec-label rv">06 — The Moderator</div>
+    <div class="sec-label rv">07 — The Moderator</div>
     <h2 class="rv">Making <em>"something feels off"</em> computable</h2>
     <p class="lead rv rv-d1">M1 is the framework's most distinctive move: it treats human intuitive dissonance as <em>signal, not noise</em>. When the numbers look fine but perception disagrees, M1 holds the confidence score back and opens a conversation — rather than confidently confirming an answer that may be wrong.</p>
 
@@ -915,7 +934,7 @@
 <!-- INFOGRAPHIC -->
 <section id="dataset" class="info">
   <div class="wrap">
-    <div class="sec-label rv">07 — The Dataset</div>
+    <div class="sec-label rv">08 — The Dataset</div>
     <h2 class="rv">A portrait of <em>the data</em></h2>
     <p class="lead rv rv-d1">Five months of real coaching on EKIDEN.AI, from first-time joggers to Olympic-level runners. Everything below is aggregate and non-identifying — and openly published.</p>
 
@@ -976,7 +995,7 @@
 <!-- DEMO -->
 <section id="demo" class="demo">
   <div class="wrap">
-    <div class="sec-label rv">08 — From the Operational Data</div>
+    <div class="sec-label rv">09 — From the Operational Data</div>
     <h2 class="rv">The framework, <em>run on real data</em></h2>
     <p class="lead rv rv-d1">The same dataset, made interactive. Every figure is computed from the real data or reported in the paper — all aggregate or de-identified, so no individual runner can be identified.</p>
     <p class="whatnow-lead rv rv-d1">Each panel answers one question: <em>what can we now see that accuracy-only evaluation cannot?</em></p>
@@ -1049,7 +1068,7 @@
 <!-- DOMAINS -->
 <section id="domains">
   <div class="wrap">
-    <div class="sec-label rv">09 — Generality</div>
+    <div class="sec-label rv">10 — Generality</div>
     <h2 class="rv">Validated in coaching. <em>Domain-agnostic by design.</em></h2>
     <p class="lead rv rv-d1">The framework was validated through human–AI running coaching — a domain where every dimension genuinely matters. But the five categories carry over wherever measurable accuracy and contextual appropriateness can diverge, and where the cost of that divergence is real.</p>
 
@@ -1065,7 +1084,7 @@
 <!-- FAQ -->
 <section id="faq" class="faq">
   <div class="wrap">
-    <div class="sec-label rv">10 — In Plain Language</div>
+    <div class="sec-label rv">11 — In Plain Language</div>
     <h2 class="rv">Frequently Asked <em>Questions</em></h2>
     <p class="lead rv rv-d1">No jargon. If you're new to all of this, start here.</p>
 
@@ -1205,7 +1224,7 @@
 <!-- PAPER -->
 <section id="paper" class="paper-sec">
   <div class="wrap">
-    <div class="sec-label rv">11 — The Paper</div>
+    <div class="sec-label rv">12 — The Paper</div>
     <h2 class="rv" style="color:var(--paper)">Read the work</h2>
 
     <div class="citation rv rv-d1">
@@ -1240,7 +1259,7 @@
 <!-- REFERENCES -->
 <section id="references" class="paper-sec refs">
   <div class="wrap">
-    <div class="sec-label rv" style="color:rgba(244,238,226,.5)">12 — References</div>
+    <div class="sec-label rv" style="color:rgba(244,238,226,.5)">13 — References</div>
     <ol class="reflist rv rv-d1">
       <li>Steiner R. The riddle of humanity (GA 170). London: Rudolf Steiner Press; 1990 (orig. 1916). <a href="https://scholar.google.com/scholar?q=Steiner+The+riddle+of+humanity+GA+170" target="_blank" rel="noopener">Scholar ↗</a></li>
       <li>Dirac PAM. The evolution of the physicist's picture of nature. <i>Scientific American</i>. 1963;208(5):45–53. <a href="https://scholar.google.com/scholar?q=Dirac+evolution+of+the+physicist+picture+of+nature+1963" target="_blank" rel="noopener">Scholar ↗</a></li>
@@ -1303,22 +1322,23 @@
   [`Tokyo, Japan`,`東京, 日本`],
   [`scroll`,`スクロール`],
   [`01 — The Thesis`,`01 — 主題`],
-  [`02 — Epistemological Foundation`,`02 — 認識論的基盤`],
-  [`03 — The Model`,`03 — モデル`],
-  [`04 — Structure`,`04 — 構造`],
-  [`05 — Operationalization`,`05 — 実装`],
-  [`06 — The Moderator`,`06 — モデレーター`],
-  [`07 — The Dataset`,`07 — データセット`],
-  [`08 — From the Operational Data`,`08 — 実データから`],
-  [`09 — Generality`,`09 — 一般性`],
+  [`02 — Why It Matters`,`02 — なぜ重要か`],
+  [`03 — Epistemological Foundation`,`03 — 認識論的基盤`],
+  [`04 — The Model`,`04 — モデル`],
+  [`05 — Structure`,`05 — 構造`],
+  [`06 — Operationalization`,`06 — 実装`],
+  [`07 — The Moderator`,`07 — モデレーター`],
+  [`08 — The Dataset`,`08 — データセット`],
+  [`09 — From the Operational Data`,`09 — 実データから`],
+  [`10 — Generality`,`10 — 一般性`],
   [`What EKIDEN.AI is`,`EKIDEN.AI とは`],
   [`Why this data was used`,`なぜこのデータを使ったか`],
   [`The data comes from <b>EKIDEN.AI</b> — an agentic AI running coach delivered largely through email. It computes the same indicators elite coaches rely on, weighs every session against the runner's own goals, and — crucially — folds in <b>subjective effort and free-text feedback</b> alongside the device data. Its founding ambition is the first professional running team coached entirely by AI.`,`データは <b>EKIDEN.AI</b> から得ています — 主にメールで届くエージェント型のAIランニングコーチです。トップコーチが用いる指標を算出し、各セッションを本人の目標と照らし合わせ、そして決定的なことに、デバイスのデータに加えて<b>主観的な強度と自由記述のフィードバック</b>も取り込みます。その創業の志は、AIだけがコーチを務める世界初のプロ・ランニングチームの結成です。`],
   [`It fuses <b>objective signals</b> — Garmin device and physiological data, weather context — with the runner's own <b>subjective report</b>. That is precisely where measurable accuracy and felt experience can diverge, which is the gap this framework measures.`,`<b>客観的な信号</b>（Garmin のデバイス・生理データ、天候の文脈）と、本人の<b>主観的な報告</b>を融合します。まさにそこが、測定可能な正確さと体感がずれうる場所であり、このフレームワークが測ろうとするギャップです。`],
   [`Its runners span <b>first-timers to national-record holders and Olympians</b>, so the cost of a "correct but wrong" recommendation ranges from trivial to career-defining — the full stakes spectrum in one dataset.`,`利用するランナーは<b>初心者から日本記録保持者・五輪選手まで</b>。だからこそ「正しいが間違っている」助言の代償は、些細なものからキャリアを左右するものまで幅広く — 一つのデータセットに賭け金の全域が収まっています。`],
   [`EKIDEN.AI is built on a <b>human–AI hybrid</b> principle: don't trust AI alone, don't read only the numbers, understand the runner's story. That makes it a natural testbed for a framework arguing that truth is necessary but not sufficient.`,`EKIDEN.AI は<b>人とAIのハイブリッド</b>という原則で作られています — AIだけに頼らない、数値だけを見ない、ランナーの物語を理解する。真実は必要だが十分ではない、と説くフレームワークにとって、これは自然な検証の場になります。`],
-  [`10 — In Plain Language`,`10 — やさしい言葉で`],
-  [`11 — The Paper`,`11 — 論文`],
+  [`11 — In Plain Language`,`11 — やさしい言葉で`],
+  [`12 — The Paper`,`12 — 論文`],
   [`When an AI claims correctness, <em>correct for whom?</em>`,`AIが「正しい」と言うとき、<em>誰にとって正しいのか？</em>`],
   [`An ancient triad, <em>extended for AI</em>`,`古代からの三幅対を、<em>AIへ拡張する</em>`],
   [`The 10 Senses Model`,`10センス・モデル`],
@@ -1408,7 +1428,7 @@
   [`— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University`,`— 清木 康（Yasushi Kiyoki）武蔵野大学 データサイエンス学部（MIDS）学部長`],
   [`If data science exists to give meaning to numbers drawn from human and social reality, then evaluating its outputs cannot stop at scientific <em>Truth</em> — the criterion of pure science. The measures that matter must be human and social as well. That is the gap this framework is built to close.`,`データサイエンスが、人間や社会の現実から得られた数に意味を与える営みであるなら、その出力の評価は純粋科学の基準である科学的な<em>Truth（真）</em>だけにとどまることはできない。重要となる尺度は、人間的・社会的なものでもなければならない。本フレームワークは、まさにこの隔たりを埋めるために構築されている。`],
   [`n = 890 sessions with both RPE and objective intensity. Hover a slice — one session in six is invisible to accuracy alone.`,`RPE と客観的強度の両方がある 890 セッション。スライスにカーソルを合わせてみてください — 6回に1回は、正確さだけでは見えません。`],
-  [`12 — References`,`12 — 参考文献`],
+  [`13 — References`,`13 — 参考文献`],
   [`Refs`,`文献`],
 
   [`Publication history`,`発表履歴`],
@@ -1443,7 +1463,7 @@
   [`Read the paper ↗`,`論文を読む ↗`],[`Visit EKIDEN.AI ↗`,`EKIDEN.AIを見る ↗`],[`Code & data ↗`,`コードとデータ ↗`],[`Back to top`,`トップへ戻る`],
   [`The 10 Senses Model & Training Confidence Index`,`10センス・モデルとトレーニング信頼度指標`],
   [`Truth Is Not <em>Enough</em>`,`真実だけでは<em>足りない</em>`],
-  [`Thesis`,`主題`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Paper`,`論文`],
+  [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Paper`,`論文`],
   [`Frequently Asked <em>Questions</em>`,`よくある<em>質問</em>`],
   [`No jargon. If you're new to all of this, start here.`,`専門用語なし。はじめての方はここから。`],
   [`What is this research actually about?`,`この研究は結局、何の話？`],
@@ -1512,7 +1532,7 @@
   [`Proposes a seven-dimensional model for describing human experience. 10SM adopts it as the blueprint for future validation — measuring TCI's effects across the Physio dimension (HRV), the Psycho dimension (RPE and satisfaction), and the Social dimension (coach–athlete dialogue).`,`人間の経験を記述する七次元モデルを提案。10SM はこれを今後の検証の設計図として採用します — TCI の効果を、生理次元（HRV）、心理次元（RPE・満足度）、社会次元（コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
