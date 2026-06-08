@@ -408,6 +408,13 @@
   footer{padding:40px 0 60px;}
   .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:rgba(244,238,226,.5);}
   .foot-row a:hover{color:var(--paper);}
+  .foot-people{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding-bottom:42px;margin-bottom:34px;border-bottom:1px solid rgba(244,238,226,.14);}
+  @media(max-width:680px){.foot-people{grid-template-columns:1fr;gap:26px;}}
+  .person{display:flex;gap:18px;align-items:flex-start;}
+  .person-photo{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:50% 36%;flex:none;box-shadow:0 0 0 1px rgba(244,238,226,.25),0 6px 18px rgba(0,0,0,.32);}
+  .person-name{font-family:var(--display);font-size:21px;font-weight:560;letter-spacing:-.01em;color:var(--paper);}
+  .person-role{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#C9A35A;margin:5px 0 9px;}
+  .person-bio{font-family:var(--serif);font-size:13.5px;line-height:1.6;color:rgba(244,238,226,.72);}
 
   /* ---------- DEMO ---------- */
   .demo{background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper) 100%);}
@@ -1448,6 +1455,24 @@
 
   <footer>
     <div class="wrap">
+      <div class="foot-people rv">
+        <div class="person">
+          <img class="person-photo" src="assets/yt.jpg" alt="Yusuke Takahashi" onerror="this.style.display='none'">
+          <div class="person-info">
+            <div class="person-name">Yusuke Takahashi</div>
+            <div class="person-role">Author</div>
+            <p class="person-bio">Creator of the 10 Senses Model and the Training Confidence Index. Associate Professor in the Faculty of Data Science at Musashino University, researcher at Asia AI Institute and AIx{}, and the builder of EKIDEN.AI, the agentic coaching platform behind this study.</p>
+          </div>
+        </div>
+        <div class="person">
+          <img class="person-photo" src="assets/kyle.jpg" alt="Kyle Wild" onerror="this.style.display='none'">
+          <div class="person-info">
+            <div class="person-name">Kyle Wild</div>
+            <div class="person-role">CTO, Endgame</div>
+            <p class="person-bio">CTO at Endgame, building enterprise AI for revenue teams. Co-founder and CEO of the cloud analytics platform Keen (2012–2017), and founder of Root System. Based in Berkeley, California.</p>
+          </div>
+        </div>
+      </div>
       <div class="foot-row">
         <span>© 2026 Yusuke Takahashi · Asia AI Institute · AIx{ }</span>
         <span>The 10 Senses Model &amp; Training Confidence Index</span>
@@ -1631,7 +1656,13 @@
   [`Read the paper ↗`,`論文を読む ↗`],[`Visit EKIDEN.AI ↗`,`EKIDEN.AIを見る ↗`],[`Code & data ↗`,`コードとデータ ↗`],[`Back to top`,`トップへ戻る`],
   [`The 10 Senses Model & Training Confidence Index`,`10センス・モデルとトレーニング信頼度指標`],
   [`Truth Is Not <em>Enough</em>`,`真実だけでは<em>足りない</em>`],
-  [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Structure`,`構造`],[`Moderator`,`モデレーター`],[`Generality`,`汎用性`],[`Paper`,`論文`],
+  [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Structure`,`構造`],[`Moderator`,`モデレーター`],[`Generality`,`汎用性`],
+  [`Yusuke Takahashi`,`高橋 雄介`],
+  [`Author`,`著者`],
+  [`Creator of the 10 Senses Model and the Training Confidence Index. Associate Professor in the Faculty of Data Science at Musashino University, researcher at Asia AI Institute and AIx{}, and the builder of EKIDEN.AI, the agentic coaching platform behind this study.`,`10センス・モデルと Training Confidence Index の考案者。武蔵野大学データサイエンス学部 准教授、Asia AI Institute／AIx{} 研究者。本研究の基盤となるエージェント型コーチング・プラットフォーム EKIDEN.AI の開発者。`],
+  [`Kyle Wild`,`Kyle Wild`],
+  [`CTO, Endgame`,`Endgame・CTO`],
+  [`CTO at Endgame, building enterprise AI for revenue teams. Co-founder and CEO of the cloud analytics platform Keen (2012–2017), and founder of Root System. Based in Berkeley, California.`,`Endgame CTO。レベニューチーム向けのエンタープライズAIを開発。クラウド分析基盤 Keen の共同創業者兼CEO（2012–2017）、Root System 創業者。米国カリフォルニア州バークレー在住。`],[`Paper`,`論文`],
   [`Frequently Asked <em>Questions</em>`,`よくある<em>質問</em>`],
   [`No jargon. If you're new to all of this, start here.`,`専門用語なし。はじめての方はここから。`],
   [`What is this research actually about?`,`この研究は結局、何の話？`],
@@ -1718,7 +1749,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
