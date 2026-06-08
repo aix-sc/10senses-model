@@ -94,9 +94,9 @@
   .brand-logo{display:inline-flex;align-items:center;}
   .brand-logo img{height:26px;width:auto;display:block;border-radius:7px;}
   @media(max-width:860px){.brand-logo img{height:22px;}}
-  .nav-links{display:flex;gap:28px;}
+  .nav-links{display:flex;gap:16px;}
   .nav-links a{
-    font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;white-space:nowrap;
     text-transform:uppercase;color:var(--ink-soft);
     padding-bottom:2px;border-bottom:1px solid transparent;
     transition:color .2s,border-color .2s;
@@ -734,9 +734,12 @@
       <a href="#why">Why</a>
       <a href="#framework">Framework</a>
       <a href="#senses">10 Senses</a>
+      <a href="#hierarchy">Structure</a>
       <a href="#tci">TCI</a>
+      <a href="#alert">Moderator</a>
       <a href="#dataset">Data</a>
       <a href="#demo">Demo</a>
+      <a href="#domains">Generality</a>
       <a href="#faq">FAQ</a>
       <a href="#paper">Paper</a>
       <a href="#references">Refs</a>
@@ -993,7 +996,7 @@
   <div class="wrap">
     <div class="sec-label rv">07 — The Moderator</div>
     <h2 class="rv">Making <em>"something feels off"</em> computable</h2>
-    <p class="lead rv rv-d1">M1 is the framework's most distinctive move: it treats human intuitive dissonance as <em>signal, not noise</em>. When the numbers look fine but perception disagrees, M1 holds the confidence score back and opens a conversation — rather than confidently confirming an answer that may be wrong.</p>
+    <p class="lead rv rv-d1">M1 is the one term in the TCI that can only subtract — never inflate the score. It is also the framework's most distinctive move: it treats human intuitive dissonance as <em>signal, not noise</em>. When the numbers look fine but perception disagrees, M1 holds the confidence score back and opens a conversation — rather than confidently confirming an answer that may be wrong.</p>
 
     <div class="compare">
       <div class="card-cmp rv rv-d1">
@@ -1116,7 +1119,7 @@
   <div class="wrap">
     <div class="sec-label rv">09 — From the Operational Data</div>
     <h2 class="rv">The framework, <em>run on real data</em></h2>
-    <p class="lead rv rv-d1">The same dataset, made interactive. Every figure is computed from the real data or reported in the paper — all aggregate or de-identified, so no individual runner can be identified.</p>
+    <p class="lead rv rv-d1">Earlier, a single sense reacted to one athlete's note. Here the whole framework runs on the entire cohort, made interactive. Every figure is computed from the real data or reported in the paper — all aggregate or de-identified, so no individual runner can be identified.</p>
     <p class="whatnow-lead rv rv-d1">Each panel answers one question: <em>what can we now see that accuracy-only evaluation cannot?</em></p>
 
     <div class="demo-grid">
@@ -1519,9 +1522,9 @@
   [`Ten cognitive senses for judging the reliability of an AI output — mutually exclusive, collectively exhaustive within the space of value judgment. Nine contribute to the score; one watches over all of them.`,`AI出力の信頼性を判断するための10の認知的「センス」。価値判断の空間において相互に排他的で、全体として網羅的です。9つがスコアに寄与し、1つがそのすべてを見張ります。`],
   [`The senses are not a flat list. They build in layers — from the bedrock of scientific evidence, through feasibility and individual fit, up to the quality of the human interface — with a single moderator presiding over the whole.`,`これらのセンスは単なる並列ではありません。科学的根拠という土台から、実行可能性と個人への適合を経て、人との接点の質まで、層をなして積み上がります — そして一つのモデレーターが全体を統べます。`],
   [`The 10 Senses become computable through the TCI — a hierarchical index that fuses what the system measures with what the person reports, then lets intuition override the arithmetic when it must.`,`10のセンスは TCI によって計算可能になります — システムが測る値と本人が報告する値を統合する階層的な指標で、必要なときには直観が計算を上書きできます。`],
-  [`M1 is the framework's most distinctive move: it treats human intuitive dissonance as <em>signal, not noise</em>. When the numbers look fine but perception disagrees, M1 holds the confidence score back and opens a conversation — rather than confidently confirming an answer that may be wrong.`,`M1 はこのフレームワークの最も独自な一手です。人の直観的な違和感を<em>ノイズではなくシグナル</em>として扱います。数値は問題なく見えるのに感覚が一致しないとき、M1 は信頼度スコアを抑え、誤っているかもしれない答えを自信満々に肯定する代わりに、対話を始めます。`],
+  [`M1 is the one term in the TCI that can only subtract — never inflate the score. It is also the framework's most distinctive move: it treats human intuitive dissonance as <em>signal, not noise</em>. When the numbers look fine but perception disagrees, M1 holds the confidence score back and opens a conversation — rather than confidently confirming an answer that may be wrong.`,`M1 は TCI の中で唯一、スコアを引き下げることしかできない項です — 決して水増しはしません。同時に、このフレームワークの最も独自な一手でもあります。人の直観的な違和感を<em>ノイズではなくシグナル</em>として扱います。数値は問題なく見えるのに感覚が一致しないとき、M1 は信頼度スコアを抑え、誤っているかもしれない答えを自信満々に肯定する代わりに、対話を始めます。`],
   [`Five months of real coaching on EKIDEN.AI, from first-time joggers to Olympic-level runners. Everything below is aggregate and non-identifying — and openly published.`,`EKIDEN.AI 上での5か月間の実コーチング — 初めて走る人からオリンピック級のランナーまで。以下はすべて集計・非特定の情報で、公開しています。`],
-  [`The same dataset, made interactive. Every figure is computed from the real data or reported in the paper — all aggregate or de-identified, so no individual runner can be identified.`,`同じデータセットをインタラクティブに。各数値は実データから計算したもの、または論文に掲載されたもので、すべて集計済みか匿名化済み。個々のランナーは特定できません。`],
+  [`Earlier, a single sense reacted to one athlete's note. Here the whole framework runs on the entire cohort, made interactive. Every figure is computed from the real data or reported in the paper — all aggregate or de-identified, so no individual runner can be identified.`,`先ほどは一つのセンスが、ひとりのアスリートの記述に反応しました。ここではフレームワーク全体を、コホート全体の上でインタラクティブに動かします。各数値は実データから計算したもの、または論文に掲載されたもので、すべて集計済みか匿名化済み。個々のランナーは特定できません。`],
   [`The framework was validated through human–AI running coaching — a domain where every dimension genuinely matters. But the five categories carry over wherever measurable accuracy and contextual appropriateness can diverge, and where the cost of that divergence is real.`,`このフレームワークは人とAIによるランニングコーチングで検証しました — すべての次元が本当に効いてくる領域です。しかし5つのカテゴリは、測定可能な正確さと文脈上の適切さがずれうるあらゆる場面、そしてそのずれの代償が現実に大きい場面へと一般化できます。`],
   [`Scientific accuracy is a necessary condition for a reliable AI output. It is not a sufficient one. A diagnosis that ignores a patient's life circumstances, an investment that ignores a client's risk tolerance, a training plan that ignores how an athlete actually feels — each can be <em>measurably correct</em> and <em>practically wrong</em> at the same time.`,`科学的な正確さは、信頼できるAI出力の必要条件です。しかし十分条件ではありません。患者の生活背景を無視した診断、顧客のリスク許容度を無視した投資、選手の実際の感覚を無視したトレーニング計画 — どれも<em>測定上は正しく</em>、同時に<em>実用上は誤っている</em>ことがありえます。`],
   [`This work formalizes that gap. It treats contextual appropriateness not as a soft afterthought but as a first-class, computable property of output quality.`,`本研究はそのギャップを形式化します。文脈上の適切さを、後付けの曖昧な要素ではなく、出力品質の第一級の計算可能な性質として扱います。`],
@@ -1628,7 +1631,7 @@
   [`Read the paper ↗`,`論文を読む ↗`],[`Visit EKIDEN.AI ↗`,`EKIDEN.AIを見る ↗`],[`Code & data ↗`,`コードとデータ ↗`],[`Back to top`,`トップへ戻る`],
   [`The 10 Senses Model & Training Confidence Index`,`10センス・モデルとトレーニング信頼度指標`],
   [`Truth Is Not <em>Enough</em>`,`真実だけでは<em>足りない</em>`],
-  [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Paper`,`論文`],
+  [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Structure`,`構造`],[`Moderator`,`モデレーター`],[`Generality`,`汎用性`],[`Paper`,`論文`],
   [`Frequently Asked <em>Questions</em>`,`よくある<em>質問</em>`],
   [`No jargon. If you're new to all of this, start here.`,`専門用語なし。はじめての方はここから。`],
   [`What is this research actually about?`,`この研究は結局、何の話？`],
