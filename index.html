@@ -392,7 +392,15 @@
   .citation{
     margin-top:40px;border:1px solid rgba(244,238,226,.22);border-radius:3px;
     padding:30px 30px;background:rgba(244,238,226,.04);
+    display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start;
   }
+  @media(max-width:760px){.citation{grid-template-columns:1fr;gap:28px;}}
+  .cite-main{min-width:0;}
+  .cite-thumb{display:block;text-decoration:none;border:1px solid rgba(244,238,226,.18);border-radius:4px;overflow:hidden;background:#fff;box-shadow:0 12px 34px rgba(0,0,0,.42);transition:transform .25s ease,box-shadow .25s ease;}
+  .cite-thumb:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.55);}
+  .cite-thumb img{display:block;width:100%;height:auto;}
+  .cite-cap{display:block;padding:9px 12px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper);border-top:1px solid var(--line);}
+  @media(max-width:760px){.cite-thumb{max-width:320px;margin:0 auto;}}
   .citation .ctitle{font-family:var(--display);font-style:italic;font-weight:380;font-size:clamp(24px,4vw,38px);line-height:1.18;letter-spacing:-.015em;color:var(--paper);max-width:24ch;}
   .citation .authors{margin-top:22px;font-size:18px;color:rgba(244,238,226,.82);font-weight:300;}
   .citation .venue{margin-top:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;color:rgba(244,238,226,.6);}
@@ -1392,6 +1400,7 @@
     <h2 class="rv" style="color:var(--paper)">Read the work</h2>
 
     <div class="citation rv rv-d1">
+      <div class="cite-main">
       <div class="ctitle">Truth Is Not Enough: An Epistemological Framework for Multi-Dimensional AI Output Evaluation with Empirical Validation in Human-AI Coaching</div>
       <div class="authors">Yusuke Takahashi</div>
       <div class="venue">Asia AI Institute · AIx{ } · Tokyo, Japan<br>EJC 2026 — 36th International Conference on Information Modelling and Knowledge Bases<br>Vaasa, Finland · June 8–12, 2026</div>
@@ -1402,6 +1411,8 @@
         <a class="btn" href="#thesis">Back to top</a>
       </div>
       <p style="margin-top:26px;color:rgba(244,238,226,.5);font-size:14px;font-weight:300;font-family:var(--serif);max-width:62ch;">Record-level results and full statistical analysis are reported in the paper. The aggregate data and the code behind this page are openly available in the repository; no individual-level data is published.</p>
+      </div>
+      <a class="cite-thumb rv rv-d2" href="https://drive.google.com/file/d/1tRPGLhC0OqYewZkux1XqFvzrSiafIfYr/view?usp=sharing" target="_blank" rel="noopener"><img src="assets/paper-p1.jpg" alt="Truth Is Not Enough — paper, first page" loading="lazy" onerror="this.closest('.cite-thumb').style.display='none'"><span class="cite-cap">First page — open the full PDF ↗</span></a>
     </div>
 
       <div class="pubhist rv rv-d1">
@@ -1649,7 +1660,7 @@
   [`Truth Is Not <em>Enough</em>`,`真実だけでは<em>足りない</em>`],
   [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Structure`,`構造`],[`Moderator`,`モデレーター`],[`Generality`,`汎用性`],
   [`Yusuke Takahashi`,`高橋 雄介`],
-  [`Author`,`著者`],
+  [`Author`,`著者`],[`First page — open the full PDF ↗`,`1ページ目 — 全文PDFを開く ↗`],
   [`Creator of the 10 Senses Model and the Training Confidence Index. Associate Professor in the Faculty of Data Science at Musashino University, researcher at Asia AI Institute and AIx{}, and the builder of EKIDEN.AI, the agentic coaching platform behind this study.`,`10センス・モデルと Training Confidence Index の考案者。武蔵野大学データサイエンス学部 准教授、Asia AI Institute／AIx{} 研究者。本研究の基盤となるエージェント型コーチング・プラットフォーム EKIDEN.AI の開発者。`],[`Paper`,`論文`],
   [`Frequently Asked <em>Questions</em>`,`よくある<em>質問</em>`],
   [`No jargon. If you're new to all of this, start here.`,`専門用語なし。はじめての方はここから。`],
@@ -1737,7 +1748,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
