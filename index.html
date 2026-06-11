@@ -448,6 +448,7 @@
   .news-msg.ok{color:#86B98A;}
   .news-msg.err{color:#DB938B;}
   .news-privacy{margin-top:15px;font-family:var(--serif);font-size:12px;line-height:1.55;color:rgba(244,238,226,.46);max-width:62ch;}
+  .news-paper{margin-top:58px;padding-top:40px;border-top:1px solid rgba(244,238,226,.14);padding-bottom:0;margin-bottom:0;border-bottom:0;}
 
   /* ---------- DEMO ---------- */
   .demo{background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper) 100%);}
@@ -1452,6 +1453,16 @@
           <div class="pub-body"><span class="pub-what"><b>Journal / proceedings</b> — Information Modelling and Knowledge Bases (Frontiers in Artificial Intelligence and Applications), IOS Press — post-conference volume, forthcoming 2026.</span> <a class="reflink" href="https://www.iospress.com/catalog/books/information-modelling-and-knowledge-bases-xxxvii" target="_blank" rel="noopener">IOS Press ↗</a></div>
         </div>
       </div>
+      <div class="news news-paper rv rv-d1">
+        <div class="news-head">Subscribe to the newsletter</div>
+        <p class="news-sub">Occasional updates on the 10 Senses Model, the TCI, and related work.</p>
+        <form id="newsForm" class="news-form" novalidate>
+          <input id="newsEmail" class="news-input" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required>
+          <button id="newsBtn" class="news-btn" type="submit">Subscribe</button>
+        </form>
+        <div id="newsMsg" class="news-msg" role="status" aria-live="polite"></div>
+        <p class="news-privacy">Your email is used only to contact you about this research and about the researcher’s affiliations — Musashino Data Science and AIx{}. It will not be used for anything else.</p>
+      </div>
   </div>
 </section>
 
@@ -1504,16 +1515,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="news rv">
-        <div class="news-head">Subscribe to the newsletter</div>
-        <p class="news-sub">Occasional updates on the 10 Senses Model, the TCI, and related work.</p>
-        <form id="newsForm" class="news-form" novalidate>
-          <input id="newsEmail" class="news-input" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required>
-          <button id="newsBtn" class="news-btn" type="submit">Subscribe</button>
-        </form>
-        <div id="newsMsg" class="news-msg" role="status" aria-live="polite"></div>
-        <p class="news-privacy">Your email is used only to contact you about this research and about the researcher’s affiliations — Musashino Data Science and AIx{}. It will not be used for anything else.</p>
       </div>
       <div class="foot-row">
         <span>© 2026 Yusuke Takahashi · Asia AI Institute · AIx{ }</span>
