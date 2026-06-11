@@ -421,7 +421,7 @@
   .btn:hover{background:var(--paper);color:var(--ink);}
   .btn.solid{background:var(--paper);color:var(--ink);}
   .btn.solid:hover{background:transparent;color:var(--paper);}
-  footer{padding:40px 0 60px;}
+  footer{padding:40px 0 60px;background:var(--ink);color:var(--paper);}
   .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:rgba(244,238,226,.5);}
   .foot-row a:hover{color:var(--paper);}
   .foot-people{padding-bottom:42px;margin-bottom:34px;border-bottom:1px solid rgba(244,238,226,.14);}
@@ -676,12 +676,13 @@
   .pub-body a:hover,.reflink:hover{border-bottom-color:#C9A35A;}
 
   /* ===== references list (dark) ===== */
-  .refs .reflist{list-style:none;counter-reset:ref;padding:0;margin:10px 0 0;max-width:none;}
-  .refs .reflist li{counter-increment:ref;position:relative;padding:13px 0 13px 48px;border-bottom:1px solid rgba(244,238,226,.1);font-size:13.5px;font-weight:300;color:rgba(244,238,226,.72);line-height:1.55;font-family:var(--serif);}
-  .refs .reflist li::before{content:"[" counter(ref) "]";position:absolute;left:0;top:14px;font-family:var(--mono);font-size:11.5px;color:rgba(244,238,226,.4);}
-  .refs .reflist li i{font-style:italic;color:rgba(244,238,226,.82);}
-  .refs .reflist a{color:#C9A35A;text-decoration:none;border-bottom:1px solid rgba(201,163,90,.4);white-space:nowrap;font-family:var(--mono);font-size:11px;margin-left:4px;}
-  .refs .reflist a:hover{border-bottom-color:#C9A35A;}
+  .reflist{list-style:none;counter-reset:ref;padding:0;margin:10px 0 0;max-width:none;}
+  .reflist li{counter-increment:ref;position:relative;padding:13px 0 13px 48px;border-bottom:1px solid rgba(244,238,226,.1);font-size:13.5px;font-weight:300;color:rgba(244,238,226,.72);line-height:1.55;font-family:var(--serif);}
+  .reflist li::before{content:"[" counter(ref) "]";position:absolute;left:0;top:14px;font-family:var(--mono);font-size:11.5px;color:rgba(244,238,226,.4);}
+  .reflist li i{font-style:italic;color:rgba(244,238,226,.82);}
+  .reflist a{color:#C9A35A;text-decoration:none;border-bottom:1px solid rgba(201,163,90,.4);white-space:nowrap;font-family:var(--mono);font-size:11px;margin-left:4px;}
+  .reflist a:hover{border-bottom-color:#C9A35A;}
+  .refs-details{margin-top:44px;}
   .refs-details > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:rgba(244,238,226,.62);padding:11px 0;margin-top:6px;border-bottom:1px solid rgba(244,238,226,.14);user-select:none;transition:color .2s;}
   .refs-details > summary::-webkit-details-marker{display:none;}
   .refs-details > summary::after{content:"+";font-family:var(--mono);font-size:15px;line-height:1;color:rgba(244,238,226,.5);}
@@ -790,7 +791,6 @@
       <a href="#domains">Generality</a>
       <a href="#faq">FAQ</a>
       <a href="#paper">Paper</a>
-      <a href="#references">Refs</a>
     </div>
     <div class="lang-toggle" role="group" aria-label="Language">
       <button id="langEn" type="button">EN</button>
@@ -1449,6 +1449,35 @@
       <a class="cite-thumb rv rv-d2" href="https://drive.google.com/file/d/1tRPGLhC0OqYewZkux1XqFvzrSiafIfYr/view?usp=sharing" target="_blank" rel="noopener"><img src="assets/paper-p1.jpg" alt="Truth Is Not Enough — paper, first page" loading="lazy" onerror="this.closest('.cite-thumb').style.display='none'"><span class="cite-cap">First page — open the full PDF ↗</span></a>
     </div>
 
+      <details class="refs-details rv rv-d1">
+        <summary><span class="refs-toggle">References · 24</span></summary>
+        <ol class="reflist">
+        <li>Steiner R. The riddle of humanity (GA 170). London: Rudolf Steiner Press; 1990 (orig. 1916). <a href="https://scholar.google.com/scholar?q=Steiner+The+riddle+of+humanity+GA+170" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Dirac PAM. The evolution of the physicist's picture of nature. <i>Scientific American</i>. 1963;208(5):45–53. <a href="https://scholar.google.com/scholar?q=Dirac+evolution+of+the+physicist+picture+of+nature+1963" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Liu Y, Iter D, Xu Y, Wang S, Xu R, Zhu C. G-Eval: NLG evaluation using GPT-4 with better human alignment. <i>EMNLP 2023</i>. p. 2511–2522. <a href="https://doi.org/10.18653/v1/2023.emnlp-main.153" target="_blank" rel="noopener">doi.org ↗</a></li>
+        <li>Es S, James J, Espinosa-Anke L, Schockaert S. RAGAS: Automated evaluation of retrieval augmented generation. <i>arXiv</i>:2309.15217; 2023. <a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">arXiv ↗</a></li>
+        <li>Banister EW. Modeling elite athletic performance. In: Physiological testing of the high-performance athlete. Human Kinetics; 1991. p. 403–424. <a href="https://scholar.google.com/scholar?q=Banister+Modeling+elite+athletic+performance" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Coggan AR. Training and racing with a power meter: an introduction. TrainingPeaks; 2003. <a href="https://scholar.google.com/scholar?q=Coggan+Training+and+racing+with+a+power+meter" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Hulin BT, Gabbett TJ, Lawson DW, Caputi P, Sampson JA. The acute:chronic workload ratio predicts injury: high chronic workload may decrease injury risk in elite rugby league players. <i>Br J Sports Med</i>. 2016;50(4):231–236. <a href="https://doi.org/10.1136/bjsports-2015-094817" target="_blank" rel="noopener">doi.org ↗</a></li>
+        <li>Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. <i>J Strength Cond Res</i>. 2001;15(1):109–115. <a href="https://pubmed.ncbi.nlm.nih.gov/11708692/" target="_blank" rel="noopener">PubMed ↗</a></li>
+        <li>Hooper SL, Mackinnon LT, Howard A, Gordon RD, Bachmann AW. Markers for monitoring overtraining and recovery. <i>Med Sci Sports Exerc</i>. 1995;27(1):106–112. <a href="https://scholar.google.com/scholar?q=Hooper+Markers+for+monitoring+overtraining+and+recovery+1995" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>McAllister JW. Beauty and revolution in science. Ithaca (NY): Cornell University Press; 1996. <a href="https://scholar.google.com/scholar?q=McAllister+Beauty+and+revolution+in+science" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Kuhn TS. The structure of scientific revolutions. Chicago: University of Chicago Press; 1962. <a href="https://scholar.google.com/scholar?q=Kuhn+The+structure+of+scientific+revolutions" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Sheth AP, Larson JA. Federated database systems for managing distributed, heterogeneous, and autonomous databases. <i>ACM Computing Surveys</i>. 1990;22(3):183–236. <a href="https://scholar.google.com/scholar?q=Sheth+Larson+Federated+database+systems+ACM+Computing+Surveys" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Kiyoki Y, Kitagawa T, Hitomi Y. A fundamental framework for realizing semantic interoperability in a multidatabase environment. <i>Int J Integrated Computer-Aided Engineering</i>. 1995;2(1):3–20. <a href="https://scholar.google.com/scholar?q=Kiyoki+fundamental+framework+semantic+interoperability+multidatabase" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Kiyoki Y, Ishihara S. A semantic search space integration method for meta-level knowledge acquisition from heterogeneous databases. <i>Information Modelling and Knowledge Bases</i>. 2002;XIV:86–103. <a href="https://scholar.google.com/scholar?q=Kiyoki+Ishihara+semantic+search+space+integration+meta-level+knowledge" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Ishibashi N, Kiyoki Y. Meta-Chronicle: a spatial and temporal multidatabase system and its application to histories. <i>SAINT 2004</i>. p. 515–522. <a href="https://scholar.google.com/scholar?q=Ishibashi+Kiyoki+Meta-Chronicle+spatial+temporal+multidatabase" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Takahashi Y, Kiyoki Y. A meta-level knowledge base system for discovering personal career opportunities by connecting and analyzing occupational and educational databases. In: Information Modelling and Knowledge Bases XX (EJC 2008). IOS Press; 2009. p. 294–311. <a href="https://scholar.google.com/scholar?q=Takahashi+Kiyoki+meta-level+knowledge+base+career+opportunities" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Cohen J. A coefficient of agreement for nominal scales. <i>Educational and Psychological Measurement</i>. 1960;20(1):37–46. <a href="https://scholar.google.com/scholar?q=Cohen+A+coefficient+of+agreement+for+nominal+scales+1960" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Cronbach LJ. Coefficient alpha and the internal structure of tests. <i>Psychometrika</i>. 1951;16:297–334. <a href="https://scholar.google.com/scholar?q=Cronbach+Coefficient+alpha+and+the+internal+structure+of+tests" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Claudino JG, Capanema DO, de Souza TV, Serrão JC, Machado Pereira AC, Nassis GP. Current approaches to the use of artificial intelligence for injury risk assessment and performance prediction in team sports: a systematic review. <i>Sports Med Open</i>. 2019;5(1):28. <a href="https://doi.org/10.1186/s40798-019-0202-3" target="_blank" rel="noopener">doi.org ↗</a></li>
+        <li>Gadamer H-G. Wahrheit und Methode. Tübingen: J.C.B. Mohr; 1960. <a href="https://scholar.google.com/scholar?q=Gadamer+Wahrheit+und+Methode+1960" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>EKIDEN.AI. Train with Confidence [Internet]. [cited 2026 Apr]. <a href="https://ekiden.ai" target="_blank" rel="noopener">ekiden.ai ↗</a></li>
+        <li>Borg G. Psychophysical bases of perceived exertion. <i>Med Sci Sports Exerc</i>. 1982;14(5):377–381. <a href="https://doi.org/10.1249/00005768-198205000-00012" target="_blank" rel="noopener">doi.org ↗</a></li>
+        <li>Daniels J. Daniels' running formula. 3rd ed. Champaign (IL): Human Kinetics; 2014. <a href="https://scholar.google.com/scholar?q=Daniels+running+formula+3rd+edition" target="_blank" rel="noopener">Scholar ↗</a></li>
+        <li>Iwata H. Conceptual modeling of human action: seven dimensions for description of human experience. In: Information Modelling and Knowledge Bases XXXVII, Vol. 418. IOS Press; 2026. p. 209–214. <a href="https://dx.doi.org/10.3233/FAIA418" target="_blank" rel="noopener">doi.org ↗</a></li>
+        </ol>
+      </details>
       <div class="pubhist rv rv-d1">
         <div class="pub-label">Publication history</div>
         <div class="pub-item">
@@ -1475,41 +1504,6 @@
 
 <div class="divider"></div>
 
-<!-- REFERENCES -->
-<section id="references" class="paper-sec refs">
-  <div class="wrap">
-    <div class="sec-label rv" style="color:rgba(244,238,226,.5)">13 — References</div>
-    <details class="refs-details rv rv-d1">
-      <summary><span class="refs-toggle">References · 24</span></summary>
-      <ol class="reflist">
-      <li>Steiner R. The riddle of humanity (GA 170). London: Rudolf Steiner Press; 1990 (orig. 1916). <a href="https://scholar.google.com/scholar?q=Steiner+The+riddle+of+humanity+GA+170" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Dirac PAM. The evolution of the physicist's picture of nature. <i>Scientific American</i>. 1963;208(5):45–53. <a href="https://scholar.google.com/scholar?q=Dirac+evolution+of+the+physicist+picture+of+nature+1963" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Liu Y, Iter D, Xu Y, Wang S, Xu R, Zhu C. G-Eval: NLG evaluation using GPT-4 with better human alignment. <i>EMNLP 2023</i>. p. 2511–2522. <a href="https://doi.org/10.18653/v1/2023.emnlp-main.153" target="_blank" rel="noopener">doi.org ↗</a></li>
-      <li>Es S, James J, Espinosa-Anke L, Schockaert S. RAGAS: Automated evaluation of retrieval augmented generation. <i>arXiv</i>:2309.15217; 2023. <a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">arXiv ↗</a></li>
-      <li>Banister EW. Modeling elite athletic performance. In: Physiological testing of the high-performance athlete. Human Kinetics; 1991. p. 403–424. <a href="https://scholar.google.com/scholar?q=Banister+Modeling+elite+athletic+performance" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Coggan AR. Training and racing with a power meter: an introduction. TrainingPeaks; 2003. <a href="https://scholar.google.com/scholar?q=Coggan+Training+and+racing+with+a+power+meter" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Hulin BT, Gabbett TJ, Lawson DW, Caputi P, Sampson JA. The acute:chronic workload ratio predicts injury: high chronic workload may decrease injury risk in elite rugby league players. <i>Br J Sports Med</i>. 2016;50(4):231–236. <a href="https://doi.org/10.1136/bjsports-2015-094817" target="_blank" rel="noopener">doi.org ↗</a></li>
-      <li>Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. <i>J Strength Cond Res</i>. 2001;15(1):109–115. <a href="https://pubmed.ncbi.nlm.nih.gov/11708692/" target="_blank" rel="noopener">PubMed ↗</a></li>
-      <li>Hooper SL, Mackinnon LT, Howard A, Gordon RD, Bachmann AW. Markers for monitoring overtraining and recovery. <i>Med Sci Sports Exerc</i>. 1995;27(1):106–112. <a href="https://scholar.google.com/scholar?q=Hooper+Markers+for+monitoring+overtraining+and+recovery+1995" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>McAllister JW. Beauty and revolution in science. Ithaca (NY): Cornell University Press; 1996. <a href="https://scholar.google.com/scholar?q=McAllister+Beauty+and+revolution+in+science" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Kuhn TS. The structure of scientific revolutions. Chicago: University of Chicago Press; 1962. <a href="https://scholar.google.com/scholar?q=Kuhn+The+structure+of+scientific+revolutions" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Sheth AP, Larson JA. Federated database systems for managing distributed, heterogeneous, and autonomous databases. <i>ACM Computing Surveys</i>. 1990;22(3):183–236. <a href="https://scholar.google.com/scholar?q=Sheth+Larson+Federated+database+systems+ACM+Computing+Surveys" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Kiyoki Y, Kitagawa T, Hitomi Y. A fundamental framework for realizing semantic interoperability in a multidatabase environment. <i>Int J Integrated Computer-Aided Engineering</i>. 1995;2(1):3–20. <a href="https://scholar.google.com/scholar?q=Kiyoki+fundamental+framework+semantic+interoperability+multidatabase" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Kiyoki Y, Ishihara S. A semantic search space integration method for meta-level knowledge acquisition from heterogeneous databases. <i>Information Modelling and Knowledge Bases</i>. 2002;XIV:86–103. <a href="https://scholar.google.com/scholar?q=Kiyoki+Ishihara+semantic+search+space+integration+meta-level+knowledge" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Ishibashi N, Kiyoki Y. Meta-Chronicle: a spatial and temporal multidatabase system and its application to histories. <i>SAINT 2004</i>. p. 515–522. <a href="https://scholar.google.com/scholar?q=Ishibashi+Kiyoki+Meta-Chronicle+spatial+temporal+multidatabase" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Takahashi Y, Kiyoki Y. A meta-level knowledge base system for discovering personal career opportunities by connecting and analyzing occupational and educational databases. In: Information Modelling and Knowledge Bases XX (EJC 2008). IOS Press; 2009. p. 294–311. <a href="https://scholar.google.com/scholar?q=Takahashi+Kiyoki+meta-level+knowledge+base+career+opportunities" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Cohen J. A coefficient of agreement for nominal scales. <i>Educational and Psychological Measurement</i>. 1960;20(1):37–46. <a href="https://scholar.google.com/scholar?q=Cohen+A+coefficient+of+agreement+for+nominal+scales+1960" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Cronbach LJ. Coefficient alpha and the internal structure of tests. <i>Psychometrika</i>. 1951;16:297–334. <a href="https://scholar.google.com/scholar?q=Cronbach+Coefficient+alpha+and+the+internal+structure+of+tests" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Claudino JG, Capanema DO, de Souza TV, Serrão JC, Machado Pereira AC, Nassis GP. Current approaches to the use of artificial intelligence for injury risk assessment and performance prediction in team sports: a systematic review. <i>Sports Med Open</i>. 2019;5(1):28. <a href="https://doi.org/10.1186/s40798-019-0202-3" target="_blank" rel="noopener">doi.org ↗</a></li>
-      <li>Gadamer H-G. Wahrheit und Methode. Tübingen: J.C.B. Mohr; 1960. <a href="https://scholar.google.com/scholar?q=Gadamer+Wahrheit+und+Methode+1960" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>EKIDEN.AI. Train with Confidence [Internet]. [cited 2026 Apr]. <a href="https://ekiden.ai" target="_blank" rel="noopener">ekiden.ai ↗</a></li>
-      <li>Borg G. Psychophysical bases of perceived exertion. <i>Med Sci Sports Exerc</i>. 1982;14(5):377–381. <a href="https://doi.org/10.1249/00005768-198205000-00012" target="_blank" rel="noopener">doi.org ↗</a></li>
-      <li>Daniels J. Daniels' running formula. 3rd ed. Champaign (IL): Human Kinetics; 2014. <a href="https://scholar.google.com/scholar?q=Daniels+running+formula+3rd+edition" target="_blank" rel="noopener">Scholar ↗</a></li>
-      <li>Iwata H. Conceptual modeling of human action: seven dimensions for description of human experience. In: Information Modelling and Knowledge Bases XXXVII, Vol. 418. IOS Press; 2026. p. 209–214. <a href="https://dx.doi.org/10.3233/FAIA418" target="_blank" rel="noopener">doi.org ↗</a></li>
-      </ol>
-    </details>
-  </div>
-
   <footer>
     <div class="wrap">
       <div class="foot-people rv">
@@ -1534,7 +1528,6 @@
       </div>
     </div>
   </footer>
-</section>
 
 <script>
 (function(){
@@ -1674,8 +1667,6 @@
   [`— Yasushi Kiyoki, Dean, Faculty of Data Science (MIDS), Musashino University`,`— 清木 康（Yasushi Kiyoki）武蔵野大学 データサイエンス学部（MIDS）学部長`],
   [`If data science exists to give meaning to numbers drawn from human and social reality, then evaluating its outputs cannot stop at scientific <em>Truth</em> — the criterion of pure science. The measures that matter must be human and social as well. That is the gap this framework is built to close.`,`データサイエンスが、人間や社会の現実から得られた数に意味を与える営みであるなら、その出力の評価は純粋科学の基準である科学的な<em>Truth（真）</em>だけにとどまることはできない。重要となる尺度は、人間的・社会的なものでもなければならない。本フレームワークは、まさにこの隔たりを埋めるために構築されている。`],
   [`n = 890 sessions with both RPE and objective intensity. Hover a slice — one session in six is invisible to accuracy alone.`,`RPE と客観的強度の両方がある 890 セッション。スライスにカーソルを合わせてみてください — 6回に1回は、正確さだけでは見えません。`],
-  [`13 — References`,`13 — 参考文献`],
-  [`Refs`,`文献`],
 
   [`Publication history`,`発表履歴`],
   [`To appear`,`掲載予定`],
