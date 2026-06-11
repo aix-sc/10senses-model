@@ -424,6 +424,9 @@
   footer{padding:40px 0 60px;background:var(--ink);color:var(--paper);}
   .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:rgba(244,238,226,.5);}
   .foot-row a:hover{color:var(--paper);}
+  .foot-title{padding-bottom:38px;margin-bottom:34px;border-bottom:1px solid rgba(244,238,226,.14);}
+  .ft-name{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:560;letter-spacing:-.015em;line-height:1.06;color:var(--paper);}
+  .ft-sub{margin-top:12px;font-family:var(--serif);font-size:15px;line-height:1.5;color:rgba(244,238,226,.6);max-width:60ch;}
   .foot-people{padding-bottom:42px;margin-bottom:34px;border-bottom:1px solid rgba(244,238,226,.14);}
   .person{display:flex;gap:18px;align-items:flex-start;max-width:640px;}
   .person-photo{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:50% 36%;flex:none;box-shadow:0 0 0 1px rgba(244,238,226,.25),0 6px 18px rgba(0,0,0,.32);}
@@ -1506,6 +1509,10 @@
 
   <footer>
     <div class="wrap">
+      <div class="foot-title rv">
+        <div class="ft-name">Truth Is Not Enough</div>
+        <div class="ft-sub">An Epistemological Framework for Multi-Dimensional AI Output Evaluation</div>
+      </div>
       <div class="foot-people rv">
         <div class="person">
           <img class="person-photo" src="assets/yt.jpg" alt="Yusuke Takahashi" onerror="this.style.display='none'">
@@ -1550,6 +1557,8 @@
   [`<b>Yusuke Takahashi</b>`,`<b>高橋雄介</b>`],
   [`Tokyo, Japan`,`東京, 日本`],
   [`scroll`,`スクロール`],
+  [`Truth Is Not Enough`,`真実だけでは足りない`],
+  [`An Epistemological Framework for Multi-Dimensional AI Output Evaluation`,`AIの出力を多面的に評価するための認識論的フレームワーク`],
   [`01 — The Thesis`,`01 — 主題`],
   [`02 — Why It Matters`,`02 — なぜ重要か`],
   [`03 — Epistemological Foundation`,`03 — 認識論的基盤`],
@@ -1794,7 +1803,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap,.news-head,.news-sub,.news-privacy,.refs-toggle';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap,.news-head,.news-sub,.news-privacy,.refs-toggle,.ft-name,.ft-sub';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
