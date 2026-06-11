@@ -424,6 +424,11 @@
   footer{padding:40px 0 60px;background:var(--ink);color:var(--paper);}
   .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:rgba(244,238,226,.5);}
   .foot-row a:hover{color:var(--paper);}
+  .foot-links{display:flex;flex-wrap:wrap;gap:13px 26px;margin-bottom:26px;}
+  .foot-links a{font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;color:rgba(244,238,226,.62);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;transition:color .2s,border-color .2s;}
+  .foot-links a:hover{color:var(--paper);border-color:rgba(244,238,226,.45);}
+  .foot-links a.foot-totop{color:#C9A35A;}
+  .foot-links a.foot-totop:hover{color:#d8b46e;border-color:rgba(201,163,90,.5);}
   .foot-title{padding-bottom:38px;margin-bottom:34px;border-bottom:1px solid rgba(244,238,226,.14);}
   .ft-name{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);font-weight:560;letter-spacing:-.015em;line-height:1.06;color:var(--paper);}
   .ft-sub{margin-top:12px;font-family:var(--serif);font-size:15px;line-height:1.5;color:rgba(244,238,226,.6);max-width:60ch;}
@@ -812,7 +817,7 @@
   </button>
 </div>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="greek-bg" data-parallax="0.10" data-pbase="translateY(-50%)">ἀλήθεια<br>ἀγαθόν<br>κάλλος</div>
   <div class="wrap hero-inner">
     <span class="kicker rv in">EJC 2026 · Information Modelling &amp; Knowledge Bases</span>
@@ -1527,11 +1532,16 @@
           </div>
         </div>
       </div>
+      <div class="foot-links">
+        <a href="https://muds.ac/" target="_blank" rel="noopener">Musashino Data Science ↗</a>
+        <a href="https://github.com/aix-sc" target="_blank" rel="noopener">AIx ↗</a>
+        <a href="https://isc-research.web.app/#" target="_blank" rel="noopener">Uraki–Takahashi Lab at MUDS ↗</a>
+        <a href="https://github.com/aix-sc/isc" target="_blank" rel="noopener">GitHub (OSS) ↗</a>
+        <a href="#top" class="foot-totop">Back to top ↑</a>
+      </div>
       <div class="foot-row">
         <span>© 2026 Yusuke Takahashi · Asia AI Institute · AIx{ }</span>
         <span>The 10 Senses Model &amp; Training Confidence Index</span>
-        <span><a href="https://sites.uwasa.fi/ejc2026/" target="_blank" rel="noopener">EJC 2026 · Vaasa ↗</a></span>
-        <span><a href="https://ekiden.ai" target="_blank" rel="noopener">ekiden.ai ↗</a></span>
       </div>
     </div>
   </footer>
@@ -1559,6 +1569,7 @@
   [`scroll`,`スクロール`],
   [`Truth Is Not Enough`,`真実だけでは足りない`],
   [`An Epistemological Framework for Multi-Dimensional AI Output Evaluation`,`AIの出力を多面的に評価するための認識論的フレームワーク`],
+  [`Back to top ↑`,`トップへ戻る ↑`],
   [`01 — The Thesis`,`01 — 主題`],
   [`02 — Why It Matters`,`02 — なぜ重要か`],
   [`03 — Epistemological Foundation`,`03 — 認識論的基盤`],
@@ -1803,7 +1814,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap,.news-head,.news-sub,.news-privacy,.refs-toggle,.ft-name,.ft-sub';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap,.news-head,.news-sub,.news-privacy,.refs-toggle,.ft-name,.ft-sub,.foot-links a';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
