@@ -433,6 +433,21 @@
   .person-links{margin-top:13px;display:flex;flex-wrap:wrap;gap:18px;}
   .person-links a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,238,226,.62);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;transition:color .2s,border-color .2s;}
   .person-links a:hover{color:var(--paper);border-color:rgba(244,238,226,.5);}
+  .news{padding-bottom:42px;margin-bottom:34px;border-bottom:1px solid rgba(244,238,226,.14);max-width:640px;}
+  .news-head{font-family:var(--display);font-size:22px;font-weight:560;letter-spacing:-.01em;color:var(--paper);}
+  .news-sub{margin-top:8px;font-family:var(--serif);font-size:14px;line-height:1.6;color:rgba(244,238,226,.7);}
+  .news-form{margin-top:16px;display:flex;gap:10px;}
+  @media(max-width:560px){.news-form{flex-direction:column;}}
+  .news-input{flex:1;min-width:0;background:rgba(244,238,226,.06);border:1px solid rgba(244,238,226,.22);border-radius:6px;padding:12px 14px;color:var(--paper);font-family:var(--serif);font-size:15px;outline:none;transition:border-color .2s;}
+  .news-input::placeholder{color:rgba(244,238,226,.4);}
+  .news-input:focus{border-color:rgba(244,238,226,.55);}
+  .news-btn{flex:none;border:0;border-radius:6px;background:#C9A35A;color:#221B14;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:12px 24px;cursor:pointer;transition:background .2s,opacity .2s;}
+  .news-btn:hover{background:#d8b46e;}
+  .news-btn:disabled{opacity:.55;cursor:default;}
+  .news-msg{margin-top:12px;font-family:var(--mono);font-size:12px;letter-spacing:.03em;min-height:15px;}
+  .news-msg.ok{color:#86B98A;}
+  .news-msg.err{color:#DB938B;}
+  .news-privacy{margin-top:15px;font-family:var(--serif);font-size:12px;line-height:1.55;color:rgba(244,238,226,.46);max-width:62ch;}
 
   /* ---------- DEMO ---------- */
   .demo{background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper) 100%);}
@@ -1490,6 +1505,16 @@
           </div>
         </div>
       </div>
+      <div class="news rv">
+        <div class="news-head">Subscribe to the newsletter</div>
+        <p class="news-sub">Occasional updates on the 10 Senses Model, the TCI, and related work.</p>
+        <form id="newsForm" class="news-form" novalidate>
+          <input id="newsEmail" class="news-input" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required>
+          <button id="newsBtn" class="news-btn" type="submit">Subscribe</button>
+        </form>
+        <div id="newsMsg" class="news-msg" role="status" aria-live="polite"></div>
+        <p class="news-privacy">Your email is used only to contact you about this research and about the researcher’s affiliations — Musashino Data Science and AIx{}. It will not be used for anything else.</p>
+      </div>
       <div class="foot-row">
         <span>© 2026 Yusuke Takahashi · Asia AI Institute · AIx{ }</span>
         <span>The 10 Senses Model &amp; Training Confidence Index</span>
@@ -1676,6 +1701,9 @@
   [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Structure`,`構造`],[`Moderator`,`モデレーター`],[`Generality`,`汎用性`],
   [`Yusuke Takahashi, PhD`,`高橋 雄介, PhD`],
   [`Associate Professor, Faculty of Data Science, Musashino University`,`武蔵野大学 データサイエンス学部 准教授`],[`First page — open the full PDF ↗`,`1ページ目 — 全文PDFを開く ↗`],
+  [`Subscribe to the newsletter`,`ニュースレターを購読`],
+  [`Occasional updates on the 10 Senses Model, the TCI, and related work.`,`10センス・モデル、TCI、関連研究に関する不定期のお知らせをお送りします。`],
+  [`Your email is used only to contact you about this research and about the researcher’s affiliations — Musashino Data Science and AIx{}. It will not be used for anything else.`,`いただいたメールアドレスは、本研究に関するご連絡と、研究者が所属する Musashino Data Science・AIx{} に関するご連絡以外には使用しません。`],
   [`Computer scientist. Serial entrepreneur. Co-founded AIx{}. He works on adaptive semantic substrates and knowledge bases built on orthogonalized semantic spaces. Earlier he founded software startups in Silicon Valley and Tokyo, with experience across product design, growth, and customer development. 500 Startups alumni. He holds a PhD in Media and Governance from Keio University.`,`計算機科学者。シリアルアントレプレナー。AIx{} 共同創業者。直交化された意味空間の上に構築する、適応的なセマンティック基盤と知識ベースを研究。以前はシリコンバレーと東京でソフトウェア・スタートアップを創業し、プロダクトデザイン・グロース・カスタマーデベロップメントにわたる経験を持つ。500 Startups 出身。慶應義塾大学大学院政策・メディア研究科にて博士号（Media and Governance）を取得。`],[`Paper`,`論文`],
   [`Frequently Asked <em>Questions</em>`,`よくある<em>質問</em>`],
   [`No jargon. If you're new to all of this, start here.`,`専門用語なし。はじめての方はここから。`],
@@ -1763,7 +1791,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap,.news-head,.news-sub,.news-privacy';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
@@ -2354,9 +2382,9 @@ Answer questions about this research clearly and concisely (usually under ~140 w
     if(chatSession||initStarted) return;
     initStarted=true;
     const base='https://www.gstatic.com/firebasejs/'+SDK+'/';
-    const { initializeApp } = await import(base+'firebase-app.js');
+    const { initializeApp, getApps, getApp } = await import(base+'firebase-app.js');
     const { getAI, getGenerativeModel, GoogleAIBackend } = await import(base+'firebase-ai.js');
-    const app = initializeApp(CONFIG);
+    const app = getApps().length ? getApp() : initializeApp(CONFIG);
     ai  = getAI(app, { backend: new GoogleAIBackend() });
     mkModel = (m, sys)=> getGenerativeModel(ai, { model: m, systemInstruction: sys });
     chatModel = mkModel(MODEL, SYSTEM);
@@ -2447,6 +2475,66 @@ Answer questions about this research clearly and concisely (usually under ~140 w
   // keep labels in sync when the page language toggle is used
   new MutationObserver(paintStatic).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   paintStatic();
+})();
+</script>
+<script type="module">
+(function(){
+  var form=document.getElementById('newsForm'); if(!form) return;
+  var input=document.getElementById('newsEmail'),
+      btn=document.getElementById('newsBtn'),
+      msg=document.getElementById('newsMsg');
+  var CONFIG=(typeof window!=='undefined' && window.__FB)?window.__FB:{};
+  var SDK="12.14.0";
+  var L=function(){return document.documentElement.lang==='ja'?'ja':'en';};
+  var T={
+    idle:{en:"Subscribe",ja:"登録"},
+    sending:{en:"Subscribing\u2026",ja:"送信中\u2026"},
+    ok:{en:"Thanks \u2014 you\u2019re on the list.",ja:"ありがとうございます。登録が完了しました。"},
+    invalid:{en:"Please enter a valid email address.",ja:"有効なメールアドレスを入力してください。"},
+    err:{en:"Something went wrong. Please try again.",ja:"送信に失敗しました。時間をおいて再度お試しください。"}
+  };
+  var EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var done=false;
+
+  function setIdleLabel(){ if(!done) btn.textContent=T.idle[L()]; }
+  setIdleLabel();
+  new MutationObserver(setIdleLabel).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  function show(kind,text){ msg.textContent=text||''; msg.className='news-msg'+(kind?(' '+kind):''); }
+
+  var db=null,fs=null;
+  async function ensureDb(){
+    if(db) return;
+    var base='https://www.gstatic.com/firebasejs/'+SDK+'/';
+    var appMod=await import(base+'firebase-app.js');
+    fs=await import(base+'firebase-firestore.js');
+    var app=appMod.getApps().length?appMod.getApp():appMod.initializeApp(CONFIG);
+    db=fs.getFirestore(app);
+  }
+
+  async function submit(e){
+    if(e) e.preventDefault();
+    if(done) return;
+    var email=(input.value||'').trim().toLowerCase();
+    if(!EMAIL.test(email)){ show('err',T.invalid[L()]); input.focus(); return; }
+    btn.disabled=true; btn.textContent=T.sending[L()]; show('','');
+    var rec={ email:email, lang:L(), source:'website_footer', userAgent:navigator.userAgent, page:location.href };
+    // best-effort mirror to Google Sheet (Apps Script web app)
+    if(CONFIG.sheetEndpoint){
+      try{ fetch(CONFIG.sheetEndpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(rec)}); }catch(_){}
+    }
+    try{
+      await ensureDb();
+      await fs.addDoc(fs.collection(db,'newsletter_subscribers'), Object.assign({},rec,{createdAt:fs.serverTimestamp()}));
+      done=true;
+      show('ok',T.ok[L()]);
+      input.value=''; input.disabled=true; btn.style.display='none';
+      if(typeof window.gtag==='function') window.gtag('event','generate_lead',{method:'newsletter',source:'website_footer'});
+    }catch(err){
+      btn.disabled=false; btn.textContent=T.idle[L()];
+      show('err',T.err[L()]);
+    }
+  }
+  form.addEventListener('submit',submit);
 })();
 </script>
 </body>
