@@ -682,6 +682,13 @@
   .refs .reflist li i{font-style:italic;color:rgba(244,238,226,.82);}
   .refs .reflist a{color:#C9A35A;text-decoration:none;border-bottom:1px solid rgba(201,163,90,.4);white-space:nowrap;font-family:var(--mono);font-size:11px;margin-left:4px;}
   .refs .reflist a:hover{border-bottom-color:#C9A35A;}
+  .refs-details > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:rgba(244,238,226,.62);padding:11px 0;margin-top:6px;border-bottom:1px solid rgba(244,238,226,.14);user-select:none;transition:color .2s;}
+  .refs-details > summary::-webkit-details-marker{display:none;}
+  .refs-details > summary::after{content:"+";font-family:var(--mono);font-size:15px;line-height:1;color:rgba(244,238,226,.5);}
+  .refs-details[open] > summary::after{content:"\2013";}
+  .refs-details > summary:hover{color:rgba(244,238,226,.92);}
+  .refs-details[open] > summary{margin-bottom:2px;}
+  .refs-details .reflist{margin-top:0;}
 
   /* ===== background-layer parallax ===== */
   .pbg{position:relative;overflow:hidden;}
@@ -1472,7 +1479,9 @@
 <section id="references" class="paper-sec refs">
   <div class="wrap">
     <div class="sec-label rv" style="color:rgba(244,238,226,.5)">13 — References</div>
-    <ol class="reflist rv rv-d1">
+    <details class="refs-details rv rv-d1">
+      <summary><span class="refs-toggle">References · 24</span></summary>
+      <ol class="reflist">
       <li>Steiner R. The riddle of humanity (GA 170). London: Rudolf Steiner Press; 1990 (orig. 1916). <a href="https://scholar.google.com/scholar?q=Steiner+The+riddle+of+humanity+GA+170" target="_blank" rel="noopener">Scholar ↗</a></li>
       <li>Dirac PAM. The evolution of the physicist's picture of nature. <i>Scientific American</i>. 1963;208(5):45–53. <a href="https://scholar.google.com/scholar?q=Dirac+evolution+of+the+physicist+picture+of+nature+1963" target="_blank" rel="noopener">Scholar ↗</a></li>
       <li>Liu Y, Iter D, Xu Y, Wang S, Xu R, Zhu C. G-Eval: NLG evaluation using GPT-4 with better human alignment. <i>EMNLP 2023</i>. p. 2511–2522. <a href="https://doi.org/10.18653/v1/2023.emnlp-main.153" target="_blank" rel="noopener">doi.org ↗</a></li>
@@ -1497,7 +1506,8 @@
       <li>Borg G. Psychophysical bases of perceived exertion. <i>Med Sci Sports Exerc</i>. 1982;14(5):377–381. <a href="https://doi.org/10.1249/00005768-198205000-00012" target="_blank" rel="noopener">doi.org ↗</a></li>
       <li>Daniels J. Daniels' running formula. 3rd ed. Champaign (IL): Human Kinetics; 2014. <a href="https://scholar.google.com/scholar?q=Daniels+running+formula+3rd+edition" target="_blank" rel="noopener">Scholar ↗</a></li>
       <li>Iwata H. Conceptual modeling of human action: seven dimensions for description of human experience. In: Information Modelling and Knowledge Bases XXXVII, Vol. 418. IOS Press; 2026. p. 209–214. <a href="https://dx.doi.org/10.3233/FAIA418" target="_blank" rel="noopener">doi.org ↗</a></li>
-    </ol>
+      </ol>
+    </details>
   </div>
 
   <footer>
@@ -1700,7 +1710,8 @@
   [`The 10 Senses Model & Training Confidence Index`,`10センス・モデルとトレーニング信頼度指標`],
   [`Truth Is Not <em>Enough</em>`,`真実だけでは<em>足りない</em>`],
   [`Thesis`,`主題`],[`Why`,`意義`],[`Framework`,`枠組み`],[`10 Senses`,`10センス`],[`Data`,`データ`],[`Demo`,`デモ`],[`Structure`,`構造`],[`Moderator`,`モデレーター`],[`Generality`,`汎用性`],
-  [`Yusuke Takahashi, PhD`,`高橋 雄介, PhD`],
+  [`Yusuke Takahashi, PhD`,`高橋 雄介 博士(政策・メディア)`],
+  [`References · 24`,`参考文献 · 24件`],
   [`Associate Professor, Faculty of Data Science, Musashino University`,`武蔵野大学 データサイエンス学部 准教授`],[`First page — open the full PDF ↗`,`1ページ目 — 全文PDFを開く ↗`],
   [`Subscribe to the newsletter`,`ニュースレターを購読`],
   [`Occasional updates on the 10 Senses Model, the TCI, and related work.`,`10センス・モデル、TCI、関連研究に関する不定期のお知らせをお送りします。`],
@@ -1792,7 +1803,7 @@
   [`Iwata proposes a way to describe human experience across seven dimensions at once, rather than flattening it into a single measure. 10SM adopts this as the blueprint for how it will test itself in the future: measuring the TCI's real effects on the body (the Physio dimension, e.g. heart-rate variability), on the mind (the Psycho dimension, e.g. perceived effort and satisfaction), and on relationships (the Social dimension, e.g. the conversation between coach and athlete).`,`岩田は、人間の経験を一つの指標に押し縮めるのではなく、七つの次元で同時に描く方法を提案しています。10SM はこれを、今後の自己検証の設計図として採用します——TCI の実際の効果を、身体（生理次元、例：心拍変動）、心（心理次元、例：主観的運動強度や満足度）、関係（社会次元、例：コーチと選手の対話）にわたって測定します。`]
   ];
   const JA={}; PAIRS.forEach(p=>{JA[norm(p[0])]=p[1];});
-  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap,.news-head,.news-sub,.news-privacy';
+  const SELECTORS='.kicker,.triad-line,h1.title,.hero-sub,.hero-meta span,.scroll-cue span,.sec-label,h2,.lead,.cap,.ds-eyebrow,.ds-text,.ds-statement,.ds-cite,p,.cat-row .nm,.cat-row .q,.legend span,.sense .sname,.sense .desc,.layer .lname,.layer .ldesc,.layer .lsenses span,.obj-readout .chip,.slider-top span,.scale-ends span,.gauge .gl,.coach-box .who,.ph,.panel h3,.donut-legend span,.evid th,.evid td,.vh,.il,.spectrum-x span,.spectrum-band span,.elite-call,.eai-tag,.domain .dname,.domain .dtext,.citation .ctitle,.authors,.venue,.btn,.brand,.nav-links a,.faq-cat,.faq-q,.faq-a,.nowtag,.eqlabel,.eq-note,.pub-label,.toappear,.pub-what,.fb-eyebrow,.fb-explain,.app-title,.app-activity,.app-q,.app-submit,.out-h,.person-name,.person-role,.person-bio,.cite-cap,.news-head,.news-sub,.news-privacy,.refs-toggle';
   const els=[];
   document.querySelectorAll(SELECTORS).forEach(el=>{ if(els.indexOf(el)<0) els.push(el); });
   els.forEach(el=>{ el.__en=el.innerHTML; });
